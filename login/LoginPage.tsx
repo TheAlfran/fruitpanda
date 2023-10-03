@@ -42,11 +42,15 @@ export default function LoginPage() {
               <RegisterButton>
                 <RegisterButtonText>here</RegisterButtonText>
               </RegisterButton>
+              
             </RegisterContainer>
+
           </InputContainer>
+
         </LoginBox>
       </LoginContainer>
     </ParentContainer1>
+
   )
 }
 
