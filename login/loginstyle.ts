@@ -43,7 +43,7 @@ width: 85%;
 height: 320px;
 border-width: .5px;
 border-radius: 40px;
-border-color: black;
+border-color: #B30000;
 `;
 
 export const LoginText = styled.Text`
@@ -62,7 +62,7 @@ align-items: center;
 `;
 
 export const Username = styled.TextInput`
-width: 70%;
+width: 65%;
 height: 20%;
 border-width: 1px;
 border-top-color: #fff;
@@ -73,16 +73,39 @@ margin-top: 20px;
 padding-left: 10px;
 `;
 
+export const PasswordContainer = styled.View`
+flex-direction: row;
+margin-top: 10px;
+align-items: center;
+justify-content: center;
+
+`;
+
+
 export const Password = styled.TextInput`
-width: 70%;
-height: 20%;
+width: 65%;
+height: 100%;
 border-width: 1px;
 border-top-color: #fff;
 border-left-color: #fff;
 border-right-color: #fff;
 border-bottom-color: #FFA726;
 margin-top: 10px;
+margin-left: 20px;
 padding-left: 10px;
+
+`;
+
+export const ShowPasswordIcon = styled.Image`
+width: 20px;
+height: 20px;
+position: relative;
+right: 20px;
+top: 10px;
+`;
+
+export const ShowPasswordButton = styled.TouchableOpacity`
+
 `;
 
 export const LoginButton = styled.TouchableOpacity`
