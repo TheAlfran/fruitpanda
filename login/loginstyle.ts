@@ -101,7 +101,7 @@ width: 20px;
 height: 20px;
 position: relative;
 right: 20px;
-top: 10px;
+top: 7px;
 `;
 
 export const ShowPasswordButton = styled.TouchableOpacity`
