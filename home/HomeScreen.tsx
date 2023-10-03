@@ -33,7 +33,7 @@ export default function HomeScreen() {
             <Title>FRUIT PANDA</Title>
           </TitleContainer>
           <SwiperContainer>
-          <Swiper loop={false} showsButtons={true} showsPagination={true}>
+          <Swiper loop={true} showsButtons={true} showsPagination={true} autoplay={true}>
               {images.map((image, index) => (
                 <View key={index}>
                   <SlideImage
