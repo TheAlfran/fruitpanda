@@ -1,7 +1,6 @@
 import { View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
-import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer } from './mainstyle'
-
+import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ProductContainer } from './mainstyle'
 
 
 
@@ -19,6 +18,8 @@ export default function MainPage() {
     { id: 9, text: 'T-Citrus' },
     // Add more items as needed
   ];
+
+
   
   return (
     <MainContainer>
@@ -28,7 +29,7 @@ export default function MainPage() {
       </MainTitleContainer>
       <ParentCategoryContainer>
         <CategoryContainer>
-            <ScrollView horizontal>
+            <ScrollView horizontal >
             {items.map((item) => (
               <CategoryButtons key={item.id}>
                 <Text style={{color: "wheat"}}>{item.text}</Text>
@@ -37,6 +38,17 @@ export default function MainPage() {
           </ScrollView>
         </CategoryContainer>
       </ParentCategoryContainer>
+      <ProductContainer>
+
+      </ProductContainer>
     </MainContainer>
   );
 }
+
+function useState(arg0: never[]): [any, any] {
+  throw new Error('Function not implemented.');
+}
+function useEffect(arg0: () => void, arg1: never[]) {
+  throw new Error('Function not implemented.');
+}
+

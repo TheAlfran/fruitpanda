@@ -16,7 +16,7 @@ align-items: center;
 export const MainTitle = styled.Text`
 font-size: 24px;
 font-weight: bold;
-color: #b30000;
+color: #b30000;  
 padding: 30px;
 position: relative;
 right: 21px;
@@ -61,5 +61,10 @@ width: 80px;
 justify-content: center;
 align-items: center;
 position: relative;
+`;
+
+export const ProductContainer = styled. TouchableOpacity`
+
+
 `;
 

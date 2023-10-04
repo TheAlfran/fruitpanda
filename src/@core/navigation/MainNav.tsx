@@ -1,11 +1,8 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import HomeScreen from '../home/HomeScreen';
-import LoginPage from '../login/LoginPage';
-import MainPage from '../mainpage/MainPage';
-import profilepage from '../profile/profilepage';
-import addtocartpage from '../cartpage/addtocartpage';
+import HomeScreen from '../page/Home/HomeScreen';
+import LoginPage from '../page/Login/LoginPage';
 import Navigator1 from './Navigator';
 
 
