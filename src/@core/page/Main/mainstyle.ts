@@ -63,8 +63,16 @@ align-items: center;
 position: relative;
 `;
 
-export const ProductContainer = styled. TouchableOpacity`
+export const ProductButton = styled.TouchableOpacity`
+border-width: 1px;
+border-color: black; 
+border-radius: 20px;  
+width: 50%;
+margin-top: 10px;     
+padding: 20px;                  
+`;
 
+export const ProductContainer = styled.View`
 
 `;
 
