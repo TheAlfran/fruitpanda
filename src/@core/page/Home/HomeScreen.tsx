@@ -4,7 +4,7 @@ import { FooterButton, FooterContainer, FooterContainer2, FooterText, FooterText
 import { useNavigation } from '@react-navigation/native';
 import Swiper from 'react-native-swiper';
 import React from 'react';
-import LoginPage from '../login/LoginPage';
+import LoginPage from '../Login/LoginPage';
 
 export default function HomeScreen() {
 
@@ -15,10 +15,11 @@ export default function HomeScreen() {
     };
 
     const images = [
-        require('../assets/fruits.png'),
-        require('../assets/order.png'),
-        require('../assets/deliver.png'),
-      ]
+      require('../../../../assets/fruits.png'),    // Adjust the path as needed
+      require('../../../../assets/order.png'),     // Adjust the path as needed
+      require('../../../../assets/deliver.png'),   // Adjust the path as needed
+    ];
+    
     
       const description =[
         'Pick and Choose Fresh Fruits',

@@ -1,11 +1,10 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from '../home/HomeScreen';
-import addtocartpage from '../cartpage/addtocartpage';
-import profilepage from '../profile/profilepage';
+import Addtocartpage from '../page/Cart/addtocartpage';
+import Profilepage from '../page/Profile/profilepage';
 import { Ionicons } from '@expo/vector-icons'; 
-import MainPage from '../mainpage/MainPage';
+import MainPage from '../page/Main/MainPage';
 
 const Tab = createBottomTabNavigator();
 
@@ -29,7 +28,7 @@ export default function Navigator1() {
         />
         <Tab.Screen
           name="AddToCart"
-          component={addtocartpage}
+          component={Addtocartpage}
           options={{
             headerShown: false,
             tabBarLabel: 'Add to Cart',
@@ -40,7 +39,7 @@ export default function Navigator1() {
         />
         <Tab.Screen
           name="Profile"
-          component={profilepage}
+          component={Profilepage}
           options={{
             headerShown: false,
             tabBarLabel: 'Profile',

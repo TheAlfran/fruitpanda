@@ -20,7 +20,7 @@ export default function LoginPage() {
     console.log("fffs",password)
     try {
       // Make a POST request to your Strapi authentication endpoint
-      const response = await axios.post("http://192.168.1.6:1337/api/auth/local", {
+      const response = await axios.post("http://192.168.1.4:1337/api/auth/local", {
         identifier: username, // Use the username or email entered by the user
         password: password,
       });
@@ -50,7 +50,7 @@ export default function LoginPage() {
   return (
     <ParentContainer1>
       <TitleContainer1>
-      <TitleIcon source={require('../assets/shop.png')}></TitleIcon>
+      <TitleIcon source={require('../../../../assets/shop.png')}></TitleIcon>
         <TitleText> Fruit Panda</TitleText>
       </TitleContainer1>
       <LoginContainer>
@@ -61,7 +61,7 @@ export default function LoginPage() {
             <PasswordContainer>
               <Password placeholder='password' secureTextEntry={isSecureEntry} value={password} onChangeText={(text) => setPassword(text)}></Password>
                 <ShowPasswordButton onPress={togglePasswordVisibility}>
-                  <ShowPasswordIcon source={isSecureEntry ? require('../assets/eye.png') : require('../assets/visible.png')}/>
+                  <ShowPasswordIcon source={isSecureEntry ? require('../../../../assets/eye.png') : require('../../../../assets/visible.png')}/>
                 </ShowPasswordButton>
             </PasswordContainer>
             <LoginButton onPress={submitLogin}>
