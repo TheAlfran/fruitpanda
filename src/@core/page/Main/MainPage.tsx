@@ -1,6 +1,6 @@
 import { FlatList, View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ProductButton, ProductContainer } from './mainstyle'
+import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, ProductContainer, ProductImage, SaleContainer } from './mainstyle'
 import axios from 'axios';
 
 type Product = {
@@ -11,15 +11,25 @@ type Product = {
     price: number;
     category: string;
     description: string;
-  }
+    image: {
+      data: {
+        attributes: {
+          url: string;
+        }
+      }
+    }
+
+  };
 };
+
 
 export default function MainPage() {
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://192.168.1.4:1337/api/products");
-      console.log("API Response:", response.data.data); // Add this line to check the response
+      const response = await axios.get("http://192.168.1.4:1337/api/products?populate=image");
+      
       return response.data.data;
+
     } catch (error) {
       console.error('Error fetching products:', error);
       return [];
@@ -68,24 +78,34 @@ export default function MainPage() {
           </ScrollView>
         </CategoryContainer>
       </ParentCategoryContainer>
-      <ProductContainer>
-        <FlatList
-          data={products}
-          keyExtractor={(item: any, index) => {
-            return item.id.toString() || index.toString()
-          }}
-          renderItem={({ item: { attributes } }) => {
-            console.log("nara dari", attributes);
-            return <ProductButton key={attributes.id}>
-              <Text>Name: {attributes.name}</Text>
-              <Text>Quantity: {attributes.quantity}</Text>
-              <Text>Price: {attributes.price}</Text>
-              <Text>Category: {attributes.category}</Text>
-            </ProductButton>
-          }
-          }
-        />
-      </ProductContainer>
+      <SaleContainer>
+
+      </SaleContainer>
+      
+        <ProductContainer>
+          <FlatList
+            data={products}
+            scrollEnabled
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item: any, index) => {
+              return item.id.toString() || index.toString()
+            }}
+            numColumns={2}
+            key={'_'}
+            renderItem={({ item: { attributes } }) => (
+              <>
+                <ParentProductContainer>
+                  <ProductButton key={attributes.id}>
+                    <ProductImage source={{ uri: `http://192.168.1.4:1337${attributes?.image.data[0].attributes.url}` }} />
+                    <Text>{attributes.name}</Text>
+                  </ProductButton>
+                </ParentProductContainer>
+              </>
+            )
+            }
+          />
+        </ProductContainer>
+      
     </MainContainer>
   );
 }
