@@ -1,6 +1,6 @@
 import { FlatList, View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ProductButton, ProductContainer, ProductImage } from './mainstyle'
+import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, ProductContainer, ProductImage, SaleContainer } from './mainstyle'
 import axios from 'axios';
 
 type Product = {
@@ -27,8 +27,7 @@ export default function MainPage() {
   const fetchProducts = async () => {
     try {
       const response = await axios.get("http://192.168.1.4:1337/api/products?populate=image");
-      console.log("API Response:", response.data.data); // Add this line to check the response
-      console.log(response.data.data.producst)
+      
       return response.data.data;
 
     } catch (error) {
@@ -79,28 +78,34 @@ export default function MainPage() {
           </ScrollView>
         </CategoryContainer>
       </ParentCategoryContainer>
-      <ProductContainer>
-        <FlatList
-          data={products}
-          scrollEnabled
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item: any, index) => {
-            return item.id.toString() || index.toString()
-          }}
-          numColumns={2}
-          renderItem={({ item: { attributes } }) => (
-            <>
-              <View style={{ flex: 1 }}>
-                <ProductButton key={attributes.id}>
-                  <ProductImage source={{ uri: `http://192.168.1.4:1337${attributes?.image.data[0].attributes.url}` }} />
-                  <Text>Name: {attributes.name}</Text>
-                </ProductButton>
-              </View>
-            </>
-          )
-          }
-        />
-      </ProductContainer>
+      <SaleContainer>
+
+      </SaleContainer>
+      
+        <ProductContainer>
+          <FlatList
+            data={products}
+            scrollEnabled
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item: any, index) => {
+              return item.id.toString() || index.toString()
+            }}
+            numColumns={2}
+            key={'_'}
+            renderItem={({ item: { attributes } }) => (
+              <>
+                <ParentProductContainer>
+                  <ProductButton key={attributes.id}>
+                    <ProductImage source={{ uri: `http://192.168.1.4:1337${attributes?.image.data[0].attributes.url}` }} />
+                    <Text>{attributes.name}</Text>
+                  </ProductButton>
+                </ParentProductContainer>
+              </>
+            )
+            }
+          />
+        </ProductContainer>
+      
     </MainContainer>
   );
 }
