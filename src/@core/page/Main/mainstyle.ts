@@ -96,6 +96,8 @@ padding: 20px;
 margin-top: 10px;     
 position: relative;
 left: 8px;
+justify-content: center;
+align-items: center;
 `;
 
 export const ProductImage = styled.Image`
