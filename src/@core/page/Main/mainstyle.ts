@@ -38,6 +38,8 @@ padding-left: 10px;
 export const ParentCategoryContainer = styled.View`
 justify-content: center;
 align-items: center;
+position: relative;
+bottom: 10px;
 
 `;
 
@@ -72,7 +74,15 @@ margin-top: 10px;
 padding: 20px;                  
 `;
 
-export const ProductContainer = styled.View`
+export const ProductImage = styled.Image`
+width: 50px;
+height: 50px;
+`;
 
+export const ProductContainer = styled.View`
+background-color: #fff;
+margin-top: 130px;
+height: 382px;
+padding: 20px;
 `;
 
