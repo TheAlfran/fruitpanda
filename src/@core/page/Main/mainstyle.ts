@@ -5,6 +5,7 @@ import styled from "styled-components/native";
 export const MainContainer = styled.View`
   flex: 1;
   background-color: #fff;
+  
 `;
 
 export const MainTitleContainer = styled.View`
@@ -65,13 +66,36 @@ align-items: center;
 position: relative;
 `;
 
+export const SaleContainer = styled.View`
+height: 25%;
+width: 100%;
+background-color: #fff;
+`;
+export const ParentProductContainer = styled.View`
+
+flex: 1;
+background-color: #fff;
+`;
+
+export const ProductContainer = styled.View`
+background-color: #fff;
+flex: 1;
+width: 100%;
+padding-left: 20px;
+padding-right: 20px;
+justify-content: center;
+`;
+
 export const ProductButton = styled.TouchableOpacity`
 border-width: 1px;
 border-color: black; 
 border-radius: 20px;  
-width: 50%;
+width: 90%;    
+height: 120px;
+padding: 20px;
 margin-top: 10px;     
-padding: 20px;                  
+position: relative;
+left: 8px;
 `;
 
 export const ProductImage = styled.Image`
@@ -79,10 +103,5 @@ width: 50px;
 height: 50px;
 `;
 
-export const ProductContainer = styled.View`
-background-color: #fff;
-margin-top: 130px;
-height: 382px;
-padding: 20px;
-`;
+
 
