@@ -1,6 +1,6 @@
 import { FlatList, View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ProductButton, ProductContainer } from './mainstyle'
+import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ProductButton, ProductContainer, ProductImage } from './mainstyle'
 import axios from 'axios';
 
 type Product = {
@@ -11,15 +11,26 @@ type Product = {
     price: number;
     category: string;
     description: string;
-  }
+    image: {
+      data: {
+        attributes: {
+          url: string;
+        }
+      }
+    }
+
+  };
 };
+
 
 export default function MainPage() {
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://192.168.1.4:1337/api/products");
+      const response = await axios.get("http://192.168.1.4:1337/api/products?populate=image");
       console.log("API Response:", response.data.data); // Add this line to check the response
+      console.log(response.data.data.producst)
       return response.data.data;
+
     } catch (error) {
       console.error('Error fetching products:', error);
       return [];
@@ -71,18 +82,22 @@ export default function MainPage() {
       <ProductContainer>
         <FlatList
           data={products}
+          scrollEnabled
+          showsVerticalScrollIndicator={false}
           keyExtractor={(item: any, index) => {
             return item.id.toString() || index.toString()
           }}
-          renderItem={({ item: { attributes } }) => {
-            console.log("nara dari", attributes);
-            return <ProductButton key={attributes.id}>
-              <Text>Name: {attributes.name}</Text>
-              <Text>Quantity: {attributes.quantity}</Text>
-              <Text>Price: {attributes.price}</Text>
-              <Text>Category: {attributes.category}</Text>
-            </ProductButton>
-          }
+          numColumns={2}
+          renderItem={({ item: { attributes } }) => (
+            <>
+              <View style={{ flex: 1 }}>
+                <ProductButton key={attributes.id}>
+                  <ProductImage source={{ uri: `http://192.168.1.4:1337${attributes?.image.data[0].attributes.url}` }} />
+                  <Text>Name: {attributes.name}</Text>
+                </ProductButton>
+              </View>
+            </>
+          )
           }
         />
       </ProductContainer>
