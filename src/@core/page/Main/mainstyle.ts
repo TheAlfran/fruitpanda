@@ -30,7 +30,7 @@ border-color: ${secondary};
 border-radius: 9px;
 height: 40px;
 width: 90%;
-margin-bottom: 20px;
+margin-bottom: 30px;
 padding: 5px;
 padding-left: 10px;
 background-color: #fff;
@@ -67,6 +67,12 @@ width: 80px;
 justify-content: center;
 align-items: center;
 position: relative;
+top: -8px;
+`;
+
+export const CategoryIamges = styled.Image`
+width: 30px;
+height: 30px;
 `;
 
 export const SaleContainer = styled.View`
@@ -126,7 +132,6 @@ border-color: ${secondary};
 border-radius: 20px;  
 width: 90%;    
 height: 120px;
-padding: 20px;
 margin-top: 10px;     
 position: relative;
 left: 8px;
@@ -135,11 +140,13 @@ align-items: center;
 `;
 
 export const ProductImage = styled.Image`
-width: 50px;
-height: 50px;
+width: 70px;
+height: 70px;
 margin-bottom: 3px;
 `;
 
+export const TwoContainerCombination = styled.View`
 
 
+`;
 
