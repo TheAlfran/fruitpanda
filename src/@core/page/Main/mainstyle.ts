@@ -41,7 +41,7 @@ export const ParentCategoryContainer = styled.View`
 justify-content: center;
 align-items: center;
 position: relative;
-bottom: 10px;
+bottom: 15px;
 border-bottom-right-radius: 19px;
 border-bottom-left-radius: 19px;
 background-color: ${secondary};
@@ -73,17 +73,37 @@ export const SaleContainer = styled.View`
 height: 25%;
 width: 100%;
 align-items: center;
-margin-bottom: 20px;
-border-radius: 10px;
+margin-bottom: 10px;
+flex: 1;
+background-color: ${tertiary};
+position: relative;
+top: -10px;
+border-radius: 20px;
+`;
+
+export const TextSale = styled.Text`
+font-size: 35px;
+font-weight: bold;
+margin: 10px;
 
 `;
 
-export const SaleBorder = styled.View`
+export const SaleButton = styled.TouchableOpacity`
 border-width: 1px;
-border-color: #000;
-border-radius: 20px;
-height: 180px;
-width: 90%;
+border-color: ${secondary}; 
+border-radius: 20px;  
+width: 150px;    
+height: 80%;
+padding: 20px; 
+margin-left: 10px;
+margin-right: 10px;
+align-items: center;
+justify-content: center;
+background-color: #fff;
+`;
+
+export const PriceTextContainer = styled.View`
+flex-direction: row;
 `;
 
 export const ParentProductContainer = styled.View`
@@ -119,6 +139,7 @@ width: 50px;
 height: 50px;
 margin-bottom: 3px;
 `;
+
 
 
 
