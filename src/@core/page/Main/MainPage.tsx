@@ -1,6 +1,6 @@
 import { FlatList, View, Text, ScrollView, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, SaleButton, ProductContainer, ProductImage, SaleContainer, TextSale, PriceTextContainer } from './mainstyle'
+import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, SaleButton, ProductContainer, ProductImage, SaleContainer, TextSale, PriceTextContainer, CategoryIamges } from './mainstyle'
 import axios from 'axios';
 
 type Product = {
@@ -73,22 +73,22 @@ export default function MainPage() {
   }, []);
 
 
-
+  
 
   const items = [
-    { id: 1, text: 'Citrus' },
-    { id: 2, text: 'Berries' },
-    { id: 3, text: 'Tropical' },
-    { id: 4, text: 'Stone' },
-    { id: 5, text: 'Exotic' },
-    { id: 6, text: 'Melons' },
-    { id: 7, text: 'Apples' },
-    { id: 8, text: 'Grapes' },
-    { id: 9, text: 'T-Citrus' },
-    // Add more items as needed
+    { id: 1, text: 'Citrus',   images: require('../../../../assets/categories/orange.png') },
+    { id: 2, text: 'Berries',  images: require('../../../../assets/categories/blueberry.png') },
+    { id: 3, text: 'Tropical', images: require('../../../../assets/categories/banana.png') },
+    { id: 4, text: 'Stone',    images: require('../../../../assets/categories/cherry.png') },
+    { id: 5, text: 'Exotic',   images: require('../../../../assets/categories/lychee.png')},
+    { id: 6, text: 'Melons',   images: require('../../../../assets/categories/watermelon.png') },
+    { id: 7, text: 'Apples',   images: require('../../../../assets/categories/apple.png') },
+    { id: 8, text: 'Grapes',   images: require('../../../../assets/categories/grape.png') },
+    { id: 9, text: 'T-Citrus', images: require('../../../../assets/categories/kumquat.png') },
   ];
 
   return (
+    
     <MainContainer>
       <MainTitleContainer>
         <MainTitle>Explore your favorite fruits</MainTitle>
@@ -99,6 +99,8 @@ export default function MainPage() {
           <ScrollView horizontal showsHorizontalScrollIndicator={false}>
             {items.map((item) => (
               <CategoryButtons key={item.id}>
+                <CategoryButtons />
+                <CategoryIamges source={item.images} />
                 <Text style={{ color: "wheat" }}>{item.text}</Text>
               </CategoryButtons>
             ))}
@@ -108,7 +110,7 @@ export default function MainPage() {
       <SaleContainer>
         <TextSale>50% off Items</TextSale>
         <FlatList
-          data={products1} // Use products1 data for this FlatList
+          data={products1} 
           scrollEnabled
           horizontal={true}
           showsHorizontalScrollIndicator={false}
@@ -152,7 +154,6 @@ export default function MainPage() {
           }
         />
       </ProductContainer>
-
     </MainContainer>
   );
 }
