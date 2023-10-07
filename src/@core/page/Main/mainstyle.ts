@@ -145,8 +145,9 @@ height: 70px;
 margin-bottom: 3px;
 `;
 
-export const TwoContainerCombination = styled.View`
-
+export const ViewContainer = styled.View`
+background-color: transparent;
+flex: 1;
 
 `;
 
