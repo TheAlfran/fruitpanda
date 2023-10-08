@@ -1,12 +1,11 @@
-import { FlatList, View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { FlatList, View, Text, ScrollView, TouchableOpacity, Modal } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, SaleButton, ProductContainer, ProductImage, SaleContainer, TextSale, PriceTextContainer, CategoryIamges, ViewContainer } from './mainstyle'
+import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, SaleButton, ProductContainer, ProductImage, SaleContainer, TextSale, PriceTextContainer, CategoryIamges, ViewContainer, ParentModalContainer, ChildModalContainer, CloseButtonModal, ButtonModalText, CartButton, CartText, CartImage, CartImageContainer, ModalTitle, ModalTitleContainer, PriceDescriptionTextContainer } from './mainstyle'
 import axios from 'axios';
 
 type Product = {
   id: number;
   attributes: {
-
     name: string;
     quantity: number;
     price: number;
@@ -17,17 +16,17 @@ type Product = {
         attributes: {
           url: string;
         }
-      }
+      }[]
     }
   };
 };
+
 
 
 export default function MainPage() {
   const fetchProducts = async () => {
     try {
       const response = await axios.get("http://192.168.1.11:1337/api/products?populate=image");
-
       return response.data.data;
 
     } catch (error) {
@@ -39,7 +38,6 @@ export default function MainPage() {
   const fetchProducts1 = async () => {
     try {
       const response = await axios.get("http://192.168.1.11:1337/api/products?filters[id][$in][1]=7&filters[id][$in][0]=1&filters[id][$in][4]=9&populate=image");
-      console.log("data", response.data.data)
       return response.data.data;
 
     } catch (error) {
@@ -49,6 +47,7 @@ export default function MainPage() {
   };
 
   const [products1, setProducts1] = useState<Product[]>([]);
+
 
   useEffect(() => {
     fetchProducts1()
@@ -84,6 +83,18 @@ export default function MainPage() {
     { id: 8, text: 'Grapes', images: require('../../../../assets/categories/grape.png') },
     { id: 9, text: 'T-Citrus', images: require('../../../../assets/categories/kumquat.png') },
   ];
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null); // Add this state variable
+  const [isModalVisible, setModalVisible] = useState(false);
+  const handleButtonClick = (productmodal: Product) => {
+    setSelectedProduct(productmodal);
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+
+  
 
   return (
     <MainContainer>
@@ -104,55 +115,85 @@ export default function MainPage() {
           </ScrollView>
         </CategoryContainer>
       </ParentCategoryContainer>
-      <ViewContainer>
-        <SaleContainer>
-          <TextSale>50% off Items</TextSale>
-          <FlatList
-            data={products1}
-            scrollEnabled
-            horizontal={true}
-            showsHorizontalScrollIndicator={false}
-            keyExtractor={(item: any, index) => {
-              return item.id.toString() || index.toString();
-            }}
-            renderItem={({ item: { attributes }, }) => (
 
-              <SaleButton key={attributes.id}>
-                <ProductImage source={{ uri: `http://192.168.1.4:1337${attributes?.image.data[0].attributes.url}` }} />
-                <Text style={{ textTransform: "uppercase" }}>{attributes.name}</Text>
-                <PriceTextContainer>
-                  <Text style={{ textDecorationLine: 'line-through' }}>₱{attributes.price}</Text>
-                  <Text> / ₱{attributes.price * 0.5}</Text>
-                </PriceTextContainer>
-              </SaleButton>
-            )}
-          />
-        </SaleContainer>
-        <ProductContainer>
-          <FlatList
-            data={products}
-            scrollEnabled
-            showsVerticalScrollIndicator={false}
-            keyExtractor={(item: any, index) => {
-              return item.id.toString() || index.toString()
-            }}
-            numColumns={2}
-            key={'_'}
-            renderItem={({ item: { attributes }, }) => {
-              return <>
-                <ParentProductContainer>
-                  <ProductButton key={attributes.id}>
-                    <ProductImage source={{ uri: `http://192.168.1.4:1337${attributes?.image.data[0].attributes.url}` }} />
-                    <Text style={{ textTransform: "uppercase" }}>{attributes.name}</Text>
+      <SaleContainer>
+        <TextSale>50% off Items</TextSale>
+        <FlatList
+          data={products1}
+          scrollEnabled
+          horizontal={true}
+          showsHorizontalScrollIndicator={false}
+          keyExtractor={(item: any, index) => {
+            return item.id.toString() || index.toString();
+          }}
+          renderItem={({ item: { attributes }, }) => (
+
+            <SaleButton key={attributes.id}>
+              <ProductImage source={{ uri: `http://192.168.1.11:1337${attributes?.image.data[0].attributes.url}` }} />
+              <Text style={{ textTransform: "uppercase" }}>{attributes.name}</Text>
+              <PriceTextContainer>
+                <Text style={{ textDecorationLine: 'line-through' }}>₱{attributes.price}</Text>
+                <Text> / ₱{attributes.price * 0.5}</Text>
+              </PriceTextContainer>
+            </SaleButton>
+          )}
+        />
+      </SaleContainer>
+      <ProductContainer>
+        <FlatList
+          data={products}
+          scrollEnabled
+          showsVerticalScrollIndicator={false}
+          keyExtractor={(item: any, index) => {
+            return item.id.toString() || index.toString()
+          }}
+          numColumns={2}
+          key={'_'}
+          renderItem={({ item: { attributes }, }) => {
+            return <>
+              <ParentProductContainer>
+                <ProductButton key={attributes.id} onPress={() => handleButtonClick({ id: attributes.id, attributes })}>
+                  <ProductImage source={{ uri: `http://192.168.1.11:1337${attributes?.image.data[0].attributes.url}` }} />
+                  <Text style={{ textTransform: "uppercase" }}>{attributes.name}</Text>
                     <Text>₱{attributes.price}</Text>
-                  </ProductButton>
-                </ParentProductContainer>
-              </>
-            }
-            }
-          />
-        </ProductContainer>
-      </ViewContainer>
+                </ProductButton>
+              </ParentProductContainer>
+            </>
+          }
+          }
+        />
+      </ProductContainer>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={closeModal}
+      >
+        {selectedProduct && (
+          <ParentModalContainer>
+            <ChildModalContainer>
+              <CartImageContainer>
+                <CartImage source={{ uri: `http://192.168.1.11:1337${selectedProduct.attributes.image.data[0].attributes?.url}` }} />
+              </CartImageContainer>
+                <ModalTitleContainer>
+                  <ModalTitle>Description:</ModalTitle>
+                </ModalTitleContainer>
+                <PriceDescriptionTextContainer>
+                  <Text>"{selectedProduct?.attributes.description}"</Text>
+                </PriceDescriptionTextContainer>
+              <CartButton>
+                <CartText>
+                  Add to Cart!
+                </CartText>
+              </CartButton>
+              <CloseButtonModal onPress={closeModal}>
+                  <ButtonModalText>CLOSE</ButtonModalText>
+              </CloseButtonModal>
+            </ChildModalContainer>
+          </ParentModalContainer>
+        )}
+      </Modal>
+
     </MainContainer>
   );
 }
