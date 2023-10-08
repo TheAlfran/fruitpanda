@@ -1,6 +1,6 @@
 import { FlatList, View, Text, ScrollView, TouchableOpacity, Modal } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, SaleButton, ProductContainer, ProductImage, SaleContainer, TextSale, PriceTextContainer, CategoryIamges, ViewContainer } from './mainstyle'
+import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, SaleButton, ProductContainer, ProductImage, SaleContainer, TextSale, PriceTextContainer, CategoryIamges, ViewContainer, ParentModalContainer, ChildModalContainer, CloseButtonModal, ButtonModalText, CartButton, CartText, CartImage, CartImageContainer, ModalTitle, ModalTitleContainer, PriceDescriptionTextContainer } from './mainstyle'
 import axios from 'axios';
 
 type Product = {
@@ -88,7 +88,6 @@ export default function MainPage() {
   const handleButtonClick = (productmodal: Product) => {
     setSelectedProduct(productmodal);
     setModalVisible(true);
-    console.log("IMAGES: ",productmodal.attributes.image.data)
   };
   const closeModal = () => {
     setModalVisible(false);
@@ -150,10 +149,10 @@ export default function MainPage() {
           renderItem={({ item: { attributes }, }) => {
             return <>
               <ParentProductContainer>
-                <ProductButton key={attributes.id} onPress={() => handleButtonClick( {id: attributes.id, attributes} )}>
+                <ProductButton key={attributes.id} onPress={() => handleButtonClick({ id: attributes.id, attributes })}>
                   <ProductImage source={{ uri: `http://192.168.1.11:1337${attributes?.image.data[0].attributes.url}` }} />
                   <Text style={{ textTransform: "uppercase" }}>{attributes.name}</Text>
-                  <Text>₱{attributes.price}</Text>
+                    <Text>₱{attributes.price}</Text>
                 </ProductButton>
               </ParentProductContainer>
             </>
@@ -168,18 +167,30 @@ export default function MainPage() {
         onRequestClose={closeModal}
       >
         {selectedProduct && (
-          <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <View style={{ backgroundColor: 'white', padding: 20 }}>
-            <ProductImage source={{ uri: `http://192.168.1.11:1337${selectedProduct.attributes.image.data[0].attributes?.url}` }} />
-              <Text>Price: {selectedProduct?.attributes?.price}</Text>
-              <TouchableOpacity onPress={closeModal}>
-                <Text>Close</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
+          <ParentModalContainer>
+            <ChildModalContainer>
+              <CartImageContainer>
+                <CartImage source={{ uri: `http://192.168.1.11:1337${selectedProduct.attributes.image.data[0].attributes?.url}` }} />
+              </CartImageContainer>
+                <ModalTitleContainer>
+                  <ModalTitle>Description:</ModalTitle>
+                </ModalTitleContainer>
+                <PriceDescriptionTextContainer>
+                  <Text>"{selectedProduct?.attributes.description}"</Text>
+                </PriceDescriptionTextContainer>
+              <CartButton>
+                <CartText>
+                  Add to Cart!
+                </CartText>
+              </CartButton>
+              <CloseButtonModal onPress={closeModal}>
+                  <ButtonModalText>CLOSE</ButtonModalText>
+              </CloseButtonModal>
+            </ChildModalContainer>
+          </ParentModalContainer>
         )}
       </Modal>
-      
+
     </MainContainer>
   );
 }
