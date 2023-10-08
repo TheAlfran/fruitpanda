@@ -1,5 +1,5 @@
 import styled from "styled-components/native";
-import {primary, secondary, tertiary} from '../../theme/theme';
+import { primary, quaternary, quinary, secondary, senary, tertiary } from '../../theme/theme';
 
 
 
@@ -75,6 +75,10 @@ width: 30px;
 height: 30px;
 `;
 
+export const AllTextColors = styled.Text`
+color: ${senary};
+`;
+
 export const SaleContainer = styled.View`
 height: 25%;
 width: 100%;
@@ -145,8 +149,102 @@ height: 70px;
 margin-bottom: 3px;
 `;
 
-export const TwoContainerCombination = styled.View`
+export const ViewContainer = styled.View`
+background-color: transparent;
+flex: 1;
+`;
 
+export const ParentModalContainer = styled.View`
+flex: 1;
+justify-content: center;
+align-items: center;
+`;
+
+export const ChildModalContainer = styled.View`
+background-color: #fff;
+border-radius: 30px;
+border-width: 2px;
+border-color: ${quinary};
+width: 90%;
+height: 80%;
+padding: 20px;
+justify-content: center;
+align-items: center;
 
 `;
+
+export const ModalTitleContainer = styled.View`
+width: 100%;
+height: 10%;
+background-color: #fff;
+position:relative;
+top: -30px;
+
+`;
+
+export const ModalTitle = styled.Text`
+font-size: 24px;
+
+`;
+
+export const CartImageContainer = styled.View`
+background-color: ${quinary};
+border-radius: 30px;
+width: 114.5%;
+height: 45%;
+justify-content: center;
+align-items: center;
+position: relative;
+top: -50px;
+`;
+
+export const CartImage = styled.Image`
+width: 200px;
+height: 200px;
+margin-bottom: 3px;
+`;
+
+export const CartButton = styled.TouchableOpacity`
+border-width: 1px;
+border-color: ${quinary};
+border-radius: 30px;
+background-color: ${quinary};
+width: 100%;
+height: 10%;
+margin-top: 30px;
+justify-content: center;
+align-items: center;
+`;
+
+export const CloseButtonModal = styled.TouchableOpacity`
+border-width: 1px;
+border-color: black;
+border-radius: 30px;
+border-color:${quinary};
+width: 100%;
+height: 10%;
+margin-top: 10px;
+justify-content: center;
+align-items: center;
+`;
+
+export const PriceDescriptionTextContainer = styled.View`
+position:relative;
+top: -30px;
+`;
+
+
+export const CartText = styled.Text`
+color: ${senary};
+font-weight: bold;
+`;
+
+
+export const ButtonModalText = styled.Text`
+color: ${senary};
+font-weight: bold;
+`;
+
+
+
 

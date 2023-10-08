@@ -1,12 +1,11 @@
-import { FlatList, View, Text, ScrollView, TouchableOpacity } from 'react-native'
+import { FlatList, View, Text, ScrollView, TouchableOpacity, Modal } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, SaleButton, ProductContainer, ProductImage, SaleContainer, TextSale, PriceTextContainer, CategoryIamges } from './mainstyle'
+import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, SaleButton, ProductContainer, ProductImage, SaleContainer, TextSale, PriceTextContainer, CategoryIamges, ViewContainer, ParentModalContainer, ChildModalContainer, CloseButtonModal, ButtonModalText, CartButton, CartText, CartImage, CartImageContainer, ModalTitle, ModalTitleContainer, PriceDescriptionTextContainer, AllTextColors } from './mainstyle'
 import axios from 'axios';
 
 type Product = {
   id: number;
   attributes: {
-
     name: string;
     quantity: number;
     price: number;
@@ -17,17 +16,38 @@ type Product = {
         attributes: {
           url: string;
         }
-      }
+      }[]
     }
   };
 };
 
 
+
+
+
 export default function MainPage() {
+
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
+  const filterProducts = () => {
+    const filtered = products.filter((product) =>
+      product.attributes.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  };
+
+  useEffect(() => {
+    filterProducts();
+  }, [searchQuery]);
+
+
+  
+
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://192.168.1.4:1337/api/products?populate=image");
-
+      const response = await axios.get("http://192.168.1.11:1337/api/products?populate=image");
       return response.data.data;
 
     } catch (error) {
@@ -38,8 +58,7 @@ export default function MainPage() {
 
   const fetchProducts1 = async () => {
     try {
-      const response = await axios.get("http://192.168.1.4:1337/api/products?filters[id][$in][1]=7&filters[id][$in][0]=1&filters[id][$in][4]=9&populate=image");
-      console.log("data", response.data.data)
+      const response = await axios.get("http://192.168.1.11:1337/api/products?filters[id][$in][1]=7&filters[id][$in][0]=1&filters[id][$in][4]=9&populate=image");
       return response.data.data;
 
     } catch (error) {
@@ -49,6 +68,7 @@ export default function MainPage() {
   };
 
   const [products1, setProducts1] = useState<Product[]>([]);
+
 
   useEffect(() => {
     fetchProducts1()
@@ -73,26 +93,39 @@ export default function MainPage() {
   }, []);
 
 
-  
-
   const items = [
-    { id: 1, text: 'Citrus',   images: require('../../../../assets/categories/orange.png') },
-    { id: 2, text: 'Berries',  images: require('../../../../assets/categories/blueberry.png') },
+    { id: 1, text: 'Citrus', images: require('../../../../assets/categories/orange.png') },
+    { id: 2, text: 'Berries', images: require('../../../../assets/categories/blueberry.png') },
     { id: 3, text: 'Tropical', images: require('../../../../assets/categories/banana.png') },
-    { id: 4, text: 'Stone',    images: require('../../../../assets/categories/cherry.png') },
-    { id: 5, text: 'Exotic',   images: require('../../../../assets/categories/lychee.png')},
-    { id: 6, text: 'Melons',   images: require('../../../../assets/categories/watermelon.png') },
-    { id: 7, text: 'Apples',   images: require('../../../../assets/categories/apple.png') },
-    { id: 8, text: 'Grapes',   images: require('../../../../assets/categories/grape.png') },
+    { id: 4, text: 'Stone', images: require('../../../../assets/categories/cherry.png') },
+    { id: 5, text: 'Exotic', images: require('../../../../assets/categories/lychee.png') },
+    { id: 6, text: 'Melons', images: require('../../../../assets/categories/watermelon.png') },
+    { id: 7, text: 'Apples', images: require('../../../../assets/categories/apple.png') },
+    { id: 8, text: 'Grapes', images: require('../../../../assets/categories/grape.png') },
     { id: 9, text: 'T-Citrus', images: require('../../../../assets/categories/kumquat.png') },
   ];
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null); // Add this state variable
+  const [isModalVisible, setModalVisible] = useState(false);
+  const handleButtonClick = (productmodal: Product) => {
+    setSelectedProduct(productmodal);
+    setModalVisible(true);
+  };
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
+
+  
 
   return (
-    
     <MainContainer>
       <MainTitleContainer>
         <MainTitle>Explore your favorite fruits</MainTitle>
-        <MainSearch placeholder='Search fruits' placeholderTextColor="#FFA726"></MainSearch>
+        <MainSearch 
+        placeholder='Search fruits' 
+        placeholderTextColor="#FFA726" 
+        onChangeText={(text) => setSearchQuery(text)}
+        value={searchQuery}></MainSearch>
       </MainTitleContainer>
       <ParentCategoryContainer>
         <CategoryContainer>
@@ -107,10 +140,11 @@ export default function MainPage() {
           </ScrollView>
         </CategoryContainer>
       </ParentCategoryContainer>
+
       <SaleContainer>
         <TextSale>50% off Items</TextSale>
         <FlatList
-          data={products1} 
+          data={products1}
           scrollEnabled
           horizontal={true}
           showsHorizontalScrollIndicator={false}
@@ -120,11 +154,11 @@ export default function MainPage() {
           renderItem={({ item: { attributes }, }) => (
 
             <SaleButton key={attributes.id}>
-              <ProductImage source={{ uri: `http://192.168.1.4:1337${attributes?.image.data[0].attributes.url}` }} />
-              <Text style={{ textTransform: "uppercase" }}>{attributes.name}</Text>
+              <ProductImage source={{ uri: `http://192.168.1.11:1337${attributes?.image.data[0].attributes.url}` }} />
+              <AllTextColors style={{ textTransform: "uppercase" }}>{attributes.name}</AllTextColors>
               <PriceTextContainer>
-                <Text style={{textDecorationLine: 'line-through'}}>₱{attributes.price}</Text>
-                <Text> / ₱{attributes.price * 0.5}</Text>
+                <AllTextColors style={{ textDecorationLine: 'line-through' }}>₱{attributes.price}</AllTextColors>
+                <AllTextColors> / ₱{attributes.price * 0.5}</AllTextColors>
               </PriceTextContainer>
             </SaleButton>
           )}
@@ -132,7 +166,7 @@ export default function MainPage() {
       </SaleContainer>
       <ProductContainer>
         <FlatList
-          data={products}
+          data={filteredProducts.length > 0 ? filteredProducts : products}
           scrollEnabled
           showsVerticalScrollIndicator={false}
           keyExtractor={(item: any, index) => {
@@ -154,6 +188,37 @@ export default function MainPage() {
           }
         />
       </ProductContainer>
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={isModalVisible}
+        onRequestClose={closeModal}
+      >
+        {selectedProduct && (
+          <ParentModalContainer>
+            <ChildModalContainer>
+              <CartImageContainer>
+                <CartImage source={{ uri: `http://192.168.1.11:1337${selectedProduct.attributes.image.data[0].attributes?.url}` }} />
+              </CartImageContainer>
+                <ModalTitleContainer>
+                  <ModalTitle>Description:</ModalTitle>
+                </ModalTitleContainer>
+                <PriceDescriptionTextContainer>
+                  <Text>"{selectedProduct?.attributes.description}"</Text>
+                </PriceDescriptionTextContainer>
+              <CartButton>
+                <CartText>
+                  Add to Cart!
+                </CartText>
+              </CartButton>
+              <CloseButtonModal onPress={closeModal}>
+                  <ButtonModalText>CLOSE</ButtonModalText>
+              </CloseButtonModal>
+            </ChildModalContainer>
+          </ParentModalContainer>
+        )}
+      </Modal>
+
     </MainContainer>
   );
 }
