@@ -144,7 +144,7 @@ export default function MainPage() {
             return <>
               <ParentProductContainer>
                 <ProductButton key={attributes.id}>
-                  <ProductImage source={{ uri: `http://192.168.1.4:1337${attributes?.image.data[0].attributes.url}` }} />
+                  <ProductImage source={{ uri: `http://192.168.1.11:1337${attributes?.image.data[0].attributes.url}` }} />
                   <Text style={{ textTransform: "uppercase" }}>{attributes.name}</Text>
                   <Text>₱{attributes.price}</Text>
                 </ProductButton>
