@@ -5,4 +5,4 @@ export const secondary = "#FFA726";  // Secondary color
 export const tertiary = "wheat";     // Tertiary color
 export const quaternary = "#FF726B"; // Quaternary color (matching the theme)
 export const quinary = "rgba(255, 213, 79, 0.7)";    // Quinary color (matching the theme)
-export const senary = "#33C2C2";     // Senary color (matching the theme)
+export const senary = "#FFA500";     // Senary color (matching the theme)

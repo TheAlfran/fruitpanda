@@ -75,6 +75,10 @@ width: 30px;
 height: 30px;
 `;
 
+export const AllTextColors = styled.Text`
+color: ${senary};
+`;
+
 export const SaleContainer = styled.View`
 height: 25%;
 width: 100%;
@@ -186,8 +190,6 @@ font-size: 24px;
 export const CartImageContainer = styled.View`
 background-color: ${quinary};
 border-radius: 30px;
-border-bottom-left-radius: 0px;
-
 width: 114.5%;
 height: 45%;
 justify-content: center;
@@ -218,6 +220,7 @@ export const CloseButtonModal = styled.TouchableOpacity`
 border-width: 1px;
 border-color: black;
 border-radius: 30px;
+border-color:${quinary};
 width: 100%;
 height: 10%;
 margin-top: 10px;
@@ -232,15 +235,16 @@ top: -30px;
 
 
 export const CartText = styled.Text`
-
-
+color: ${senary};
+font-weight: bold;
 `;
 
 
 export const ButtonModalText = styled.Text`
-
-
+color: ${senary};
+font-weight: bold;
 `;
+
 
 
 
