@@ -1,6 +1,6 @@
 import { FlatList, View, Text, ScrollView, TouchableOpacity, Modal } from 'react-native'
 import React, { useState, useEffect } from 'react'
-import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, SaleButton, ProductContainer, ProductImage, SaleContainer, TextSale, PriceTextContainer, CategoryIamges, ViewContainer, ParentModalContainer, ChildModalContainer, CloseButtonModal, ButtonModalText, CartButton, CartText, CartImage, CartImageContainer, ModalTitle, ModalTitleContainer, PriceDescriptionTextContainer } from './mainstyle'
+import { CategoryButtons, CategoryContainer, MainContainer, MainSearch, MainTitle, MainTitleContainer, ParentCategoryContainer, ParentProductContainer, ProductButton, SaleButton, ProductContainer, ProductImage, SaleContainer, TextSale, PriceTextContainer, CategoryIamges, ViewContainer, ParentModalContainer, ChildModalContainer, CloseButtonModal, ButtonModalText, CartButton, CartText, CartImage, CartImageContainer, ModalTitle, ModalTitleContainer, PriceDescriptionTextContainer, AllTextColors } from './mainstyle'
 import axios from 'axios';
 
 type Product = {
@@ -23,7 +23,28 @@ type Product = {
 
 
 
+
+
 export default function MainPage() {
+
+
+  const [searchQuery, setSearchQuery] = useState('');
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
+  const filterProducts = () => {
+    const filtered = products.filter((product) =>
+      product.attributes.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredProducts(filtered);
+  };
+
+  useEffect(() => {
+    filterProducts();
+  }, [searchQuery]);
+
+
+  
+
   const fetchProducts = async () => {
     try {
       const response = await axios.get("http://192.168.1.11:1337/api/products?populate=image");
@@ -100,7 +121,11 @@ export default function MainPage() {
     <MainContainer>
       <MainTitleContainer>
         <MainTitle>Explore your favorite fruits</MainTitle>
-        <MainSearch placeholder='Search fruits' placeholderTextColor="#FFA726"></MainSearch>
+        <MainSearch 
+        placeholder='Search fruits' 
+        placeholderTextColor="#FFA726" 
+        onChangeText={(text) => setSearchQuery(text)}
+        value={searchQuery}></MainSearch>
       </MainTitleContainer>
       <ParentCategoryContainer>
         <CategoryContainer>
@@ -130,10 +155,10 @@ export default function MainPage() {
 
             <SaleButton key={attributes.id}>
               <ProductImage source={{ uri: `http://192.168.1.11:1337${attributes?.image.data[0].attributes.url}` }} />
-              <Text style={{ textTransform: "uppercase" }}>{attributes.name}</Text>
+              <AllTextColors style={{ textTransform: "uppercase" }}>{attributes.name}</AllTextColors>
               <PriceTextContainer>
-                <Text style={{ textDecorationLine: 'line-through' }}>₱{attributes.price}</Text>
-                <Text> / ₱{attributes.price * 0.5}</Text>
+                <AllTextColors style={{ textDecorationLine: 'line-through' }}>₱{attributes.price}</AllTextColors>
+                <AllTextColors> / ₱{attributes.price * 0.5}</AllTextColors>
               </PriceTextContainer>
             </SaleButton>
           )}
@@ -141,7 +166,7 @@ export default function MainPage() {
       </SaleContainer>
       <ProductContainer>
         <FlatList
-          data={products}
+          data={filteredProducts.length > 0 ? filteredProducts : products}
           scrollEnabled
           showsVerticalScrollIndicator={false}
           keyExtractor={(item: any, index) => {
@@ -154,8 +179,8 @@ export default function MainPage() {
               <ParentProductContainer>
                 <ProductButton key={attributes.id} onPress={() => handleButtonClick({ id: attributes.id, attributes })}>
                   <ProductImage source={{ uri: `http://192.168.1.11:1337${attributes?.image.data[0].attributes.url}` }} />
-                  <Text style={{ textTransform: "uppercase" }}>{attributes.name}</Text>
-                    <Text>₱{attributes.price}</Text>
+                  <AllTextColors style={{ textTransform: "uppercase" }}>{attributes.name}</AllTextColors>
+                    <AllTextColors>₱{attributes.price}</AllTextColors>
                 </ProductButton>
               </ParentProductContainer>
             </>
