@@ -93,6 +93,9 @@ export default function MainPage() {
     setModalVisible(false);
   };
 
+
+  
+
   return (
     <MainContainer>
       <MainTitleContainer>
