@@ -1,27 +1,31 @@
-import React, { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useState } from 'react';
 import { Product } from '../Main/MainPage';
 
 type ProductContextType = {
-    selectedProducts: Product[];
-    setSelectedProduct1: React.Dispatch<React.SetStateAction<Product[]>>;
+  selectedProducts: Product[];
+  addProductToCart: (product: Product) => void;
+};
+
+const ProductContext = createContext<ProductContextType | null>(null);
+
+export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
+
+  const addProductToCart = (product: Product) => {
+    setSelectedProducts([...selectedProducts, product]);
   };
 
+  return (
+    <ProductContext.Provider value={{ selectedProducts, addProductToCart }}>
+      {children}
+    </ProductContext.Provider>
+  );
+};
 
-const ProductContext = createContext<{
-    selectedProduct: Product | null; // Adjust the type based on your Product type
-    setSelectedProduct1: React.Dispatch<React.SetStateAction<Product | null>> | null;
-  } | null>(null);
-  
-  export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [selectedProduct, setSelectedProduct1] = useState<Product | null>(null);
-  
-    return (
-      <ProductContext.Provider value={{ selectedProduct, setSelectedProduct1 }}>
-        {children}
-      </ProductContext.Provider>
-    );
-  };
-  
 export const useProductContext = () => {
-  return useContext(ProductContext);
+  const context = useContext(ProductContext);
+  if (!context) {
+    throw new Error('useProductContext must be used within a ProductProvider');
+  }
+  return context;
 };

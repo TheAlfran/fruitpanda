@@ -43,7 +43,7 @@ export default function MainPage() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://192.168.1.4:1337/api/products?populate=image");
+      const response = await axios.get("http://192.168.1.9:1337/api/products?populate=image");
       return response.data.data;
 
     } catch (error) {
@@ -53,7 +53,7 @@ export default function MainPage() {
   };
   const fetchProducts1 = async () => {
     try {
-      const response = await axios.get("http://192.168.1.4:1337/api/products?filters[id][$in][1]=7&filters[id][$in][0]=1&filters[id][$in][4]=9&populate=image");
+      const response = await axios.get("http://192.168.1.9:1337/api/products?filters[id][$in][1]=7&filters[id][$in][0]=1&filters[id][$in][4]=9&populate=image");
       return response.data.data;
 
     } catch (error) {
@@ -109,30 +109,31 @@ export default function MainPage() {
     setInputValue('');
   };
 
-  const { setSelectedProduct1 } = useProductContext() || {}; // Use the context directly
+  const { addProductToCart } = useProductContext() || {}; // Use the context directly
 
   const handleButtonClick1 = (productmodal: Product) => {
     const customValue = parseInt(inputValue, 10);
   
     if (customValue > productmodal.attributes.quantity) {
-      Alert.alert('Error', 'The amount exceeded the quantity available'); // Display an alert
+      Alert.alert('Error', 'The amount exceeded the quantity available');
       return;
-    }else if (customValue === 0){
-      Alert.alert('Error', 'The amout is not valid');
+    } else if (customValue === 0) {
+      Alert.alert('Error', 'The amount is not valid');
       return;
     }
   
-    setSelectedProduct1 && setSelectedProduct1({
-     
+    addProductToCart && addProductToCart({
       ...productmodal,
       attributes: {
         ...productmodal.attributes,
         customValue,
       },
     });
+  
     Alert.alert('Success', 'Item added to cart!');
     setModalVisible(true);
   };
+  
 
 
   const [inputValue, setInputValue] = useState('');
@@ -169,13 +170,13 @@ export default function MainPage() {
           data={products1}
           scrollEnabled
           horizontal={true}
-          showsHorizontalScrollIndicator={false}
+           
           keyExtractor={(item: any, index) => {
             return item.id.toString() || index.toString();
           }}
           renderItem={({ item: { attributes }, }) => (
             <SaleButton key={attributes.id}>
-              <ProductImage source={{ uri: `http://192.168.1.4:1337${attributes?.image.data[0].attributes.url}` }} />
+              <ProductImage source={{ uri: `http://192.168.1.9:1337${attributes?.image.data[0].attributes.url}` }} />
               <AllTextColors style={{ textTransform: "uppercase" }}>{attributes.name}</AllTextColors>
               <PriceTextContainer>
                 <AllTextColors style={{ textDecorationLine: 'line-through' }}>₱{attributes.price}</AllTextColors>
@@ -199,7 +200,7 @@ export default function MainPage() {
             return <>
               <ParentProductContainer>
                 <ProductButton key={attributes.id} onPress={() => handleButtonClick({ id: attributes.id, attributes })}>
-                  <ProductImage source={{ uri: `http://192.168.1.4:1337${attributes?.image.data[0].attributes.url}` }} />
+                  <ProductImage source={{ uri: `http://192.168.1.9:1337${attributes?.image.data[0].attributes.url}` }} />
                   <AllTextColors style={{ textTransform: "uppercase" }}>{attributes.name}</AllTextColors>
                   <AllTextColors>₱{attributes.price}</AllTextColors>
                 </ProductButton>
@@ -219,7 +220,7 @@ export default function MainPage() {
           <ParentModalContainer>
             <ChildModalContainer>
               <CartImageContainer>
-                <CartImage source={{ uri: `http://192.168.1.4:1337${selectedProduct.attributes.image.data[0].attributes?.url}` }} />
+                <CartImage source={{ uri: `http://192.168.1.9:1337${selectedProduct.attributes.image.data[0].attributes?.url}` }} />
               </CartImageContainer>
               <ModalTitleContainer>
                 <ModalTitle>Description:</ModalTitle>
