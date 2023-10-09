@@ -6,9 +6,7 @@ type ProductContextType = {
     setSelectedProduct1: React.Dispatch<React.SetStateAction<Product[]>>;
   };
 
-  
-  
-  
+
 const ProductContext = createContext<{
     selectedProduct: Product | null; // Adjust the type based on your Product type
     setSelectedProduct1: React.Dispatch<React.SetStateAction<Product | null>> | null;
