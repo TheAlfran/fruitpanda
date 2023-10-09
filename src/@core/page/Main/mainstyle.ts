@@ -166,7 +166,7 @@ border-radius: 30px;
 border-width: 2px;
 border-color: ${quinary};
 width: 90%;
-height: 80%;
+height: 90%;
 padding: 20px;
 justify-content: center;
 align-items: center;
@@ -178,7 +178,7 @@ width: 100%;
 height: 10%;
 background-color: #fff;
 position:relative;
-top: -30px;
+top: -5px;
 
 `;
 
@@ -195,7 +195,7 @@ height: 45%;
 justify-content: center;
 align-items: center;
 position: relative;
-top: -50px;
+top: -25px;
 `;
 
 export const CartImage = styled.Image`
@@ -210,8 +210,8 @@ border-color: ${quinary};
 border-radius: 30px;
 background-color: ${quinary};
 width: 100%;
-height: 10%;
-margin-top: 30px;
+height: 7%;
+margin-top: 10px;
 justify-content: center;
 align-items: center;
 `;
@@ -222,7 +222,7 @@ border-color: black;
 border-radius: 30px;
 border-color:${quinary};
 width: 100%;
-height: 10%;
+height: 7%;
 margin-top: 10px;
 justify-content: center;
 align-items: center;
@@ -230,7 +230,7 @@ align-items: center;
 
 export const PriceDescriptionTextContainer = styled.View`
 position:relative;
-top: -30px;
+top: -10px;
 `;
 
 
@@ -243,6 +243,17 @@ font-weight: bold;
 export const ButtonModalText = styled.Text`
 color: ${senary};
 font-weight: bold;
+`;
+
+export const CustomeValueInput = styled.TextInput`
+border-width: 1px;
+border-color: ${quinary};
+border-radius: 20px;
+width: 100%;
+height: 7%;
+padding: 4px;
+padding-left: 10px;
+
 `;
 
 
