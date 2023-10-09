@@ -4,6 +4,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import HomeScreen from '../page/Home/HomeScreen';
 import LoginPage from '../page/Login/LoginPage';
 import Navigator1 from './Navigator';
+import { ProductProvider } from '../page/Cart/ProductContext';
 
 
 const Stack = createStackNavigator();
