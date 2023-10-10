@@ -4,7 +4,7 @@ import { FooterButton, FooterContainer, FooterContainer2, FooterText, FooterText
 import { useNavigation } from '@react-navigation/native';
 import Swiper from 'react-native-swiper';
 import React from 'react';
-import LoginPage from '../Login/LoginPage';
+
 
 export default function HomeScreen() {
 

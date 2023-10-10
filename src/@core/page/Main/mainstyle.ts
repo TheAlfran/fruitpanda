@@ -135,12 +135,24 @@ border-width: 1px;
 border-color: ${secondary}; 
 border-radius: 20px;  
 width: 90%;    
-height: 120px;
+height: 150px;
 margin-top: 10px;     
 position: relative;
 left: 8px;
 justify-content: center;
 align-items: center;
+`;
+
+export const ProductImageContainer = styled.View`
+width: 100%;
+height: 70%;
+align-items: center;
+justify-content: center;
+background-color: ${quinary};
+margin-top: -10px;
+border-radius: 20px;
+border-bottom-left-radius: 0px;
+border-bottom-right-radius: 0px;
 `;
 
 export const ProductImage = styled.Image`
