@@ -52,7 +52,7 @@ export default function HomeScreen() {
             </StartButton>
           </StartButtonContainer>
           <FooterContainer>
-            <FooterText>by clicking continue will will agree on</FooterText>
+            <FooterText>by clicking continue you will agree on</FooterText>
             <FooterContainer2>
               <FooterButton>
                 <FooterTextButton>Terms and Conditions</FooterTextButton>

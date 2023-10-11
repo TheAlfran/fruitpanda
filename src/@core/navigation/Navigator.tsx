@@ -13,7 +13,6 @@ export default function Navigator1() {
 
     <Tab.Navigator
       initialRouteName="Home"
-
     >
       <Tab.Screen
         name="Home"

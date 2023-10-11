@@ -4,6 +4,7 @@ import { Product } from '../Main/MainPage';
 type ProductContextType = {
   selectedProducts: Product[];
   addProductToCart: (product: Product) => void;
+  removeProductFromCart: (productId: number) => void; // Add this line
 };
 
 const ProductContext = createContext<ProductContextType | null>(null);
@@ -15,8 +16,19 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     setSelectedProducts([...selectedProducts, product]);
   };
 
+  const removeProductFromCart = (productId: number) => {
+    let found = false;
+    setSelectedProducts(selectedProducts => selectedProducts.filter(product => {
+      if (!found && product.id === productId) {
+        found = true;
+        return false;
+      }
+      return true;
+    }));
+  };
+
   return (
-    <ProductContext.Provider value={{ selectedProducts, addProductToCart }}>
+    <ProductContext.Provider value={{ selectedProducts, addProductToCart, removeProductFromCart }}>
       {children}
     </ProductContext.Provider>
   );
