@@ -7,12 +7,16 @@ export const CartParentContainer = styled.View`
 margin-top: 10px;
 width: 100%;
 background-color: ${background};
+align-items: center;
 `;
 
 export const CartChildContainter = styled.View`
 padding: 20px;
-width: 100%;
+width: 95%;
 height: 84%;
+background-color: #f8f8f8;
+border-radius: 10px;
+margin-top: 5px;
 `;
 
 export const CartSecondChildContainter = styled.View`
@@ -24,7 +28,7 @@ margin-top: 15px;
 width: 100%;
 height: 100px;
 position: relative;
-left: -0.2px;
+left: -0.1px;
 `;
 
 export const CartTextContainer = styled.View`
@@ -63,24 +67,14 @@ height: 50px;
 
 export const CartFooterContainer = styled.View`
 
-width: 100%;
+width: 95%;
 height: 13%;
-background-color: white;
+background-color: #f8f8f8;
 border-radius: 10px;
 flex-direction: row;
 justify-content: center;
 align-items: center;
 margin-top: 13px;
-  ${Platform.OS === 'android'
-    ? `
-    elevation: 4;
-  `
-    : `
-    shadow-color: black;
-    shadow-offset: 0px 2px;
-    shadow-opacity: 0.3;
-    shadow-radius: 4px;
-  `}
 `;
 
 export const CartFooterText = styled.Text`

@@ -133,7 +133,7 @@ padding-right: 20px;
 export const ProductButton = styled.TouchableOpacity`
 border-width: 1px;
 border-color: ${secondary}; 
-border-radius: 20px;  
+border-radius: 10px;  
 width: 90%;    
 height: 150px;
 margin-top: 10px;     
@@ -150,7 +150,7 @@ align-items: center;
 justify-content: center;
 background-color: ${quinary};
 margin-top: -10px;
-border-radius: 20px;
+border-radius: 10px;
 border-bottom-left-radius: 0px;
 border-bottom-right-radius: 0px;
 `;

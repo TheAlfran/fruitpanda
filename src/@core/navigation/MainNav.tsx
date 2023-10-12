@@ -6,7 +6,6 @@ import LoginPage from '../page/Login/LoginPage';
 import Navigator1 from './Navigator';
 import { ProductProvider } from '../page/Cart/ProductContext';
 import PaymentPage from '../page/Payment/paymentpage';
-import SummaryPage from '../page/Payment/summarypage';
 import PayPage from '../page/Payment/paypage';
 
 
@@ -19,9 +18,8 @@ const MainNav: React.FC = () => {
                 <Stack.Screen name="Home" component={HomeScreen} options={{headerShown: false}}></Stack.Screen>
                 <Stack.Screen name="Login" component={LoginPage} options={{headerShown: false}}></Stack.Screen>
                 <Stack.Screen name="Navigate" component={Navigator1} options={{headerShown: false}}></Stack.Screen>
-                <Stack.Screen name="Checkout" component={PaymentPage} options={{headerShown: false}}></Stack.Screen>
-                <Stack.Screen name="Summary" component={SummaryPage} options={{headerShown: false}}></Stack.Screen>
-                <Stack.Screen name="Payment" component={PayPage} options={{headerShown: false}}></Stack.Screen>
+                <Stack.Screen name="Checkout" component={PaymentPage}></Stack.Screen>
+                <Stack.Screen name="Payment" component={PayPage}></Stack.Screen>
             </Stack.Navigator>
         </NavigationContainer>
     );
