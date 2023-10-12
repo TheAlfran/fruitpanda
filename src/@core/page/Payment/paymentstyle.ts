@@ -146,6 +146,7 @@ margin-bottom: 10px;
 export const AgreementText = styled.Text`
 font-size: 16px;
 margin-left: 10px;
+color: grey;
 
 `;
 
@@ -160,4 +161,5 @@ border-width: 1px;
 
 
 `;
+
 
