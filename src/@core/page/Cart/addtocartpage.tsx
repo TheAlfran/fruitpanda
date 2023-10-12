@@ -24,7 +24,7 @@ export default function AddToCartPage() {
               {item && (
                 <>
                   <CartImageAddContainer>
-                    <CartImageAdd source={{ uri: `http://192.168.1.77:1337${item.attributes.image.data.attributes?.url}` }} />
+                    <CartImageAdd source={{ uri: `http://192.168.1.8:1337${item.attributes.image.data.attributes?.url}` }} />
                   </CartImageAddContainer>
                   <CartTextContainer>
                     <CartText>{item.attributes.name}</CartText>

@@ -43,7 +43,7 @@ export default function MainPage() {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get("http://192.168.1.77:1337/api/products?populate=image");
+      const response = await axios.get("http://192.168.1.8:1337/api/products?populate=image");
       return response.data.data;
 
     } catch (error) {
@@ -53,7 +53,7 @@ export default function MainPage() {
   };
   const fetchProducts1 = async () => {
     try {
-      const response = await axios.get("http://192.168.1.77:1337/api/products?filters[id][$in][1]=1&populate=image");
+      const response = await axios.get("http://192.168.1.8:1337/api/products?filters[id][$in][1]=1&populate=image");
       return response.data.data;
 
     } catch (error) {
@@ -176,7 +176,7 @@ export default function MainPage() {
           }}
           renderItem={({ item: { attributes }, }) => (
             <SaleButton key={attributes.id}>
-             <ProductImage source={{ uri: `http://192.168.1.77:1337${attributes?.image?.data.attributes?.url}` }} />
+             <ProductImage source={{ uri: `http://192.168.1.8:1337${attributes?.image?.data.attributes?.url}` }} />
               <AllTextColors style={{ textTransform: "uppercase" }}>{attributes.name}</AllTextColors>
               <PriceTextContainer>
                 <AllTextColors style={{ textDecorationLine: 'line-through' }}>₱{attributes.price}</AllTextColors>
@@ -202,7 +202,7 @@ export default function MainPage() {
               <ParentProductContainer>
               <ProductButton key={attributes.id} onPress={() => handleButtonClick({ id: attributes.id, attributes: attributes })}>
                   <ProductImageContainer>
-                    <ProductImage source={{ uri: `http://192.168.1.77:1337${attributes.image.data.attributes.url}` }} />
+                    <ProductImage source={{ uri: `http://192.168.1.8:1337${attributes.image.data.attributes.url}` }} />
                   </ProductImageContainer>
                   <AllTextColors style={{ textTransform: "uppercase" }}>{attributes.name}</AllTextColors>
                   <AllTextColors>₱{attributes.price}</AllTextColors>
@@ -223,7 +223,7 @@ export default function MainPage() {
           <ParentModalContainer>
             <ChildModalContainer>
               <CartImageContainer>
-              <CartImage source={{ uri: `http://192.168.1.77:1337${selectedProduct.attributes.image?.data?.attributes?.url || ''}` }} />
+              <CartImage source={{ uri: `http://192.168.1.8:1337${selectedProduct.attributes.image?.data?.attributes?.url || ''}` }} />
               </CartImageContainer>
               <ModalTitleContainer>
                 <ModalTitle>Description:</ModalTitle>

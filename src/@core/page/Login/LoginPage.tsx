@@ -20,7 +20,7 @@ export default function LoginPage() {
     console.log("fffs",password)
     try {
       // Make a POST request to your Strapi authentication endpoint
-      const response = await axios.post("http://192.168.1.77:1337/api/auth/local", {
+      const response = await axios.post("http://192.168.1.8:1337/api/auth/local", {
         identifier: username, // Use the username or email entered by the user
         password: password,
       });
