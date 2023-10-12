@@ -8,8 +8,6 @@ export default function AddToCartPage() {
   const { selectedProducts } = useProductContext();
   const navigation = useNavigation<any>();
   const totalPrice = selectedProducts.reduce((total, product) => total + product.attributes.price * (product.attributes.customValue || 0), 0);
-  const totalPriceWithVAT = totalPrice * .12;
-  const deliveryFee = 20;
   const checkoutClicked = async () => {
     navigation.navigate('Checkout')
   }
@@ -20,13 +18,13 @@ export default function AddToCartPage() {
         <FlatList
           data={selectedProducts}
           keyExtractor={(item, index) => (item && item.id ? item.id.toString() : index.toString())}
-          showsVerticalScrollIndicator={false}
+          showsVerticalScrollIndicator={ false}
           renderItem={({ item }) => (
             <CartSecondChildContainter>
               {item && (
                 <>
                   <CartImageAddContainer>
-                    <CartImageAdd source={{ uri: `http://192.168.1.4:1337${item.attributes.image.data[0].attributes?.url}` }} />
+                    <CartImageAdd source={{ uri: `http://192.168.1.77:1337${item.attributes.image.data.attributes?.url}` }} />
                   </CartImageAddContainer>
                   <CartTextContainer>
                     <CartText>{item.attributes.name}</CartText>
