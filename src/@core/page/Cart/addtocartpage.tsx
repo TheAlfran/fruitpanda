@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, FlatList, Modal, Button } from 'react-native';
 import { useProductContext } from './ProductContext';
-import { CartChildContainter, CartFooterButton, CartFooterButtonText, CartFooterContainer, CartFooterText, CartImageAdd, CartImageAddContainer, CartModalFooter, CartParentContainer, CartSecondChildContainter, CartText, CartTextContainer } from './addtocartstyle';
+import { CartChildContainter, CartFooterButton, CartFooterButtonText, CartFooterContainer, CartFooterImage, CartFooterText, CartImageAdd, CartImageAddContainer, CartModalFooter, CartParentContainer, CartSecondChildContainter, CartText, CartTextContainer } from './addtocartstyle';
 import { useNavigation } from '@react-navigation/native';
 
 export default function AddToCartPage() {
@@ -11,6 +11,8 @@ export default function AddToCartPage() {
   const checkoutClicked = async () => {
     navigation.navigate('Checkout')
   }
+
+  
 
   return (
     <CartParentContainer>
@@ -24,7 +26,7 @@ export default function AddToCartPage() {
               {item && (
                 <>
                   <CartImageAddContainer>
-                    <CartImageAdd source={{ uri: `http://192.168.1.8:1337${item.attributes.image.data.attributes?.url}` }} />
+                    <CartImageAdd source={{ uri: `http://192.168.1.77:1337${item.attributes.image.data.attributes?.url}` }} />
                   </CartImageAddContainer>
                   <CartTextContainer>
                     <CartText>{item.attributes.name}</CartText>
@@ -42,6 +44,7 @@ export default function AddToCartPage() {
           ₱{totalPrice}
         </CartFooterText>
         <CartFooterButton onPress={checkoutClicked}>
+          <CartFooterImage source={require('../../../../assets/categories/checkout.png')}/>
           <CartFooterButtonText>
             Checkout
           </CartFooterButtonText>

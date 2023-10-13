@@ -131,7 +131,7 @@ align-items: center;
 
 export const PaymentButton = styled.TouchableOpacity`
 border-width: 1px;
-border-radius: 20px;
+border-radius: 5px;
 height: 40px;
 width: 80%;
 justify-content: center;

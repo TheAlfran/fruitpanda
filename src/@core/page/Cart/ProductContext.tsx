@@ -4,7 +4,8 @@ import { Product } from '../Main/MainPage';
 type ProductContextType = {
   selectedProducts: Product[];
   addProductToCart: (product: Product) => void;
-  removeProductFromCart: (productId: number) => void; // Add this line
+  removeProductFromCart: (productId: number) => void;
+  clearCart: () => void;
 };
 
 const ProductContext = createContext<ProductContextType | null>(null);
@@ -27,8 +28,12 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
     }));
   };
 
+  const clearCart = () => {
+    setSelectedProducts([]);
+  };
+
   return (
-    <ProductContext.Provider value={{ selectedProducts, addProductToCart, removeProductFromCart }}>
+    <ProductContext.Provider value={{ selectedProducts, addProductToCart, removeProductFromCart, clearCart }}>
       {children}
     </ProductContext.Provider>
   );
