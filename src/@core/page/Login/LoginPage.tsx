@@ -14,7 +14,7 @@ import {
   RegisterButton,
   RegisterButtonText,
   RegisterContainer,
-  Registertext,
+  Registertext, 
   ShowPasswordButton,
   ShowPasswordIcon,
   TitleContainer1,

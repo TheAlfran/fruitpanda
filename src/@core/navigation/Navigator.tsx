@@ -11,7 +11,7 @@ const Tab = createBottomTabNavigator();
 export default function Navigator1() {
   return (
     <Tab.Navigator initialRouteName="Home">
-      <Tab.Screen
+      <Tab.Screen 
         name="Home"
         component={MainPage}
         options={{

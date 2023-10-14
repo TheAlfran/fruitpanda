@@ -137,6 +137,6 @@ export const RegisterButtonText = styled.Text`
   font-size: 16px;
   font-weight: bold;
   color: #b30000;
-  margin-top: 10px;
+  margin-top: 10px; 
   text-decoration: underline;
 `;

@@ -11,7 +11,7 @@ import {
 import { Platform, SectionListComponent } from "react-native";
 
 export const CartParentContainer = styled.View`
-  margin-top: 10px;
+  margin-top: 10px; 
   width: 100%;
   background-color: ${background};
   align-items: center;

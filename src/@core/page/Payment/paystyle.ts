@@ -137,3 +137,4 @@ export const AmountInput = styled.TextInput`
   border-width: 1px;
   margin-top: 1%;
 `;
+ 

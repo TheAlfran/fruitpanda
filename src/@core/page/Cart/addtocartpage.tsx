@@ -11,7 +11,7 @@ import {
   CartImageAddContainer,
   CartModalFooter,
   CartParentContainer,
-  CartSecondChildContainter,
+  CartSecondChildContainter, 
   CartText,
   CartTextContainer,
 } from "./addtocartstyle";

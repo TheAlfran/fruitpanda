@@ -35,7 +35,7 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
     <ProductContext.Provider
       value={{ selectedProducts, addProductToCart, removeProductFromCart }}
     >
-      {children}
+      {children} 
     </ProductContext.Provider>
   );
 };

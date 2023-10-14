@@ -24,7 +24,7 @@ export default function HomeScreen() {
   const navigation = useNavigation<any>();
 
   const handleLoginPress = () => {
-    navigation.navigate("Login");
+    navigation.navigate("Login"); 
   };
 
   const images = [

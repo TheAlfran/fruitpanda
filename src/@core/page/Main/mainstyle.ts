@@ -241,7 +241,7 @@ export const CloseButtonModal = styled.TouchableOpacity`
 
 export const PriceDescriptionTextContainer = styled.View`
   position: relative;
-  top: -10px;
+  top: -10px; 
 `;
 
 export const CartText = styled.Text`

@@ -252,7 +252,7 @@ export default function MainPage() {
               <ProductImage
                 source={{
                   uri: `http://192.168.1.77:1337${attributes?.image?.data.attributes?.url}`,
-                }}
+                }} 
               />
               <AllTextColors style={{ textTransform: "uppercase" }}>
                 {attributes.name}

@@ -154,3 +154,4 @@ export const CheckboxButton = styled.TouchableOpacity`
   width: 20px;
   border-width: 1px;
 `;
+ 

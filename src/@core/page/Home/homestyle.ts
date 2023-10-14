@@ -94,3 +94,4 @@ export const FooterButton = styled.TouchableOpacity`
   font-size: 16px;
   color: black;
 `;
+ 
