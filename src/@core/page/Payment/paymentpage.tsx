@@ -1,4 +1,10 @@
-import { View, Text, FlatList, TouchableOpacity, ScrollView  } from "react-native";
+import {
+  View,
+  Text,
+  FlatList,
+  TouchableOpacity,
+  ScrollView,
+} from "react-native";
 import React, { useState } from "react";
 import {
   AgreementContainer,
@@ -26,11 +32,11 @@ import {
   PaymentTitle,
   PaymentTitle1,
 } from "./paymentstyle";
-import { useProductContext,  } from "../Cart/ProductContext";
+import { useProductContext } from "../Cart/ProductContext";
 import { useNavigation } from "@react-navigation/native";
 
 export default function PaymentPage() {
-  const { selectedProducts, removeProductFromCart  } = useProductContext();
+  const { selectedProducts, removeProductFromCart } = useProductContext();
 
   const navigation = useNavigation<any>();
   const [isCheckboxChecked, setCheckboxChecked] = useState(false);
@@ -40,15 +46,16 @@ export default function PaymentPage() {
   };
 
   const handleNavigation = async () => {
-    navigation.navigate('Payment');
-  }
+    navigation.navigate("Payment");
+  };
 
   return (
     <PaymentParentContainer>
-
       <PaymentChildContainer>
         <DetailsContainer>
-          <DetailsImage source={require('../../../../assets/categories/Details.png')}/>
+          <DetailsImage
+            source={require("../../../../assets/categories/Details.png")}
+          />
           <PaymentTitle1>Details</PaymentTitle1>
         </DetailsContainer>
         <PaymentLine></PaymentLine>
@@ -71,15 +78,17 @@ export default function PaymentPage() {
                     <PaymentText> {item.attributes.name} </PaymentText>
                   </PaymentTextContainer>
                   <PaymentTextContainer1>
-                    <PaymentText1>{item.attributes.customValue}x   </PaymentText1>
-                    <PaymentDeleteButton onPress={() => removeProductFromCart(item.id)}>
+                    <PaymentText1>{item.attributes.customValue}x </PaymentText1>
+                    <PaymentDeleteButton
+                      onPress={() => removeProductFromCart(item.id)}
+                    >
                       <PaymentImageContainer>
                         <PaymentImage
                           source={require("../../../../assets/categories/delete.png")}
                         />
                       </PaymentImageContainer>
                     </PaymentDeleteButton>
-                  </PaymentTextContainer1>                 
+                  </PaymentTextContainer1>
                 </>
               )}
             </PaymentSencondChildContainer>
@@ -90,18 +99,27 @@ export default function PaymentPage() {
       <PaymentFooter>
         <PaymentTitle>Proceed to Payment?</PaymentTitle>
         <AgreementContainer>
-          <CheckboxButton style={{backgroundColor: isCheckboxChecked ? 'rgba(255, 213, 79, 0.7)' : 'white'}} onPress={handleCheckboxClick}></CheckboxButton>
+          <CheckboxButton
+            style={{
+              backgroundColor: isCheckboxChecked
+                ? "rgba(255, 213, 79, 0.7)"
+                : "white",
+            }}
+            onPress={handleCheckboxClick}
+          ></CheckboxButton>
           <AgreementText>Is that the final list you will buy?</AgreementText>
         </AgreementContainer>
         <PaymentButtonContainer>
-          <PaymentButton 
-          disabled={!isCheckboxChecked} 
-          style={{backgroundColor: isCheckboxChecked? '#FFA500' : 'rgba(255, 213, 79, 0.7)'}}
-          onPress={handleNavigation}
+          <PaymentButton
+            disabled={!isCheckboxChecked}
+            style={{
+              backgroundColor: isCheckboxChecked
+                ? "#FFA500"
+                : "rgba(255, 213, 79, 0.7)",
+            }}
+            onPress={handleNavigation}
           >
-            <PaymentButtonText>
-              Proceed to Payment
-            </PaymentButtonText>
+            <PaymentButtonText>Proceed to Payment</PaymentButtonText>
           </PaymentButton>
         </PaymentButtonContainer>
       </PaymentFooter>

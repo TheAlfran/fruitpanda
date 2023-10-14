@@ -7,7 +7,6 @@ export const PaymentParentContainer = styled.View`
   height: 100%;
   background-color: ${background};
   align-items: center;
-  
 `;
 
 export const PaymentTitle = styled.Text`
@@ -30,17 +29,17 @@ export const PaymentLine = styled.View`
 `;
 
 export const DetailsContainer = styled.View`
-flex-direction: row;
-justify-content: center;
-align-items: center;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const DetailsImage = styled.Image`
-width: 30px;
-height: 30px;
+  width: 30px;
+  height: 30px;
 `;
 
-export const PaymentLine1= styled.View`
+export const PaymentLine1 = styled.View`
   width: 80%;
   border-width: 1px;
   position: relative;
@@ -113,51 +112,45 @@ export const PaymentFooter = styled.View`
   border-color: black;
   margin-top: 10px;
   align-items: center;
-
 `;
 
 export const PaymentTitel = styled.Text`
-font-size: 16px;
-font-weight: bold;
+  font-size: 16px;
+  font-weight: bold;
 `;
 
 export const PaymentButtonContainer = styled.View`
-width: 100%;
-height: 40px;
-justify-content: center;
-align-items: center;
-
+  width: 100%;
+  height: 40px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const PaymentButton = styled.TouchableOpacity`
-border-width: 1px;
-border-radius: 20px;
-height: 40px;
-width: 80%;
-justify-content: center;
-align-items: center;
+  border-width: 1px;
+  border-radius: 20px;
+  height: 40px;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const AgreementContainer = styled.View`
-flex-direction: row;
-margin-bottom: 10px;
+  flex-direction: row;
+  margin-bottom: 10px;
 `;
 
 export const AgreementText = styled.Text`
-font-size: 16px;
-margin-left: 10px;
-
+  font-size: 16px;
+  margin-left: 10px;
 `;
 
 export const PaymentButtonText = styled.Text`
-font-size: 16px;
+  font-size: 16px;
 `;
 
 export const CheckboxButton = styled.TouchableOpacity`
-height: 20px;
-width: 20px;
-border-width: 1px;
-
-
+  height: 20px;
+  width: 20px;
+  border-width: 1px;
 `;
-

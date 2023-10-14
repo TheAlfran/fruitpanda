@@ -1,5 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
-import { Product } from '../Main/MainPage';
+import React, { createContext, useContext, useState } from "react";
+import { Product } from "../Main/MainPage";
 
 type ProductContextType = {
   selectedProducts: Product[];
@@ -9,7 +9,9 @@ type ProductContextType = {
 
 const ProductContext = createContext<ProductContextType | null>(null);
 
-export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
+  children,
+}) => {
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
 
   const addProductToCart = (product: Product) => {
@@ -18,17 +20,21 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const removeProductFromCart = (productId: number) => {
     let found = false;
-    setSelectedProducts(selectedProducts => selectedProducts.filter(product => {
-      if (!found && product.id === productId) {
-        found = true;
-        return false;
-      }
-      return true;
-    }));
+    setSelectedProducts((selectedProducts) =>
+      selectedProducts.filter((product) => {
+        if (!found && product.id === productId) {
+          found = true;
+          return false;
+        }
+        return true;
+      })
+    );
   };
 
   return (
-    <ProductContext.Provider value={{ selectedProducts, addProductToCart, removeProductFromCart }}>
+    <ProductContext.Provider
+      value={{ selectedProducts, addProductToCart, removeProductFromCart }}
+    >
       {children}
     </ProductContext.Provider>
   );
@@ -37,7 +43,7 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({ child
 export const useProductContext = () => {
   const context = useContext(ProductContext);
   if (!context) {
-    throw new Error('useProductContext must be used within a ProductProvider');
+    throw new Error("useProductContext must be used within a ProductProvider");
   }
   return context;
 };

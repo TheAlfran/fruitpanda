@@ -62,17 +62,18 @@ export default function PayPage() {
               <PayText4>₱{totalPrice}</PayText4>
               <PayText4>₱{totalPriceWithVAT}</PayText4>
               <PayText4>₱{deliveryFee}</PayText4>
-              <PayText6>₱{deliveryFee + totalPrice + totalPriceWithVAT}</PayText6>
+              <PayText6>
+                ₱{deliveryFee + totalPrice + totalPriceWithVAT}
+              </PayText6>
             </PayContainer4>
-            </PayFourthContainer>
-            <PayLineContainer></PayLineContainer>
+          </PayFourthContainer>
+          <PayLineContainer></PayLineContainer>
         </PayThirdContainer>
-        
       </PayChildContainer>
-        <PaySixthContainer>
-          <PayFooterTitle>Payment Here</PayFooterTitle>
-          <AmountInput placeholder="Enter Amount"></AmountInput>
-        </PaySixthContainer>
+      <PaySixthContainer>
+        <PayFooterTitle>Payment Here</PayFooterTitle>
+        <AmountInput placeholder="Enter Amount"></AmountInput>
+      </PaySixthContainer>
     </PayContainer>
   );
 }
