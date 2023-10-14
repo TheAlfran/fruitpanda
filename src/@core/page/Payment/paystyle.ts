@@ -17,6 +17,14 @@ export const PaySecondChildContainer = styled.View`
   width: 95%;
   height: 15%;
   margin-top: 10px;
+  flex-direction: row;
+`;
+
+export const PaySummaryImage = styled.Image`
+width: 29px;
+height: 29px;
+margin-left: 7px;
+
 `;
 
 export const PaySecondTitle = styled.Text`
@@ -51,7 +59,6 @@ export const PayContainer2 = styled.View`
 
 export const PayLineContainer = styled.View`
   width: 100%;
-  height: 1%;
   border-width: 1px;
   position: relative;
   bottom: 15%;
@@ -119,8 +126,8 @@ export const PayText6 = styled.Text`
 
 export const PaySixthContainer = styled.View`
   width: 95%;
-  height: 55%;
-  border-width: 1px;
+  height: 35%;
+
   border-radius: 5px;
   align-items: center;
 `;
@@ -130,10 +137,108 @@ export const PayFooterTitle = styled.Text`
   font-weight: bold;
 `;
 
+export const PaySeventhContainer = styled.View`
+flex-direction: row;
+`;
+
+export const PayImage = styled.Image`
+width: 40px;
+height: 40px;
+margin-right: 10px;
+`;
+
+
+export const PayButton = styled.TouchableOpacity`
+  height: 35px;
+  width: 80%;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 5px;
+  align-items: center;
+  margin-top: 10px;
+`;
+
+export const PayButtonText = styled.Text`
+font-size: 16px;
+
+`;
+
+
 export const AmountInput = styled.TextInput`
   width: 80%;
-  height: 7%;
+  height: 35px;
   border-radius: 20px;
   border-width: 1px;
-  margin-top: 1%;
+  margin-top: 20%;
+  padding-left: 10px;
 `;
+
+export const PayModalContainer = styled.View`
+align-items: center;
+`;
+
+export const PayModalChildContainer = styled.View`
+width: 100%;
+align-items: center;
+`;
+
+export const PayModalTitle = styled.Text`
+font-size: 32px;
+font-weight: bold;
+
+`;
+
+export const PayAmount = styled.TextInput`
+width: 80%;
+height: 35px;
+border-width: 1px;
+border-radius: 7px;
+padding-left: 10px;
+`;
+
+export const PayButton2 = styled.TouchableOpacity`
+width: 80%;
+height: 35px;
+border-width: 1px;
+border-radius: 7px;
+padding-left: 10px;
+margin-top: 10px;
+align-items: center;
+justify-content: center;
+
+`;
+
+export const PayButton2Text = styled.Text`
+font-size: 16px;
+
+`;
+
+export const FooterContainer = styled.View`
+width: 100%;
+justify-content: center;
+margin-top: 10px;
+`;
+
+export const FooterText = styled.Text`
+font-size: 16px;
+color: black;
+text-align: center;
+`;
+
+export const FooterTextButton = styled.Text`
+color: blue;
+font-size: 16px;
+text-align: center;
+`;
+
+export const FooterContainer2 = styled.View`
+flex-direction: row;
+justify-content: center;
+`;
+
+export const FooterButton = styled.TouchableOpacity`
+font-size: 16px;
+color: black;
+`;
+
+

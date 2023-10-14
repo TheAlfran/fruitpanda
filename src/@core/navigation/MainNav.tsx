@@ -1,12 +1,14 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "../page/Home/HomeScreen";
-import LoginPage from "../page/Login/LoginPage";
-import Navigator1 from "./Navigator";
-import { ProductProvider } from "../page/Cart/ProductContext";
-import PaymentPage from "../page/Payment/paymentpage";
-import PayPage from "../page/Payment/paypage";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import HomeScreen from '../page/Home/HomeScreen';
+import LoginPage from '../page/Login/LoginPage';
+import Navigator1 from './Navigator';
+import { ProductProvider } from '../page/Cart/ProductContext';
+import PaymentPage from '../page/Payment/paymentpage';
+import PayPage from '../page/Payment/paypage';
+import MainPage from '../page/Main/MainPage';
+
 
 const Stack = createStackNavigator();
 

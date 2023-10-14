@@ -6,6 +6,7 @@ import {
   CartFooterButton,
   CartFooterButtonText,
   CartFooterContainer,
+  CartFooterImage,
   CartFooterText,
   CartImageAdd,
   CartImageAddContainer,
@@ -28,6 +29,8 @@ export default function AddToCartPage() {
   const checkoutClicked = async () => {
     navigation.navigate("Checkout");
   };
+
+  
 
   return (
     <CartParentContainer>
@@ -63,7 +66,10 @@ export default function AddToCartPage() {
       <CartFooterContainer>
         <CartFooterText>₱{totalPrice}</CartFooterText>
         <CartFooterButton onPress={checkoutClicked}>
-          <CartFooterButtonText>Checkout</CartFooterButtonText>
+          <CartFooterImage source={require('../../../../assets/categories/checkout.png')}/>
+          <CartFooterButtonText>
+            Checkout
+          </CartFooterButtonText>
         </CartFooterButton>
       </CartFooterContainer>
     </CartParentContainer>

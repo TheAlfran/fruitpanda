@@ -127,12 +127,12 @@ export const PaymentButtonContainer = styled.View`
 `;
 
 export const PaymentButton = styled.TouchableOpacity`
-  border-width: 1px;
-  border-radius: 20px;
-  height: 40px;
-  width: 80%;
-  justify-content: center;
-  align-items: center;
+border-width: 1px;
+border-radius: 5px;
+height: 40px;
+width: 80%;
+justify-content: center;
+align-items: center;
 `;
 
 export const AgreementContainer = styled.View`
@@ -141,8 +141,10 @@ export const AgreementContainer = styled.View`
 `;
 
 export const AgreementText = styled.Text`
-  font-size: 16px;
-  margin-left: 10px;
+font-size: 16px;
+margin-left: 10px;
+color: grey;
+
 `;
 
 export const PaymentButtonText = styled.Text`
@@ -154,3 +156,5 @@ export const CheckboxButton = styled.TouchableOpacity`
   width: 20px;
   border-width: 1px;
 `;
+
+

@@ -96,16 +96,31 @@ export const CartFooterButtonText = styled.Text`
 `;
 
 export const CartFooterButton = styled.TouchableOpacity`
-  border-width: 1px;
-  border-color: ${secondary};
-  border-radius: 25px;
-  background-color: ${secondary};
-  width: 150px;
-  height: 40px;
-  margin-left: 30px;
+border-width: 1px;
+border-color: ${secondary};
+border-radius: 25px;
+background-color: ${secondary};
+width: 50%;
+height: 40px;
+margin-left: 30px;
+flex-direction: row;
+align-items: center;
+justify-content: center;
 `;
 
 export const CartModalFooter = styled.View`
   height: 50%;
   width: 90%;
 `;
+
+export const CartFooterImage = styled.Image`
+width: 25px;
+height: 25px;
+margin-right: 10px;
+`;
+
+
+
+
+
+

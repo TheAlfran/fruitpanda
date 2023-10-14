@@ -7,6 +7,7 @@ import {
   Modal,
   TextInput,
   Alert,
+  ImageBackground,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import {
@@ -39,8 +40,22 @@ import {
   ModalTitleContainer,
   PriceDescriptionTextContainer,
   AllTextColors,
-  CustomeValueInput,
   ProductImageContainer,
+  ModalTitleContainer1,
+  ModalTitleContainer2,
+  ModalPrice,
+  FruitDescription,
+  CustomValueContainer,
+  LineContainer,
+  CustomValueInput,
+  CustomChildValueContainer,
+  CustomValueTitle,
+  CustomValueTitle2,
+  AddContainer,
+  CartAdd,
+  CartMinus,
+  CartInfo,
+  CartText1,
 } from "./mainstyle";
 import axios from "axios";
 import { useProductContext } from "../Cart/ProductContext";
@@ -328,34 +343,55 @@ export default function MainPage() {
                   }}
                 />
               </CartImageContainer>
-              <ModalTitleContainer>
-                <ModalTitle>Description:</ModalTitle>
-              </ModalTitleContainer>
+              <ModalTitleContainer1>
+                <ModalTitleContainer>
+                  <ModalTitle>{selectedProduct?.attributes.name}</ModalTitle>
+                </ModalTitleContainer>
+                <ModalTitleContainer2>
+                  <ModalPrice>
+                    from ₱{selectedProduct?.attributes.price}
+                  </ModalPrice>
+                </ModalTitleContainer2>
+              </ModalTitleContainer1>
               <PriceDescriptionTextContainer>
-                <Text>{selectedProduct?.attributes.name}:</Text>
-                <Text>"{selectedProduct?.attributes.description}"</Text>
-                <Text style={{ marginTop: 10 }}>
-                  Price: ₱{selectedProduct?.attributes.price}
-                </Text>
-                <Text>Left : {selectedProduct?.attributes.quantity}</Text>
+                <FruitDescription>
+                  For reference only: {selectedProduct?.attributes.description}.
+                </FruitDescription>
               </PriceDescriptionTextContainer>
-              <CustomeValueInput
-                value={inputValue}
-                onChangeText={setInputValue}
-                placeholder="Enter quantity to buy"
-                keyboardType="numeric"
-              ></CustomeValueInput>
-              <CartButton
-                onPress={() => {
-                  console.log("awts", selectedProduct);
-                  return handleButtonClick1(selectedProduct);
-                }}
-              >
-                <CartText>Add to Cart!</CartText>
-              </CartButton>
+              <LineContainer></LineContainer>
+              <CustomValueContainer>
+                <CustomChildValueContainer>
+                  <CustomValueTitle>Quantity</CustomValueTitle>
+                </CustomChildValueContainer>
+                <CustomValueTitle2>Enter a value</CustomValueTitle2>
+                <CustomValueInput
+                  value={inputValue}
+                  onChangeText={setInputValue}
+                  placeholder="0"
+                  keyboardType="numeric"
+                ></CustomValueInput>
+              </CustomValueContainer>
               <CloseButtonModal onPress={closeModal}>
-                <ButtonModalText>CLOSE</ButtonModalText>
+                <CartText>Close</CartText>
               </CloseButtonModal>
+
+              <AddContainer>
+                <CartAdd>
+                  <CartText1>+</CartText1>
+                </CartAdd>
+                <CartInfo placeholder="0"></CartInfo>
+                <CartMinus>
+                  <CartText1>-</CartText1>
+                </CartMinus>
+                <CartButton
+                  onPress={() => {
+                    console.log("awts", selectedProduct);
+                    return handleButtonClick1(selectedProduct);
+                  }}
+                >
+                  <CartText>Add to Cart!</CartText>
+                </CartButton>
+              </AddContainer>
             </ChildModalContainer>
           </ParentModalContainer>
         )}
