@@ -1,7 +1,5 @@
-import { View, Text, FlatList, Modal, TouchableOpacity } from "react-native";
-import React, { useState } from "react";
+import { Text, Modal, TouchableOpacity } from "react-native";
 import {
-  AmountInput,
   FooterButton,
   FooterContainer,
   FooterContainer2,
@@ -12,7 +10,6 @@ import {
   PayButton2,
   PayButton2Text,
   PayButtonText,
-
   PayChildContainer,
   PayContainer,
   PayContainer1,
@@ -40,85 +37,10 @@ import {
   PayText6,
   PayThirdContainer,
 } from "./paystyle";
-import { useProductContext } from "../Cart/ProductContext";
-import axios from 'axios';
-import { useNavigation } from "@react-navigation/native";
+import { usePayment } from "../../hooks/Payment/usePayment";
 
 export default function PayPage() {
-  const { selectedProducts, clearCart } = useProductContext();
-  const totalPrice = selectedProducts.reduce(
-    (total, product) =>
-      total + product.attributes.price * (product.attributes.customValue || 0),
-    0
-  );
-  const navigation = useNavigation<any>();
-  const totalPriceWithVAT = totalPrice * 0.12;
-  const deliveryFee = 20;
-
-  const [isModalVisible, setModalVisible] = useState(false);
-
-  const handleNavigation = async () => {
-    navigation.navigate('Navigate')
-  }
-
-  const openModal = () => {
-    setModalVisible(true);
-  };
-
-  const closeModal = () => {
-    setModalVisible(false);
-  };
-
-  const overallTotal = totalPrice + deliveryFee + totalPriceWithVAT;
-  const quantityValue = selectedProducts.map(
-    (product) => product.attributes.customValue || 0
-  );
-
-  const priceProduct = selectedProducts.map(
-    (product) => product.attributes.price || 0
-  );
-
-  const nameProduct = selectedProducts.map(
-    (product) => product.attributes.name
-  );
-
-  const [userInput, setUserInput] = useState(0);
-
-  const handlePayment = () => {
-    if (userInput > overallTotal) {
-      // Prepare the data to be sent
-      const receiptData = selectedProducts.map((product) => ({
-        name: product.attributes.name,
-        price: product.attributes.price,
-        quantity: product.attributes.customValue || 0,
-        subtotal: product.attributes.price * (product.attributes.customValue || 0),
-        vat: product.attributes.price * 0.12,
-        alltotal: product.attributes.price * (product.attributes.customValue || 0) + 20 + product.attributes.price * 0.12,
-        payment: userInput,
-      }));
-  
-      // Make a POST request to the Strapi API
-      axios.post("http://192.168.1.77:1337/api/receipt2s", { 
-        data: {
-          Receipt: receiptData // Add all the receipt data to the Receipt component
-        }
-      })
-      .then((response) => {
-        console.log('Success:', response.data.data);
-        alert("Payment done");
-        clearCart(); // Clear the cart
-        setUserInput(0);
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        console.error('Error Details:', error.response.data);
-        alert("Payment rejected");
-      });
-      handleNavigation();
-    } else {
-      alert("Payment rejected");
-    }
-  };
+  const { totalPrice, deliveryFee, totalPriceWithVAT, isModalVisible, openModal, closeModal, userInput, setUserInput, handlePayment, overallTotal } = usePayment();
   
 
   return (

@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { Product } from "../Main/MainPage";
+import { Product } from "../../hooks/Global/productList";
 
 type ProductContextType = {
   selectedProducts: Product[];
@@ -12,7 +12,9 @@ const ProductContext = createContext<ProductContextType | null>(null);
 
 export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
+  
 }) => {
+
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
 
   const addProductToCart = (product: Product) => {

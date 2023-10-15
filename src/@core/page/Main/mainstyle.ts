@@ -122,7 +122,6 @@ export const PriceTextContainer = styled.View`
 export const ParentProductContainer = styled.View`
   flex: 1;
   background-color: #fff;
-  
 `;
 
 export const ProductContainer = styled.View`
@@ -183,17 +182,15 @@ export const ChildModalContainer = styled.View`
 `;
 
 export const ModalTitleContainer1 = styled.View`
-flex-direction: row;
-width: 100%;
-justify-content: space-between;
-height: auto;
-
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
+  height: auto;
 `;
 
 export const ModalTitleContainer = styled.View`
   padding: 20px;
   height: auto;
-  
 `;
 
 export const ModalTitle = styled.Text`
@@ -202,29 +199,23 @@ export const ModalTitle = styled.Text`
 `;
 
 export const ModalPrice = styled.Text`
-font-weight: bold;
+  font-weight: bold;
 `;
 
-
-
 export const ModalTitleContainer2 = styled.View`
-height: auto;
-padding: 25px;
+  height: auto;
+  padding: 25px;
 `;
 
 export const FruitDescription = styled.Text`
-font-size: 16px;
-color: grey;
-
-`; 
-
-
+  font-size: 16px;
+  color: grey;
+`;
 
 export const CartImageContainer = styled.View`
   width: 100%;
   justify-content: center;
   align-items: center;
-  
 `;
 
 export const CartImage = styled.Image`
@@ -233,46 +224,42 @@ export const CartImage = styled.Image`
 `;
 
 export const ImageB = styled.Image`
-
-width: 40px;
-height: 40px;
+  width: 40px;
+  height: 40px;
 `;
 
-
 export const CustomValueContainer = styled.View`
-border-width: 1px;
-width: 95%;
-background-color: ${quinary};
-border-radius: 10px;
-border-color: ${senary};
-padding: 20px;
+  border-width: 1px;
+  width: 95%;
+  background-color: ${quinary};
+  border-radius: 10px;
+  border-color: ${senary};
+  padding: 20px;
 `;
 
 export const LineContainer = styled.View`
-width: 90%;
-border-width: 0.3px;
-border-color: grey;
-margin-top: 10px;
-margin-bottom: 20px;
+  width: 90%;
+  border-width: 0.3px;
+  border-color: grey;
+  margin-top: 10px;
+  margin-bottom: 20px;
 `;
 
 export const CustomChildValueContainer = styled.View`
-flex-direction:row;
-height: auto;
+  flex-direction: row;
+  height: auto;
 `;
 
 export const CustomValueTitle = styled.Text`
-font-size: 19px;
-font-weight: 600;
-margin-bottom: 5px;
-
+  font-size: 19px;
+  font-weight: 600;
+  margin-bottom: 5px;
 `;
 
-export const CustomValueTitle2 =styled.Text`
-font-size: 14px;
-margin-bottom: 10px;
+export const CustomValueTitle2 = styled.Text`
+  font-size: 14px;
+  margin-bottom: 10px;
 `;
-
 
 export const CustomValueInput = styled.TextInput`
   border-width: 1px;
@@ -282,10 +269,6 @@ export const CustomValueInput = styled.TextInput`
   padding: 4px;
   padding-left: 10px;
 `;
-
-
-
-
 
 export const CloseButtonModal = styled.TouchableOpacity`
   border-width: 1px;
@@ -299,7 +282,6 @@ export const CloseButtonModal = styled.TouchableOpacity`
   align-items: center;
   margin-top: 10px;
   margin-bottom: 30px;
-
 `;
 
 export const PriceDescriptionTextContainer = styled.View`
@@ -308,31 +290,30 @@ export const PriceDescriptionTextContainer = styled.View`
 `;
 
 export const AddContainer = styled.View`
-flex-direction: row;
-margin-top: 10px;
-width: 300px;
-align-items: center;
-justify-content: center;
-
+  flex-direction: row;
+  margin-top: 10px;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const CartAdd = styled.TouchableOpacity`
-border-radius: 30px;
-background-color: ${quinary};
-width: 50px;
-height: 50px;
-justify-content: center;
-align-items: center;
+  border-radius: 30px;
+  background-color: ${quinary};
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
 `;
 
 export const CartMinus = styled.TouchableOpacity`
-border-radius: 30px;
-background-color: ${quinary};
-width: 50px;
-height: 50px;
-justify-content: center;
-align-items: center;
-margin-right: 50px;
+  border-radius: 30px;
+  background-color: ${quinary};
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  margin-right: 50px;
 `;
 
 export const CartText1 = styled.Text`
@@ -341,12 +322,10 @@ export const CartText1 = styled.Text`
   text-align: justify;
 `;
 
-
 export const CartInfo = styled.TextInput`
-width: 50px;
-height: 50px;
-text-align: center;
-
+  width: 50px;
+  height: 50px;
+  text-align: center;
 `;
 
 export const CartButton = styled.TouchableOpacity`
@@ -370,5 +349,3 @@ export const ButtonModalText = styled.Text`
   color: ${senary};
   font-size: 20px;
 `;
-
-

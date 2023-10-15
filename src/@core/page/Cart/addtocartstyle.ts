@@ -8,7 +8,6 @@ import {
   senary,
   tertiary,
 } from "../../theme/theme";
-import { Platform, SectionListComponent } from "react-native";
 
 export const CartParentContainer = styled.View`
   margin-top: 10px;
