@@ -32,22 +32,12 @@ import {
   PaymentTitle,
   PaymentTitle1,
 } from "./paymentstyle";
-import { useProductContext } from "../Cart/ProductContext";
-import { useNavigation } from "@react-navigation/native";
+import { useCheckout } from "../../hooks/Payment/useCheckout";
+
 
 export default function PaymentPage() {
-  const { selectedProducts, removeProductFromCart } = useProductContext();
-
-  const navigation = useNavigation<any>();
-  const [isCheckboxChecked, setCheckboxChecked] = useState(false);
-
-  const handleCheckboxClick = () => {
-    setCheckboxChecked(!isCheckboxChecked);
-  };
-
-  const handleNavigation = async () => {
-    navigation.navigate("Payment");
-  };
+  
+  const { selectedProducts, isCheckboxChecked, handleCheckboxClick, handleNavigation, removeProductFromCart} = useCheckout();
 
   return (
     <PaymentParentContainer>

@@ -21,10 +21,9 @@ export const PaySecondChildContainer = styled.View`
 `;
 
 export const PaySummaryImage = styled.Image`
-width: 29px;
-height: 29px;
-margin-left: 7px;
-
+  width: 29px;
+  height: 29px;
+  margin-left: 7px;
 `;
 
 export const PaySecondTitle = styled.Text`
@@ -138,15 +137,14 @@ export const PayFooterTitle = styled.Text`
 `;
 
 export const PaySeventhContainer = styled.View`
-flex-direction: row;
+  flex-direction: row;
 `;
 
 export const PayImage = styled.Image`
-width: 40px;
-height: 40px;
-margin-right: 10px;
+  width: 40px;
+  height: 40px;
+  margin-right: 10px;
 `;
-
 
 export const PayButton = styled.TouchableOpacity`
   height: 35px;
@@ -159,10 +157,8 @@ export const PayButton = styled.TouchableOpacity`
 `;
 
 export const PayButtonText = styled.Text`
-font-size: 16px;
-
+  font-size: 16px;
 `;
-
 
 export const AmountInput = styled.TextInput`
   width: 80%;
@@ -174,71 +170,66 @@ export const AmountInput = styled.TextInput`
 `;
 
 export const PayModalContainer = styled.View`
-align-items: center;
+  align-items: center;
 `;
 
 export const PayModalChildContainer = styled.View`
-width: 100%;
-align-items: center;
+  width: 100%;
+  align-items: center;
 `;
 
 export const PayModalTitle = styled.Text`
-font-size: 32px;
-font-weight: bold;
-
+  font-size: 32px;
+  font-weight: bold;
 `;
 
 export const PayAmount = styled.TextInput`
-width: 80%;
-height: 35px;
-border-width: 1px;
-border-radius: 7px;
-padding-left: 10px;
+  width: 80%;
+  height: 35px;
+  border-width: 1px;
+  border-radius: 7px;
+  padding-left: 10px;
 `;
 
 export const PayButton2 = styled.TouchableOpacity`
-width: 80%;
-height: 35px;
-border-width: 1px;
-border-radius: 7px;
-padding-left: 10px;
-margin-top: 10px;
-align-items: center;
-justify-content: center;
-
+  width: 80%;
+  height: 35px;
+  border-width: 1px;
+  border-radius: 7px;
+  padding-left: 10px;
+  margin-top: 10px;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const PayButton2Text = styled.Text`
-font-size: 16px;
-
+  font-size: 16px;
 `;
 
 export const FooterContainer = styled.View`
-width: 100%;
-justify-content: center;
-margin-top: 10px;
+  width: 100%;
+  justify-content: center;
+  margin-top: 10px;
 `;
 
 export const FooterText = styled.Text`
-font-size: 16px;
-color: black;
-text-align: center;
+  font-size: 16px;
+  color: black;
+  text-align: center;
 `;
 
 export const FooterTextButton = styled.Text`
-color: blue;
-font-size: 16px;
-text-align: center;
+  color: blue;
+  font-size: 16px;
+  text-align: center;
 `;
 
 export const FooterContainer2 = styled.View`
-flex-direction: row;
-justify-content: center;
+  flex-direction: row;
+  justify-content: center;
 `;
 
 export const FooterButton = styled.TouchableOpacity`
-font-size: 16px;
-color: black;
+  font-size: 16px;
+  color: black;
 `;
-
-

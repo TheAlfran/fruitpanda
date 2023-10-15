@@ -1,6 +1,5 @@
 import React from "react";
-import { View, Text, FlatList, Modal, Button } from "react-native";
-import { useProductContext } from "./ProductContext";
+import { FlatList } from "react-native";
 import {
   CartChildContainter,
   CartFooterButton,
@@ -16,21 +15,13 @@ import {
   CartText,
   CartTextContainer,
 } from "./addtocartstyle";
-import { useNavigation } from "@react-navigation/native";
+import { useCart } from "../../hooks/Cart/useCart";
+import { BASE_URL } from "../../hooks/Global/baseURL";
+const baseUrl = `${BASE_URL}`;
 
 export default function AddToCartPage() {
-  const { selectedProducts } = useProductContext();
-  const navigation = useNavigation<any>();
-  const totalPrice = selectedProducts.reduce(
-    (total, product) =>
-      total + product.attributes.price * (product.attributes.customValue || 0),
-    0
-  );
-  const checkoutClicked = async () => {
-    navigation.navigate("Checkout");
-  };
-
-  
+ 
+  const { selectedProducts, totalPrice, checkoutClicked } = useCart();
 
   return (
     <CartParentContainer>
@@ -48,7 +39,7 @@ export default function AddToCartPage() {
                   <CartImageAddContainer>
                     <CartImageAdd
                       source={{
-                        uri: `http://192.168.1.77:1337${item.attributes.image.data.attributes?.url}`,
+                        uri: `${baseUrl}${item.attributes.image.data.attributes?.url}`,
                       }}
                     />
                   </CartImageAddContainer>
