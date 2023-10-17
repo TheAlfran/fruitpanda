@@ -25,8 +25,6 @@ export const MainTitle = styled.Text`
   font-weight: bold;
   color: ${tertiary};
   padding: 30px;
-  position: relative;
-  right: 21px;
   top: 20px;
 `;
 
@@ -84,7 +82,6 @@ export const AllTextColors = styled.Text`
 `;
 
 export const SaleContainer = styled.View`
-  height: 25%;
   width: 100%;
   align-items: center;
   margin-bottom: 10px;
@@ -150,7 +147,7 @@ export const ProductImageContainer = styled.View`
   height: 100px;
   align-items: center;
   justify-content: center;
-  background-color: ${quinary};
+  background-color: #f279ac;
   margin-top: -10px;
   border-radius: 10px;
   border-bottom-left-radius: 0px;
