@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from "react";
 import {
+  AddWalletButton,
+  AddWalletText,
+  AddWalletlogo,
   AllImage,
   AllImage1,
   AllText1,
@@ -7,6 +10,8 @@ import {
   BackgroundImageProfile,
   CartButton,
   CurrentContainer,
+  DropdownButton,
+  DropdownContainer,
   HistoryButton,
   ImageContainer,
   ImageProfile5,
@@ -25,38 +30,53 @@ import {
   ShippedButton,
   StatusText,
   TotalorderContainer,
+  WalletContainer,
+  WalletContainer1,
+  WalletContainer2,
+  WalletText,
+  WalletTitle,
+  WalletTitleContainer,
+  WalletTitleLogo,
+  WalletTitleLogo1,
   WishlistContainer,
   WishlistContainer1,
 } from "./profile";
 import { useUserData } from "../../hooks/Profile/profileUtils";
-import { topayPage } from "../../hooks/Profile/tocartPage";
+import { ScrollView } from "react-native";
 
 
-export default function Profilepage() {
-  const userData = useUserData();
-
-  const handleNavigationCart = topayPage();
-
+export default function Profilepage({ userId }: { userId: string }) {
+  console.log('Received userId:', userId);
+  const {userData, error} = useUserData();
   
+  if (!userData) {
+    // You can show a loading indicator or an error message here.
+    return console.log("ERROR");
+  }
+  const user = userData;
+  
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const toggleDropdown = () => {
+    setIsDropdownOpen(!isDropdownOpen);
+  };
+
 
   return (
-    <ProfileContainer>
+    <ScrollView>
+    <ProfileContainer key={user.id}>
       <BackgroundImageProfile
         source={require("../../../../assets/profileimages/background.png")}
       >
         <ProfileChildContainer>
-          <ProfileChildContainer1>
-            {userData.map((user) => (
-              <ImageContainer key={user.id}>
+          <ProfileChildContainer1 >
+              <ImageContainer>
                 <ImageProfile5
                   source={{
                     uri: `http://192.168.1.77:1337${user.image.formats.thumbnail.url}`,
                   }}
                 />
               </ImageContainer>
-            ))}
-            {userData.map((user) => (
-              <NameContainer key={user.id}>
+              <NameContainer>
                 <NameContainer1>
                   <NameText>{user.username}</NameText>
                 </NameContainer1>
@@ -64,7 +84,6 @@ export default function Profilepage() {
                   <StatusText>{user.status}</StatusText>
                 </NameContainer2>
               </NameContainer>
-            ))}
           </ProfileChildContainer1>
           <WishlistContainer>
             <WishlistContainer1>
@@ -111,6 +130,36 @@ export default function Profilepage() {
           <AllText1>History</AllText1>
         </HistoryButton>
       </ProfileBodyContainer>
+
+      
+      <WalletContainer>
+      <DropdownContainer>
+        <WalletTitleContainer>
+        <DropdownButton onPress={toggleDropdown}>
+          <WalletTitleLogo source={require('../../../../assets/profileimages/wallet.png')}/>
+          <WalletTitle> My balance  </WalletTitle>
+          <WalletTitleLogo1 source={require('../../../../assets/profileimages/dropdown.png')}/>
+        </DropdownButton>
+        </WalletTitleContainer>
+        {isDropdownOpen && (
+        <WalletContainer1>
+          <WalletContainer2>
+            <WalletText>₱ {user.wallet.toLocaleString()} </WalletText>
+          </WalletContainer2>
+          <AddWalletButton>
+            <AddWalletlogo source={require('../../../../assets/profileimages/addwallet.png')}/>
+            <AddWalletText>
+              Add Funds
+            </AddWalletText>
+          </AddWalletButton>
+        </WalletContainer1>
+        )}
+        </DropdownContainer>
+      </WalletContainer>
+
+
+
     </ProfileContainer>
+    </ScrollView>
   );
 }
