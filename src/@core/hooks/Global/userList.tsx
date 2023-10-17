@@ -8,6 +8,7 @@ export type User = {
     createdAt: string;
     updatedAt: string;
     status: string;
+    wallet: number;
     image:{
       formats:{
         thumbnail: {

@@ -104,8 +104,8 @@ export default function PaymentPage() {
             disabled={!isCheckboxChecked}
             style={{
               backgroundColor: isCheckboxChecked
-                ? "#FFA500"
-                : "rgba(255, 213, 79, 0.7)",
+                ? "#D70F64"
+                : "#f279ac",
             }}
             onPress={handleNavigation}
           >

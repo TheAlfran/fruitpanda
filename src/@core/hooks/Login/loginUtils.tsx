@@ -12,36 +12,66 @@ export const useAuth = () => {
   const [password, setPassword] = useState("");
   const [isSecureEntry, setSecureEntry] = useState(true);
   const navigation = useNavigation<any>();
-  
 
   const togglePasswordVisibility = () => {
     setSecureEntry(!isSecureEntry);
   };
 
-  const login = async ({ username, password }: {username:string ; password:string}) => {
+  const login = async ({
+    username,
+    password,
+  }: {
+    username: string;
+    password: string;
+  }) => {
     try {
-      const response = await axios.post(
-        `${baseUrl}/api/auth/local`,
-        {
-          identifier: username,
-          password: password,
-        }
-      );
+      const response = await axios.post(`${baseUrl}/api/auth/local`, {
+        identifier: username,
+        password: password,
+      });
 
+      //Store the authtoken to the aysnc storage
       const authToken = response.data.jwt;
       await AsyncStorage.setItem("authToken", authToken);
-      return authToken;
+      console.log("Stored authToken:", authToken); //make sure that the token is stored in the aysncstorage
+
+      //Store the UID of the data to aysnc storage
+      const userId = response.data.user.id;
+      await AsyncStorage.setItem("userId", userId.toString());
+      console.log("Stored userId:", userId);// also make sure that it is stored
+
+      return { authToken, userId };
     } catch (error) {
+      if (error instanceof Error) {
+        if (error.cause && error.cause === 400) {
+          Alert.alert(
+            "Login Failed",
+            "Invalid username or password. Please try again."
+          );
+        } else {
+          Alert.alert(
+            "Login Failed",
+            "An unexpected error occurred. Please try again later."
+          );
+        }
+        console.error(error);
+      }
       throw error;
     }
+    
+    
   };
 
-  const { mutate, isLoading } = useMutation(login, {
+  const { mutate, isLoading, reset } = useMutation(login, {
     onSuccess: (data) => {
       navigation.navigate("Navigate");
     },
     onError: (error) => {
-      Alert.alert("Login Failed", "Please check your credentials and try again.");
+      reset();
+      Alert.alert(
+        "Login Failed",
+        "Please check your credentials and try again."
+      );
     },
   });
 

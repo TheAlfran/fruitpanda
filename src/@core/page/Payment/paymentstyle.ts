@@ -148,6 +148,7 @@ export const AgreementText = styled.Text`
 
 export const PaymentButtonText = styled.Text`
   font-size: 16px;
+  color: ${background};
 `;
 
 export const CheckboxButton = styled.TouchableOpacity`

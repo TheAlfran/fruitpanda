@@ -18,9 +18,9 @@ export default function Navigator1() {
           headerShown: false,
           tabBarLabel: "Home",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="home" size={size} color="#FF726B" />
+            <Ionicons name="home" size={size} color="#D70F64" />
           ),
-          tabBarActiveTintColor: "#FF726B",
+          tabBarActiveTintColor: "#D70F64",
           tabBarInactiveTintColor: "gray",
         }}
       />
@@ -31,17 +31,20 @@ export default function Navigator1() {
         options={({ navigation }) => ({
           tabBarLabel: "Add to Cart",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="cart" size={24} color="#FF726B" />
+            <Ionicons name="cart" size={24} color="#D70F64" />
           ),
-          tabBarActiveTintColor: "#FF726B",
+          tabBarActiveTintColor: "#D70F64",
           tabBarInactiveTintColor: "gray",
           headerTitle: "Add To Cart", // Set the header title here
           headerTitleAlign: "center", // Center align the header title
+          headerStyle: { backgroundColor: "#D70F64" }, // Set the background color of the header
+          headerTintColor: "#fff", // Set the color of the header text
+          headerTitleStyle: { fontWeight: "bold" }, // Set the style for the header title
           headerLeft: () => (
             <Ionicons
               name="arrow-back"
               size={30}
-              color="#FF726B"
+              color="#fff"
               margin={10}
               onPress={() => navigation.goBack()}
             />
@@ -56,9 +59,9 @@ export default function Navigator1() {
           headerShown: false,
           tabBarLabel: "Profile",
           tabBarIcon: ({ color, size }) => (
-            <Ionicons name="person" size={size} color="#FF726B" />
+            <Ionicons name="person" size={size} color="#D70F64" />
           ),
-          tabBarActiveTintColor: "#FF726B",
+          tabBarActiveTintColor: "#D70F64",
           tabBarInactiveTintColor: "gray",
         }}
       />
