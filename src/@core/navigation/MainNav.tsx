@@ -1,13 +1,15 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import HomeScreen from "../page/Home/HomeScreen";
-import LoginPage from "../page/Login/LoginPage";
+import HomeScreen from "../Screens/Home/HomeScreen";
+import LoginPage from "../Screens/Login/LoginPage";
 import Navigator1 from "./Navigator";
-import { ProductProvider } from "../page/Cart/ProductContext";
-import PaymentPage from "../page/Payment/paymentpage";
-import PayPage from "../page/Payment/paypage";
-import MainPage from "../page/Main/MainPage";
+import { ProductProvider } from "../Screens/Cart/ProductContext";
+import PaymentPage from "../Screens/Payment/paymentpage";
+import PayPage from "../Screens/Payment/paypage";
+import MainPage from "../Screens/Main/MainPage";
+import mapLocation from "../Screens/Profile/mapLocation";
+import MapLocation from "../Screens/Profile/mapLocation";
 
 const Stack = createStackNavigator();
 
@@ -50,6 +52,11 @@ const MainNav: React.FC = () => {
             headerTintColor: "#fff", // Set the color of the header text
             headerTitleStyle: { fontWeight: "bold" }, // Set the style for the header title
           }}
+        ></Stack.Screen>
+         <Stack.Screen
+          name="Location"
+          component={MapLocation}
+          options={{headerShown: false}}
         ></Stack.Screen>
       </Stack.Navigator>
     </NavigationContainer>
