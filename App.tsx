@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import MainNav from './src/@core/navigation/MainNav';
-import { ProductProvider } from './src/@core/page/Cart/ProductContext';
+import { ProductProvider } from './src/@core/Screens/Cart/ProductContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 

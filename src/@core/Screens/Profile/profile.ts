@@ -7,10 +7,12 @@ export const ProfileContainer = styled.View`
 
 export const ProfileChildContainer = styled.View`
   padding: 60px;
+  width: 100%;
 `;
 
 export const BackgroundImageProfile = styled.ImageBackground`
   border-radius: 10px;
+  background-color: ${secondary};
 `;
 
 export const ProfileChildContainer1 = styled.View`
@@ -64,10 +66,14 @@ export const WishlistContainer = styled.View`
   top: 50px;
   justify-content: center;
   width: 100%;
+  background-color: ${background};
+  border-radius: 10px;
+  margin-bottom: 5px;
 `;
 
 export const WishlistContainer1 = styled.View`
-  padding: 20px;
+  padding: 10px;
+  padding-right: 15px;
   align-items: center;
   justify-content: center;
 `;
@@ -76,24 +82,36 @@ export const CurrentContainer = styled.View`
   border-width: 1px;
   border-top-color: transparent;
   border-bottom-color: transparent;
-  border-right-color: ${background};
-  border-left-color: ${background};
+  border-right-color: ${secondary};
+  border-left-color: ${secondary};
   padding-left: 35px;
   padding-right: 35px;
   align-items: center;
   justify-content: center;
+ 
 `;
 
 export const TotalorderContainer = styled.View`
-  padding: 20px;
+  padding: 10px;
   align-items: center;
   justify-content: center;
+  padding-left: 15px;
+  
 `;
 
 export const Alltext = styled.Text`
-  font-size: 14px;
-  color: ${background};
+  font-size: 11px;
+  color: ${secondary};
+
 `;
+
+
+export const AllNum = styled.Text`
+  font-size: 16px;
+  font-weight: bold;
+  color: ${secondary};
+`;
+
 
 export const ProfileContainerTitle = styled.View`
   padding-left: 20px;
@@ -119,6 +137,12 @@ export const ProfileBodyContainer = styled.View`
   flex-direction: row;
   justify-content: space-evenly;
   margin: 15px;
+`;
+
+export const Title2 = styled.Text`
+font-size: 32px;
+font-weight: bold;
+text-align: center;
 `;
 
 export const OrderButton = styled.TouchableOpacity`
@@ -162,18 +186,48 @@ export const FooterProfileContainer = styled.View`
 `;
 
 
+//Dropdown *********
+export const WalletContainer = styled.View`
+
+`;
+
+export const DropdownContainer = styled.View`
+`;
+
+
+export const DropdownButton = styled.TouchableOpacity`
+  padding: 10px;
+  flex-direction: row;
+  width: 95%;
+`;
+
+export const WalletTitleContainer = styled.View`
+flex-direction: row;
+padding-left: 20px;
+
+`;
+
+export const WalletTitle = styled.Text`
+font-size: 16px;
+text-align: left;
+`;
+
+
+export const WalletTitleLogo = styled.Image`
+  width: 25px;
+  height: 25px;
+`;
+
+export const WalletTitleLogo1= styled.Image`
+  width: 20px;
+  height: 20px;
+  top: 5px;
+`;
 
 export const WalletContainer1 = styled.View`
 width: 100%;
 align-items: center;
 margin-top: 10px;
-
-`;
-
-export const WalletTitle = styled.Text`
-font-size: 20px;
-font-weight: bold;
-text-align: left;
 `;
 
 export const WalletContainer2 = styled.View`
@@ -181,12 +235,6 @@ border-width: 1px;
 border-radius: 10px;
 padding: 20px;
 width: 93%;
-`;
-
-export const WalletText = styled.Text`
-font-size: 30px;
-font-weight: bold;
-
 `;
 
 export const AddWalletButton = styled.TouchableOpacity`
@@ -205,23 +253,6 @@ text-align: center;
 margin-left: 2px;
 `;
 
-export const WalletTitleLogo = styled.Image`
-  width: 25px;
-  height: 25px;
-`;
-
-export const WalletTitleLogo1= styled.Image`
-  width: 20px;
-  height: 20px;
-  top: 5px;
-`;
-
-export const WalletTitleContainer = styled.View`
-flex-direction: row;
-padding-left: 20px;
-
-
-`;
 
 export const AddWalletlogo = styled.Image`
   width: 25px;
@@ -229,24 +260,85 @@ export const AddWalletlogo = styled.Image`
   margin-right: 5px;
 `;
 
-//Dropdown *********
-export const WalletContainer = styled.View`
+export const WalletText = styled.Text`
+font-size: 30px;
+font-weight: bold;
 
 `;
 
-export const DropdownContainer = styled.View`
+
+//Until Here *********
+
+
+
+
+export const MapContainer = styled.View`
+
+
 `;
 
-export const DropdownButton = styled.TouchableOpacity`
+export const MapDropdownContainer = styled.View`
+
+`;
+
+export const MapTitleContainer = styled.View`
+flex-direction: row;
+padding-left: 20px;
+
+`;
+
+export const MapButton= styled.TouchableOpacity`
   padding: 10px;
-  border-width: 1px;
-  border-top-color: ${background};
-  border-right-color: ${background};
-  border-left-color: ${background};
   flex-direction: row;
   width: 95%;
 `;
-export const DropdownText = styled.Text`
-  font-size: 16px;
+
+export const MapTitle = styled.Text`
+font-size: 16px;
+text-align: left;
+
 `;
-//Until Here *********
+
+export const MapContainer1 = styled.View`
+width: 100%;
+align-items: center;
+margin-top: 10px;
+`;
+
+export const MapContainer2 = styled.View`
+border-width: 1px;
+border-radius: 10px;
+padding: 20px;
+width: 93%;
+
+`;
+
+export const MapDisplay = styled.View`
+
+`;
+
+export const AddLocationButton = styled.TouchableOpacity`
+border-width: 1px;
+border-radius: 10px;
+padding: 10px;
+margin-top: 10px;
+width: 93%;
+flex-direction: row;
+justify-content: center;
+
+`;
+
+export const AddLocationlogo = styled.Image`
+  width: 25px;
+  height: 25px;
+  margin-right: 5px;
+`;
+
+export const AddLocationText = styled.Text`
+font-size: 16px;
+text-align: center;
+margin-left: 2px;
+`;
+
+
+

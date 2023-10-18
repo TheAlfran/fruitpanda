@@ -1,10 +1,10 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Addtocartpage from "../page/Cart/addtocartpage";
-import Profilepage from "../page/Profile/profilepage";
+import Addtocartpage from "../Screens/Cart/addtocartpage";
+import Profilepage from "../Screens/Profile/profilepage";
 import { Ionicons } from "@expo/vector-icons";
-import MainPage from "../page/Main/MainPage";
+import MainPage from "../Screens/Main/MainPage";
 
 const Tab = createBottomTabNavigator();
 

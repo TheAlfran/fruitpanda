@@ -1,7 +1,7 @@
 import { Product } from "../Global/productList";
 import { useState } from "react";
 import { Alert } from "react-native";
-import { useProductContext } from "../../page/Cart/ProductContext";
+import { useProductContext } from "../../Screens/Cart/ProductContext";
 
 export const useProductActions = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);

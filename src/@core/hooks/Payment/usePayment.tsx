@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useNavigation } from "@react-navigation/native";
-import { useProductContext } from "../../page/Cart/ProductContext";
+import { useProductContext } from "../../Screens/Cart/ProductContext";
 import { BASE_URL } from "../Global/baseURL";
 import axios from "axios";
 const baseUrl = `${BASE_URL}`;

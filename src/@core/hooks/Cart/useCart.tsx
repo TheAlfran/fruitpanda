@@ -1,5 +1,5 @@
 import { useNavigation } from "@react-navigation/native";
-import { useProductContext } from "../../../@core/page/Cart/ProductContext";
+import { useProductContext } from "../../Screens/Cart/ProductContext";
 
 export const useCart = () => {
   const { selectedProducts } = useProductContext();

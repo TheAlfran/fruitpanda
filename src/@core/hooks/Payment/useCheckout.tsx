@@ -1,6 +1,6 @@
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { useProductContext } from "../../page/Cart/ProductContext";
+import { useProductContext } from "../../Screens/Cart/ProductContext";
 
 
 export const useCheckout = () => {
