@@ -1,9 +1,4 @@
-import {
-  FlatList,
-  Text,
-  ScrollView,
-  Modal,
-} from "react-native";
+import { FlatList, Text, ScrollView, Modal } from "react-native";
 import React, { useState, useEffect } from "react";
 import {
   CategoryButtons,
@@ -38,31 +33,57 @@ import {
   ModalTitleContainer2,
   ModalPrice,
   FruitDescription,
-  CustomValueContainer,
   LineContainer,
-  CustomValueInput,
-  CustomChildValueContainer,
-  CustomValueTitle,
-  CustomValueTitle2,
   AddContainer,
   CartAdd,
   CartMinus,
   CartInfo,
   CartText1,
+  SecondChildContainer,
+  QuantityText,
+  QuantityTextContainer,
+  CartText2,
 } from "./mainstyle";
-import { useProductFilter } from '../../hooks/Mainpage/searchProduct';
+import { useProductFilter } from "../../hooks/Mainpage/searchProduct";
 import category from "../../hooks/Mainpage/categoryData";
-import { useProductActions } from '../../hooks/Mainpage/modalActions';
+import { useProductActions } from "../../hooks/Mainpage/modalActions";
 import { useProductData } from "../../hooks/Mainpage/fetchProducts";
 import { BASE_URL } from "../../hooks/Global/baseURL";
 const baseUrl = `${BASE_URL}`;
 
-
 export default function MainPage() {
   const { products, products1 } = useProductData();
-  const { searchQuery, setSearchQuery, filteredProducts } = useProductFilter(products);
-  const { selectedProduct, isModalVisible, inputValue, handleButtonClick, closeModal, handleButtonClick1, setInputValue } = useProductActions();
+  const { searchQuery, setSearchQuery, filteredProducts } =
+    useProductFilter(products);
+  const {
+    selectedProduct,
+    isModalVisible,
+    inputValue,
+    handleButtonClick,
+    closeModal,
+    handleButtonClick1,
+    setInputValue,
+    decrementValue,
+    incrementValue,
+  } = useProductActions();
 
+  const FiveStarRating = () => {
+    const maxStars = 5;
+    const rating = 5;
+
+    const starIcons = Array.from({ length: maxStars }, (_, index) => (
+      <Text key={index} style={{color: "yellow", fontSize: 20}}>&#9733;</Text> // Wrap the star character in a Text component
+    ));
+
+    return (
+      <>
+        <Text>{starIcons}</Text>
+        <Text>
+          Rating: {rating} / {maxStars}
+        </Text>
+      </>
+    );
+  };
 
   return (
     <MainContainer>
@@ -169,6 +190,9 @@ export default function MainPage() {
         {selectedProduct && (
           <ParentModalContainer>
             <ChildModalContainer>
+              <CloseButtonModal onPress={closeModal}>
+                <CartText2>Close</CartText2>
+              </CloseButtonModal>
               <CartImageContainer>
                 <CartImage
                   source={{
@@ -179,54 +203,52 @@ export default function MainPage() {
                   }}
                 />
               </CartImageContainer>
-              <ModalTitleContainer1>
-                <ModalTitleContainer>
-                  <ModalTitle>{selectedProduct?.attributes.name}</ModalTitle>
-                </ModalTitleContainer>
-                <ModalTitleContainer2>
-                  <ModalPrice>
-                    from ₱{selectedProduct?.attributes.price}
-                  </ModalPrice>
-                </ModalTitleContainer2>
-              </ModalTitleContainer1>
-              <PriceDescriptionTextContainer>
-                <FruitDescription>
-                  For reference only: {selectedProduct?.attributes.description}.
-                </FruitDescription>
-              </PriceDescriptionTextContainer>
-              <LineContainer></LineContainer>
-              <CustomValueContainer>
-                <CustomChildValueContainer>
-                  <CustomValueTitle>Quantity</CustomValueTitle>
-                </CustomChildValueContainer>
-                <CustomValueTitle2>Enter a value</CustomValueTitle2>
-                <CustomValueInput
-                  value={inputValue}
-                  onChangeText={setInputValue}
-                  placeholder="0"
-                  keyboardType="numeric"
-                ></CustomValueInput>
-              </CustomValueContainer>
-              <CloseButtonModal onPress={closeModal}>
-                <CartText>Close</CartText>
-              </CloseButtonModal>
-              <AddContainer>
-                <CartAdd>
-                  <CartText1>+</CartText1>
-                </CartAdd>
-                <CartInfo placeholder="0"></CartInfo>
-                <CartMinus>
-                  <CartText1>-</CartText1>
-                </CartMinus>
-                <CartButton
-                  onPress={() => {
-                    console.log("awts", selectedProduct);
-                    return handleButtonClick1(selectedProduct);
-                  }}
-                >
-                  <CartText>Add to Cart!</CartText>
-                </CartButton>
-              </AddContainer>
+              <SecondChildContainer>
+                <ModalTitleContainer1>
+                  <ModalTitleContainer>
+                    <ModalTitle>{selectedProduct?.attributes.name}</ModalTitle>
+                    <FiveStarRating />
+                  </ModalTitleContainer>
+                  <ModalTitleContainer2>
+                    <ModalPrice>
+                      from ₱{selectedProduct?.attributes.price}
+                    </ModalPrice>
+                  </ModalTitleContainer2>
+                </ModalTitleContainer1>
+                <PriceDescriptionTextContainer>
+                  <FruitDescription>
+                    For reference only:{" "}
+                    {selectedProduct?.attributes.description}.
+                  </FruitDescription>
+                </PriceDescriptionTextContainer>
+                <LineContainer></LineContainer>
+                <QuantityTextContainer>
+                  <QuantityText> Quantity </QuantityText>
+                </QuantityTextContainer>
+                <AddContainer>
+                  <CartMinus onPress={decrementValue}>
+                    <CartText1>-</CartText1>
+                  </CartMinus>
+                  <CartInfo
+                    value={inputValue}
+                    onChangeText={setInputValue}
+                    placeholder="0"
+                    keyboardType="numeric"
+                    keyboardAppearance="light"
+                  ></CartInfo>
+                  <CartAdd onPress={incrementValue}>
+                    <CartText1>+</CartText1>
+                  </CartAdd>
+                  <CartButton
+                    onPress={() => {
+                      console.log("awts", selectedProduct);
+                      return handleButtonClick1(selectedProduct);
+                    }}
+                  >
+                    <CartText>Add to Cart!</CartText>
+                  </CartButton>
+                </AddContainer>
+              </SecondChildContainer>
             </ChildModalContainer>
           </ParentModalContainer>
         )}
