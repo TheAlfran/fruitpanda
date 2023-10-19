@@ -100,7 +100,7 @@ export default function Profilepage() {
               <ImageContainer>
                 <ImageProfile5
                   source={{
-                    uri: `http://192.168.1.77:1337${user.image.formats.thumbnail.url}`,
+                    uri: `http://192.168.1.7:1337${user.image.formats.thumbnail.url}`,
                   }}
                 />
               </ImageContainer>
