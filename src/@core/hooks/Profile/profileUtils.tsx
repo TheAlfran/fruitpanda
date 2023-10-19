@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import AsyncStorage from "@react-native-async-storage/async-storage";  // Import AsyncStorage
 import { User } from '../Global/userList';
+import { API_URL } from '../Global/baseURL';
+const apiUrl = `${API_URL}`;
 
 export function useUserData() {  // Remove userId from parameters
   const [userData, setUserData] = useState<User | null>(null);
@@ -18,14 +20,13 @@ export function useUserData() {  // Remove userId from parameters
     return storedUserId;
   };
 
-
   useEffect(() => {
     fetchUserId();
   }, []);
 
   useEffect(() => {
     if (userId) {  // Only run if userId is not null
-      axios.get(`http://192.168.1.77:1337/api/users/${userId}?populate=image`)
+      axios.get(`http://192.168.1.7:1337/api/users/${userId}?populate=image`)
         .then(response => {
           setUserData(response.data);
         })
