@@ -131,11 +131,11 @@ export const ProfileTitleLogo = styled.Image`
 `;
 
 export const ProfileBodyContainer = styled.View`
-  border-width: 1px;
+
   border-radius: 10px;
   padding: 15px;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
   margin: 15px;
 `;
 
@@ -188,10 +188,12 @@ export const FooterProfileContainer = styled.View`
 
 //Dropdown *********
 export const WalletContainer = styled.View`
-
+flex-direction: row;
+width: 100%;
 `;
 
 export const DropdownContainer = styled.View`
+width: 100%;
 `;
 
 
@@ -202,7 +204,7 @@ export const DropdownButton = styled.TouchableOpacity`
 `;
 
 export const WalletTitleContainer = styled.View`
-flex-direction: row;
+width: 100%;
 padding-left: 20px;
 
 `;
@@ -226,44 +228,74 @@ export const WalletTitleLogo1= styled.Image`
 
 export const WalletContainer1 = styled.View`
 width: 100%;
-align-items: center;
+justify-content: space-evenly;
 margin-top: 10px;
+flex-direction: row;
+
+`;
+
+export const SubWalletContainer = styled.View`
+margin: 5px;
+`;
+
+
+export const SubWalletContainer1 = styled.View`
+margin: 5px;
+`;
+
+export const SubWalletContainer2 = styled.View`
+margin: 5px;
+flex-direction: row;
+justify-content: space-between;
+width: 95%;
+`;
+
+export const CashinButtonContainer = styled.View`
+width: 40%;
+left: 40px;
+`;
+
+export const CashinButton = styled.TouchableOpacity`
+background-color: #f279ac;
+align-items: center;
+justify-content: center;
+border-radius: 10px;
+`;
+
+export const CashinText = styled.Text`
+font-size: 11px;
+
 `;
 
 export const WalletContainer2 = styled.View`
-border-width: 1px;
-border-radius: 10px;
-padding: 20px;
-width: 93%;
-`;
 
-export const AddWalletButton = styled.TouchableOpacity`
-border-width: 1px;
-border-radius: 10px;
-padding: 10px;
-margin-top: 10px;
-width: 93%;
-flex-direction: row;
-justify-content: center;
-`;
-
-export const AddWalletText= styled.Text`
-font-size: 16px;
-text-align: center;
-margin-left: 2px;
+border-radius: 5px;
+width: 40%;
+background-color: lightgrey;
+height: 60px;
+align-items: center;
 `;
 
 
-export const AddWalletlogo = styled.Image`
-  width: 25px;
-  height: 25px;
-  margin-right: 5px;
-`;
 
-export const WalletText = styled.Text`
-font-size: 30px;
+export const WalletContainer3 = styled.View`
+border-radius: 5px;
+width: 40%;
+height: 60px;
+padding: 5px;
+background-color: lightgrey;
+`
+
+export const TransactionText = styled.Text`
+font-size: 12px;
 font-weight: bold;
 
+`;
+
+
+export const WalletText = styled.Text`
+font-size: 12px;
+font-weight: bold;
 `;
 
 

@@ -25,6 +25,7 @@ export const CartChildContainter = styled.View`
   margin-top: 5px;
 `;
 
+
 export const CartSecondChildContainter = styled.View`
   flex-direction: row;
   border-width: 1px;

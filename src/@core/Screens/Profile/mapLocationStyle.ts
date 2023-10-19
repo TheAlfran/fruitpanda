@@ -1,5 +1,6 @@
 import styled from "styled-components/native";
 import { background, secondary } from "../../theme/theme";
+import { Platform } from "react-native";
 
 
 export const LocationContainer = styled.View`
@@ -44,7 +45,7 @@ align-items: center;
 border-width: 1px;
 padding: 10px;
 width:100%;
-bottom: 25px;
+bottom: 40px;
 border-top-color: transparent;
 border-right-color: transparent;
 border-left-color: transparent;
@@ -66,6 +67,7 @@ export const LocationContainer4 = styled.View`
 align-items: center;
 width: 100%;
 padding: 20px;
+bottom: 15px;
 `;
 
 export const AddAdressButton = styled.TouchableOpacity`
@@ -83,6 +85,37 @@ font-size: 14px;
 padding: 10px;
 
 `;
+
+export const ExitButton = styled.TouchableOpacity`
+border-radius: 20px;
+padding-top: 5px;
+padding-bottom: 5px;
+padding-left: 20px;
+padding-right: 20px;
+bottom: 135%;
+right: 20%;
+background-color: ${background};
+flex-direction: row;
+${Platform.select({
+    ios: `
+      shadow-color: #000;
+      shadow-offset: {
+        width: 0,
+        height: 2,
+      }
+      shadow-opacity: 0.25;
+      shadow-radius: 3.84;
+    `,
+    android: `
+      elevation: 5;
+    `,
+  })}
+`;
+
+export const ExitButtonText = styled.Text`
+font-size: 12px;
+color: ${secondary};
+`
 
 
 

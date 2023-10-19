@@ -10,9 +10,9 @@ const Tab = createBottomTabNavigator();
 
 export default function Navigator1() {
   return (
-    <Tab.Navigator initialRouteName="Home">
+    <Tab.Navigator initialRouteName="Home1">
       <Tab.Screen
-        name="Home"
+        name="Home2"
         component={MainPage}
         options={{
           headerShown: false,
@@ -26,7 +26,7 @@ export default function Navigator1() {
       />
 
       <Tab.Screen
-        name="Add To Cart"
+        name="AddCart1"
         component={Addtocartpage}
         options={({ navigation }) => ({
           tabBarLabel: "Add to Cart",

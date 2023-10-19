@@ -2,9 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   AddLocationButton,
   AddLocationText,
-  AddWalletButton,
-  AddWalletText,
-  AddWalletlogo,
   AllImage,
   AllImage1,
   AllNum,
@@ -12,6 +9,9 @@ import {
   Alltext,
   BackgroundImageProfile,
   CartButton,
+  CashinButton,
+  CashinButtonContainer,
+  CashinText,
   CurrentContainer,
   DropdownButton,
   DropdownContainer,
@@ -39,16 +39,19 @@ import {
   ProfileTitleLogo,
   ShippedButton,
   StatusText,
+  SubWalletContainer,
+  SubWalletContainer1,
+  SubWalletContainer2,
   Title2,
   TotalorderContainer,
+  TransactionText,
   WalletContainer,
   WalletContainer1,
   WalletContainer2,
+  WalletContainer3,
   WalletText,
   WalletTitle,
   WalletTitleContainer,
-  WalletTitleLogo,
-  WalletTitleLogo1,
   WishlistContainer,
   WishlistContainer1,
 } from "./profile";
@@ -58,8 +61,11 @@ import { useNavigation } from "@react-navigation/native";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import { background } from "../../theme/theme";
 
-export default function Profilepage({ userId }: { userId: string }) {
-  console.log("Received userId:", userId);
+export default function Profilepage() {
+
+  const fetchUserId = useUserData();
+   
+  console.log("Received userId:", fetchUserId);
   const { userData, error } = useUserData();
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -72,14 +78,13 @@ export default function Profilepage({ userId }: { userId: string }) {
     setIsDropdownOpen1(!isDropdownOpen1);
   };
 
-  const navigation = useNavigation<any>();
-
+  const navigation = useNavigation();
   const handleMapLocation = async () => {
     navigation.navigate("Location");
   };
 
   if (!userData) {
-    // You can show a loading indicator or an error message here.
+   
     return console.log("ERROR");
   }
   const user = userData;
@@ -125,8 +130,8 @@ export default function Profilepage({ userId }: { userId: string }) {
           </ProfileChildContainer>
         </BackgroundImageProfile>
         <ProfileContainerTitle>
-        <FontAwesome5Icon name="list" size={24} color="#D70F64"  />
-          <ProfileTitle>  My Orders</ProfileTitle>
+          <FontAwesome5Icon name="shopping-bag" size={24} color="#D70F64" />
+          <ProfileTitle> My Orders</ProfileTitle>
         </ProfileContainerTitle>
         <ProfileBodyContainer>
           <CartButton>
@@ -155,32 +160,39 @@ export default function Profilepage({ userId }: { userId: string }) {
           </HistoryButton>
         </ProfileBodyContainer>
         <Title2>Profile</Title2>
-
-        {/* /////////////////////////////// */}
         <WalletContainer>
           <DropdownContainer>
             <WalletTitleContainer>
               <DropdownButton onPress={toggleDropdown}>
                 <FontAwesome5Icon name="wallet" size={25} color="#D70F64" />
-                <WalletTitle> My balance </WalletTitle>
+                <WalletTitle> Fruit Wallet </WalletTitle>
               </DropdownButton>
             </WalletTitleContainer>
             {isDropdownOpen && (
               <WalletContainer1>
                 <WalletContainer2>
-                  <WalletText>₱ {user.wallet.toLocaleString()} </WalletText>
+                  <SubWalletContainer2>
+                    <SubWalletContainer1>
+                      <WalletText>PHP </WalletText>
+                    </SubWalletContainer1>
+                    <SubWalletContainer>
+                      <WalletText>{user.wallet.toLocaleString()} </WalletText>
+                    </SubWalletContainer>
+                  </SubWalletContainer2>
+                  <CashinButtonContainer>
+                    <CashinButton>
+                      <CashinText>Cash In</CashinText>
+                    </CashinButton>
+                  </CashinButtonContainer>
                 </WalletContainer2>
-                <AddWalletButton>
-                  <AddWalletlogo
-                    source={require("../../../../assets/profileimages/addwallet.png")}
-                  />
-                  <AddWalletText>Add Funds</AddWalletText>
-                </AddWalletButton>
+                <WalletContainer3>
+                  <TransactionText> Transaction</TransactionText>
+                  <TransactionText> History</TransactionText>
+                </WalletContainer3>
               </WalletContainer1>
             )}
           </DropdownContainer>
         </WalletContainer>
-        {/* ///////////////////////////////// */}
 
         <MapContainer>
           <MapDropdownContainer>
