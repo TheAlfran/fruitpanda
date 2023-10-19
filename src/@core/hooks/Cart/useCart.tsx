@@ -3,7 +3,7 @@ import { useProductContext } from "../../Screens/Cart/ProductContext";
 
 export const useCart = () => {
   const { selectedProducts } = useProductContext();
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation();
   const totalPrice = selectedProducts.reduce(
     (total, product) =>
       total + product.attributes.price * (product.attributes.customValue || 0),
