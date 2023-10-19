@@ -7,7 +7,7 @@ export const useProductActions = () => {
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const { addProductToCart } = useProductContext() || {};
   const [isModalVisible, setModalVisible] = useState(false);
-  const [inputValue, setInputValue] = useState("");
+  const [inputValue, setInputValue] = useState("0");
 
   const handleButtonClick = (productmodal: Product) => {
     setSelectedProduct(productmodal);
@@ -16,7 +16,21 @@ export const useProductActions = () => {
 
   const closeModal = () => {
     setModalVisible(false);
-    setInputValue("");
+    setInputValue("0");
+  };
+
+  const incrementValue = () => {
+    let value = parseInt(inputValue, 10);
+    if (value < 1000) {
+      setInputValue((value + 1).toString());
+    }
+  };
+
+  const decrementValue = () => {
+    let value = parseInt(inputValue, 10);
+    if (value > 0) {
+      setInputValue((value - 1).toString());
+    }
   };
 
   const handleButtonClick1 = (productmodal: Product) => {
@@ -51,5 +65,7 @@ export const useProductActions = () => {
     closeModal,
     handleButtonClick1,
     setInputValue,
+    incrementValue,
+    decrementValue
   };
 };
