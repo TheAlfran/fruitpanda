@@ -8,6 +8,7 @@ import {
   senary,
   tertiary,
 } from "../../theme/theme";
+import { Platform } from "react-native";
 
 export const MainContainer = styled.View`
   flex: 1;
@@ -168,14 +169,38 @@ export const ViewContainer = styled.View`
 export const ParentModalContainer = styled.View`
   height: 100%;
   width: 100%;
+ 
+
 `;
 
 export const ChildModalContainer = styled.View`
   background-color: #fff;
-  border-color: ${quinary};
   width: 100%;
   height: 100%;
   align-items: center;
+`;
+
+export const SecondChildContainer = styled.View`
+width: 90%;
+align-items: center;
+border-radius: 10px;
+margin-top: 30px;
+background-color: #fff;
+${Platform.select({
+    ios: `
+      shadow-color: #000;
+      shadow-offset: {
+        width: 0,
+        height: 2,
+      }
+      shadow-opacity: 0.25;
+      shadow-radius: 3.84;
+    `,
+    android: `
+      elevation: 5;
+    `,
+  })}
+
 `;
 
 export const ModalTitleContainer1 = styled.View`
@@ -205,7 +230,7 @@ export const ModalTitleContainer2 = styled.View`
 `;
 
 export const FruitDescription = styled.Text`
-  font-size: 16px;
+  font-size: 12px;
   color: grey;
 `;
 
@@ -213,6 +238,7 @@ export const CartImageContainer = styled.View`
   width: 100%;
   justify-content: center;
   align-items: center;
+  margin-top: 100px;
 `;
 
 export const CartImage = styled.Image`
@@ -225,14 +251,6 @@ export const ImageB = styled.Image`
   height: 40px;
 `;
 
-export const CustomValueContainer = styled.View`
-  border-width: 1px;
-  width: 95%;
-  background-color: ${quinary};
-  border-radius: 10px;
-  border-color: ${senary};
-  padding: 20px;
-`;
 
 export const LineContainer = styled.View`
   width: 90%;
@@ -242,43 +260,37 @@ export const LineContainer = styled.View`
   margin-bottom: 20px;
 `;
 
-export const CustomChildValueContainer = styled.View`
-  flex-direction: row;
-  height: auto;
-`;
-
-export const CustomValueTitle = styled.Text`
-  font-size: 19px;
-  font-weight: 600;
-  margin-bottom: 5px;
-`;
-
-export const CustomValueTitle2 = styled.Text`
-  font-size: 14px;
-  margin-bottom: 10px;
-`;
-
-export const CustomValueInput = styled.TextInput`
-  border-width: 1px;
-  border-radius: 5px;
-  background-color: ${background};
-  width: 100%;
-  padding: 4px;
-  padding-left: 10px;
-`;
 
 export const CloseButtonModal = styled.TouchableOpacity`
-  border-width: 1px;
   border-color: black;
-  height: 40px;
-  width: 95%;
-  border-radius: 10px;
-  border-color: ${quinary};
+  padding: 5px;
+  padding-left: 15px;
+  padding-right: 15px;
+  border-radius: 20px;
   background-color: #fff;
   justify-content: center;
   align-items: center;
   margin-top: 10px;
   margin-bottom: 30px;
+  position:absolute;
+  right: 77%;
+  top: 20px;
+
+  ${Platform.select({
+    ios: `
+      shadow-color: #000;
+      shadow-offset: {
+        width: 0,
+        height: 2,
+      }
+      shadow-opacity: 0.25;
+      shadow-radius: 3.84;
+    `,
+    android: `
+      elevation: 5;
+    `,
+  })};
+
 `;
 
 export const PriceDescriptionTextContainer = styled.View`
@@ -289,38 +301,44 @@ export const PriceDescriptionTextContainer = styled.View`
 export const AddContainer = styled.View`
   flex-direction: row;
   margin-top: 10px;
-  width: 300px;
   align-items: center;
   justify-content: center;
+  margin-bottom: 30px;
+  
 `;
 
 export const CartAdd = styled.TouchableOpacity`
-  border-radius: 30px;
   background-color: ${quinary};
-  width: 50px;
-  height: 50px;
+  padding-top: 2px;
+  padding-bottom:2px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
   justify-content: center;
   align-items: center;
+
 `;
 
 export const CartMinus = styled.TouchableOpacity`
-  border-radius: 30px;
   background-color: ${quinary};
-  width: 50px;
-  height: 50px;
+  padding-top: 2px;
+  padding-bottom:2px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 20px;
   justify-content: center;
   align-items: center;
-  margin-right: 50px;
 `;
 
 export const CartText1 = styled.Text`
-  color: ${senary};
+  color: #fff;
   font-weight: bold;
   text-align: justify;
+  font-size: 16px;
 `;
 
 export const CartInfo = styled.TextInput`
-  width: 50px;
+  padding: 5px;
   height: 50px;
   text-align: center;
 `;
@@ -328,16 +346,35 @@ export const CartInfo = styled.TextInput`
 export const CartButton = styled.TouchableOpacity`
   border-width: 1px;
   border-color: ${quinary};
-  border-radius: 10px;
+  border-radius: 25px;
   background-color: ${quinary};
-  height: 50px;
-  width: 120px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 25px;
+  padding-right: 25px;
   justify-content: center;
   align-items: center;
+  margin-left: 45px;
+`;
+
+export const QuantityTextContainer = styled.Text`
+width: 90%;
+top: 10px;
+`;
+
+export const QuantityText = styled.Text`
+font-size: 24px;
+font-weight: bold;
 `;
 
 export const CartText = styled.Text`
-  color: ${senary};
+  color: ${background};
+  font-weight: bold;
+  text-align: justify;
+`;
+
+export const CartText2 = styled.Text`
+  color: ${secondary};
   font-weight: bold;
   text-align: justify;
 `;
