@@ -10,7 +10,7 @@ export type Product = {
       image: {
         data: {
           attributes: {
-            url: string;
+              url: string;
           };
         };
       };
