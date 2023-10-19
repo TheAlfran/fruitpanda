@@ -29,7 +29,7 @@ export default function MapLocation() {
   const { region, x, address, onMarkerDragEnd, isLoading } = useLocation();
   const { currentDate, currentTime } = useCurrentTime();
 
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation();
 
   const backProfile = async () => {
     navigation.navigate("Profile");
