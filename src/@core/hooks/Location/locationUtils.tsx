@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import * as Location from 'expo-location';
 import { LatLng } from 'react-native-maps';
 import { useQuery } from 'react-query';
@@ -18,7 +18,7 @@ interface Region {
   longitudeDelta: number;
 }
 
-export function useLocation(): LocationState {
+export function useLocation(deps = []): LocationState {
   const initialRegion: Region = {
     latitude: 8.501862,
     longitude: 124.632478,
@@ -76,6 +76,10 @@ export function useLocation(): LocationState {
   const { isLoading } = useQuery('location', fetchLocation, {
     staleTime: Infinity, // The data will never be considered stale
   });
+
+  useEffect(() => {
+    fetchLocation();
+  }, deps);
 
   return { region, x, address, onMarkerDragEnd, isLoading };
 }

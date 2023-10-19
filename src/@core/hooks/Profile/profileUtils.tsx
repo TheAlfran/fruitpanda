@@ -8,12 +8,18 @@ export function useUserData() {  // Remove userId from parameters
   const [userId, setUserId] = useState<string | null>(null);  // Add this line
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const fetchUserId = async () => {
-      const storedUserId = await AsyncStorage.getItem("userId");
-      setUserId(storedUserId);
-    };
 
+
+  const fetchUserId = async () => {
+    const storedUserId = await AsyncStorage.getItem("userId");
+    console.log("Stored", storedUserId)
+    setUserId(storedUserId);
+
+    return storedUserId;
+  };
+
+
+  useEffect(() => {
     fetchUserId();
   }, []);
 

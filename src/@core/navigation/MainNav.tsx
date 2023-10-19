@@ -10,6 +10,7 @@ import PayPage from "../Screens/Payment/paypage";
 import MainPage from "../Screens/Main/MainPage";
 import mapLocation from "../Screens/Profile/mapLocation";
 import MapLocation from "../Screens/Profile/mapLocation";
+import Profilepage from "../Screens/Profile/profilepage";
 
 const Stack = createStackNavigator();
 
@@ -42,7 +43,6 @@ const MainNav: React.FC = () => {
             headerTitleStyle: { fontWeight: "bold" }, // Set the style for the header title
           }}
         />
-
         <Stack.Screen
           name="Payment"
           component={PayPage}

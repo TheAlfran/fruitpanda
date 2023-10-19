@@ -25,23 +25,26 @@ export const useAuth = () => {
     password: string;
   }) => {
     try {
+      
       const response = await axios.post(`${baseUrl}/api/auth/local`, {
         identifier: username,
         password: password,
       });
 
-      //Store the authtoken to the aysnc storage
+     
       const authToken = response.data.jwt;
-      await AsyncStorage.setItem("authToken", authToken);
-      console.log("Stored authToken:", authToken); //make sure that the token is stored in the aysncstorage
-
-      //Store the UID of the data to aysnc storage
       const userId = response.data.user.id;
+      console.log("eewqeqw", userId)
+
       await AsyncStorage.setItem("userId", userId.toString());
-      console.log("Stored userId:", userId);// also make sure that it is stored
+      await AsyncStorage.setItem("authToken", authToken);
+      
+      console.log("Stored authToken:", authToken); 
+      console.log("Stored userId:", userId);
 
       return { authToken, userId };
-    } catch (error) {
+    
+    }catch (error) {
       if (error instanceof Error) {
         if (error.cause && error.cause === 400) {
           Alert.alert(
@@ -58,13 +61,11 @@ export const useAuth = () => {
       }
       throw error;
     }
-    
-    
   };
 
   const { mutate, isLoading, reset } = useMutation(login, {
     onSuccess: (data) => {
-      navigation.navigate("Navigate");
+      navigation.navigate("Navigate", {userId: 1});
     },
     onError: (error) => {
       reset();
@@ -77,6 +78,17 @@ export const useAuth = () => {
 
   const handleLogin = async () => {
     await mutate({ username, password });
+  };
+
+  const showAllData = async () => {
+    try {
+      const keys = await AsyncStorage.getAllKeys();
+      const result = await AsyncStorage.multiGet(keys);
+  
+      console.log('Stored data:', result);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return {

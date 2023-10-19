@@ -10,22 +10,32 @@ import {
   AddressContainer1,
   AddressText,
   DateText,
+  ExitButton,
+  ExitButtonText,
   LocationContainer,
   LocationContainer2,
   LocationContainer3,
   LocationContainer4,
   TimerText,
 } from "./mapLocationStyle";
-import * as Location from "expo-location";
 import TextTicker from "react-native-text-ticker";
-import Icon from "react-native-vector-icons/FontAwesome5";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import { useLocation } from "../../hooks/Location/locationUtils";
 import { useCurrentTime } from "../../hooks/Location/timedataUtils";
+import { useNavigation } from "@react-navigation/native";
+import axios from "axios";
 
 export default function MapLocation() {
   const { region, x, address, onMarkerDragEnd, isLoading } = useLocation();
   const { currentDate, currentTime } = useCurrentTime();
+
+  const navigation = useNavigation<any>();
+
+  const backProfile = async () => {
+    navigation.navigate("Profile");
+  };
+
+
 
   return (
     <LocationContainer>
@@ -44,7 +54,7 @@ export default function MapLocation() {
           {isLoading ? (
             <>
               <ActivityIndicator size="small" color="#fff" />
-              <Text style={{ color: "#fff" }}>    Getting location...</Text>
+              <Text style={{ color: "#fff" }}> Getting location...</Text>
             </>
           ) : (
             <>
@@ -64,6 +74,10 @@ export default function MapLocation() {
             </>
           )}
         </AddressContainer>
+        <ExitButton onPress={backProfile}>
+          <FontAwesome5Icon name="arrow-left" size={15} color="#D70F64" />
+          <ExitButtonText> Back</ExitButtonText>
+        </ExitButton>
       </LocationContainer2>
       <LocationContainer3>
         <TimerText>{currentTime.toLocaleTimeString()}</TimerText>
@@ -78,7 +92,7 @@ export default function MapLocation() {
       </LocationContainer3>
       <LocationContainer4>
         <AddAdressButton>
-          <FontAwesome5Icon name="map" size={30} color="#000" />
+          <FontAwesome5Icon name="map" size={30} color="#D70F64" />
           <AddAdressText>Add This Address</AddAdressText>
         </AddAdressButton>
       </LocationContainer4>
