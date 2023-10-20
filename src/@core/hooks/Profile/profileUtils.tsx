@@ -26,7 +26,7 @@ export function useUserData() {  // Remove userId from parameters
 
   useEffect(() => {
     if (userId) {  // Only run if userId is not null
-      axios.get(`http://192.168.1.7:1337/api/users/${userId}?populate=image`)
+      axios.get(`http://192.168.1.77:1337/api/users/${userId}?populate=image`)
         .then(response => {
           setUserData(response.data);
         })
