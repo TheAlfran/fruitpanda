@@ -8,9 +8,10 @@ import {
   senary,
   tertiary,
 } from "../../theme/theme";
+import { Platform } from "react-native";
 
 export const CartParentContainer = styled.View`
-  margin-top: 10px;
+
   width: 100%;
   background-color: ${background};
   align-items: center;
@@ -20,37 +21,46 @@ export const CartChildContainter = styled.View`
   padding: 20px;
   width: 95%;
   height: 84%;
-  background-color: #f8f8f8;
   border-radius: 10px;
   margin-top: 5px;
+  
 `;
 
 
 export const CartSecondChildContainter = styled.View`
   flex-direction: row;
-  border-width: 1px;
   border-radius: 10px;
-  border-color: ${senary};
+  background-color: ${background};
   margin-top: 15px;
-  width: 100%;
-  height: 100px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
   position: relative;
-  left: -0.1px;
+  ${Platform.select({
+    ios: `
+      shadow-color: #000;
+      shadow-offset: {
+        width: 0,
+        height: 2,
+      }
+      shadow-opacity: 0.25;
+      shadow-radius: 3.84;
+    `,
+    android: `
+      elevation: 3;
+    `,
+  })}
 `;
 
 export const CartTextContainer = styled.View`
-  width: 50%;
-  height: 40px;
+  width: 20%;
   justify-content: center;
   text-align: center;
   border-color: black;
-  margin: 25px;
-  position: relative;
-  right: 28px;
 `;
 
 export const CartText = styled.Text`
-  font-size: 15px;
+  font-size: 12px;
   font-weight: bold;
 `;
 
@@ -61,13 +71,89 @@ export const CartImageAddContainer = styled.View`
   justify-content: center;
   align-items: center;
   padding: 15px;
-  border-radius: 20px;
+  border-radius: 5px;
   margin: 10px;
 `;
 
 export const CartImageAdd = styled.Image`
   width: 50px;
   height: 50px;
+`;
+
+
+export const CombineContainer = styled.View`
+margin-left: 25px;
+justify-content: flex-end;
+`;
+
+
+export const QuantityAddContainer = styled.View`
+flex-direction:row;
+margin-bottom: 10px;
+`;
+
+export const AddQuantity = styled.TouchableOpacity`
+border-radius: 5px;
+padding-left: 15px;
+padding-right: 15px;
+background-color: ${background};
+justify-content: center;
+${Platform.select({
+    ios: `
+      shadow-color: #000;
+      shadow-offset: {
+        width: 0,
+        height: 2,
+      }
+      shadow-opacity: 0.25;
+      shadow-radius: 3.84;
+    `,
+    android: `
+      elevation: 2;
+    `,
+  })}
+`;
+
+export const AddQuantityText = styled.Text`
+font-size: 16px;
+font-weight: bold;
+color: ${secondary};
+`;
+
+export const TextQuantity = styled.TextInput`
+padding-left: 3px;
+padding-right: 3px;
+text-align: center;
+`;
+
+export const ReduceQuantityText = styled.Text`
+font-size: 16px;
+font-weight: bold;
+color: ${secondary};
+
+
+`;
+
+export const ReduceQuantity = styled.TouchableOpacity`
+border-radius: 5px;
+padding-left: 15px;
+padding-right: 15px;
+justify-content: center;
+background-color: ${background};
+${Platform.select({
+    ios: `
+      shadow-color: #000;
+      shadow-offset: {
+        width: 0,
+        height: 2,
+      }
+      shadow-opacity: 0.25;
+      shadow-radius: 3.84;
+    `,
+    android: `
+      elevation: 2;
+    `,
+  })}
 `;
 
 export const CartFooterContainer = styled.View`
@@ -98,7 +184,7 @@ export const CartFooterButtonText = styled.Text`
 export const CartFooterButton = styled.TouchableOpacity`
 border-width: 1px;
 border-color: ${secondary};
-border-radius: 25px;
+border-radius: 5px;
 background-color: ${secondary};
 width: 50%;
 height: 40px;

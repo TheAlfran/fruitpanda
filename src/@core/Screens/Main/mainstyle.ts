@@ -8,17 +8,21 @@ import {
   senary,
   tertiary,
 } from "../../theme/theme";
-import { Platform } from "react-native";
+import { BackHandler, Platform } from "react-native";
 
 export const MainContainer = styled.View`
   flex: 1;
   background-color: #fff;
+  align-items: center;
 `;
 
 export const MainTitleContainer = styled.View`
   background-color: ${secondary};
   justify-content: center;
   align-items: center;
+  width: 100%;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 `;
 
 export const MainTitle = styled.Text`
@@ -41,36 +45,64 @@ export const MainSearch = styled.TextInput`
   background-color: #fff;
 `;
 
-export const ParentCategoryContainer = styled.View`
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  bottom: 15px;
-  border-bottom-right-radius: 19px;
-  border-bottom-left-radius: 19px;
-  background-color: ${secondary};
+export const TitleCategoryContainer = styled.View`
+margin-top: 10px;
+width: 90%;
+flex-direction: row;
 `;
 
-export const CategoryContainer = styled.View`
-  width: 90%;
-  height: 50px;
-  justify-content: center;
-  align-items: center;
-  background-color: ${secondary};
+export const TitleCategory = styled.Text`
+font-size: 24px;
+font-weight: bold;
+color: ${secondary};
+
 `;
+
+export const ParentCategoryContainer = styled.View`
+  background-color: ${background};
+  height: 110px;
+  width: 95%;
+  justify-content: center;
+
+`;
+
+
+
 
 export const CategoryButtons = styled.TouchableOpacity`
-  border-width: 1px;
-  border-color: ${secondary};
-  border-bottom-color: ${secondary};
-  border-top-color: ${secondary};
-  border-left-color: ${secondary};
-  height: 30px;
+  margin-right: 15px;
+  margin-left: 15px;
+  border-radius: 14px;
   width: 80px;
-  justify-content: center;
+  height: 60px;
   align-items: center;
-  position: relative;
-  top: -8px;
+  justify-content: center;
+  background-color: ${background};
+  ${Platform.select({
+    ios: `
+      shadow-color: #000;
+      shadow-offset: {
+        width: 0,
+        height: 2,
+      }
+      shadow-opacity: 0.25;
+      shadow-radius: 3.84;
+    `,
+    android: `
+      elevation: 4;
+    `,
+  })}
+  
+`;
+
+export const CategoryContainer1 = styled.View`
+justify-content: center;
+align-items: center;
+
+`;
+
+export const TextCategory = styled.Text`
+font-size: 12px;
 `;
 
 export const CategoryIamges = styled.Image`
@@ -78,8 +110,14 @@ export const CategoryIamges = styled.Image`
   height: 30px;
 `;
 
+export const NamePriceContainer = styled.View`
+width: 90%;
+border-width: 1px;
+`;
+
 export const AllTextColors = styled.Text`
-  color: ${senary};
+  color: ${primary};
+  font-size: 12px;
 `;
 
 export const SaleContainer = styled.View`
@@ -114,34 +152,71 @@ export const SaleButton = styled.TouchableOpacity`
 `;
 
 export const PriceTextContainer = styled.View`
-  flex-direction: row;
+  width: 85%;
+  padding: 10px;
+  margin-top: 10px
 `;
 
 export const ParentProductContainer = styled.View`
-  flex: 1;
   background-color: #fff;
+  flex: 1;
+  align-items: center;
 `;
 
 export const ProductContainer = styled.View`
   background-color: #fff;
-  flex: 1;
   width: 100%;
+  flex:1;
   padding-left: 20px;
   padding-right: 20px;
+  justify-content: center;
 `;
 
 export const ProductButton = styled.TouchableOpacity`
   border-width: 1px;
   border-color: ${secondary};
-  border-radius: 10px;
-  width: 90%;
-  height: 150px;
+  border-radius: 5px;
+  width: 70%;
   margin-top: 10px;
-  position: relative;
-  left: 8px;
+  margin-bottom: 10px;
+  padding: 5px;
   justify-content: center;
   align-items: center;
+  background-color: ${primary};
+  flex-direction: row;
 `;
+
+export const ProductButtonText = styled.Text`
+font-size: 12px;
+color: ${background};
+`;
+
+export const ProductButtonContainer = styled.View`
+  width: 90%;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  justify-content: center;
+  align-items: center;
+  background-color: ${background};
+  border-radius: 10px;
+  ${Platform.select({
+    ios: `
+      shadow-color: #000;
+      shadow-offset: {
+        width: 0,
+        height: 2,
+      }
+      shadow-opacity: 0.25;
+      shadow-radius: 3.84;
+    `,
+    android: `
+      elevation: 3;
+    `,
+  })}
+`;
+
+
+
 
 export const ProductImageContainer = styled.View`
   width: 100%;
@@ -149,15 +224,14 @@ export const ProductImageContainer = styled.View`
   align-items: center;
   justify-content: center;
   background-color: #f279ac;
-  margin-top: -10px;
   border-radius: 10px;
   border-bottom-left-radius: 0px;
   border-bottom-right-radius: 0px;
 `;
 
 export const ProductImage = styled.Image`
-  width: 70px;
-  height: 70px;
+  width: 110px;
+  height: 110px;
   margin-bottom: 3px;
 `;
 
@@ -174,7 +248,7 @@ export const ParentModalContainer = styled.View`
 `;
 
 export const ChildModalContainer = styled.View`
-  background-color: #fff;
+  background-color: ${background};
   width: 100%;
   height: 100%;
   align-items: center;
@@ -184,7 +258,7 @@ export const SecondChildContainer = styled.View`
 width: 90%;
 align-items: center;
 border-radius: 10px;
-margin-top: 30px;
+margin-top: 50px;
 background-color: #fff;
 ${Platform.select({
     ios: `
@@ -308,7 +382,7 @@ export const AddContainer = styled.View`
 `;
 
 export const CartAdd = styled.TouchableOpacity`
-  background-color: ${quinary};
+  background-color: ${primary};
   padding-top: 2px;
   padding-bottom:2px;
   padding-left: 20px;
@@ -320,7 +394,7 @@ export const CartAdd = styled.TouchableOpacity`
 `;
 
 export const CartMinus = styled.TouchableOpacity`
-  background-color: ${quinary};
+  background-color: ${primary};
   padding-top: 2px;
   padding-bottom:2px;
   padding-left: 20px;
@@ -344,10 +418,9 @@ export const CartInfo = styled.TextInput`
 `;
 
 export const CartButton = styled.TouchableOpacity`
-  border-width: 1px;
-  border-color: ${quinary};
+
   border-radius: 25px;
-  background-color: ${quinary};
+  background-color: ${primary};
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 25px;

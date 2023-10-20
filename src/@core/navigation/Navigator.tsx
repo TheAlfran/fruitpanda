@@ -29,13 +29,13 @@ export default function Navigator1() {
         name="AddCart1"
         component={Addtocartpage}
         options={({ navigation }) => ({
-          tabBarLabel: "Add to Cart",
+          tabBarLabel: "My Cart",
           tabBarIcon: ({ color, size }) => (
             <Ionicons name="cart" size={24} color="#D70F64" />
           ),
           tabBarActiveTintColor: "#D70F64",
           tabBarInactiveTintColor: "gray",
-          headerTitle: "Add To Cart", // Set the header title here
+          headerTitle: "My Cart", // Set the header title here
           headerTitleAlign: "center", // Center align the header title
           headerStyle: { backgroundColor: "#D70F64" }, // Set the background color of the header
           headerTintColor: "#fff", // Set the color of the header text

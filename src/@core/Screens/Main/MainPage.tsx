@@ -2,7 +2,6 @@ import { FlatList, Text, ScrollView, Modal } from "react-native";
 import React, { useState, useEffect } from "react";
 import {
   CategoryButtons,
-  CategoryContainer,
   MainContainer,
   MainSearch,
   MainTitle,
@@ -43,13 +42,24 @@ import {
   QuantityText,
   QuantityTextContainer,
   CartText2,
+  TextCategory,
+  CategoryContainer1,
+  TitleCategoryContainer,
+  TitleCategory,
+  ProductButtonContainer,
+  ProductButtonText,
 } from "./mainstyle";
-import { useProductFilter } from "../../hooks/Mainpage/searchProduct";
+import { Product, useProductFilter } from "../../hooks/Mainpage/searchProduct";
 import category from "../../hooks/Mainpage/categoryData";
 import { useProductActions } from "../../hooks/Mainpage/modalActions";
 import { useProductData } from "../../hooks/Mainpage/fetchProducts";
-import { BASE_URL } from "../../hooks/Global/baseURL";
+import { API_URL, BASE_URL } from "../../hooks/Global/baseURL";
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import ratingHook from "../../hooks/Mainpage/ratingHook";
+import { useQuery } from "react-query";
+import axios from "axios";
 const baseUrl = `${BASE_URL}`;
+const apiUrl = `${API_URL}`;
 
 export default function MainPage() {
   const { products, products1 } = useProductData();
@@ -67,22 +77,16 @@ export default function MainPage() {
     incrementValue,
   } = useProductActions();
 
-  const FiveStarRating = () => {
-    const maxStars = 5;
-    const rating = 5;
+  const { FiveStarRating, FiveStarRating1 } = ratingHook();
 
-    const starIcons = Array.from({ length: maxStars }, (_, index) => (
-      <Text key={index} style={{color: "yellow", fontSize: 20}}>&#9733;</Text> // Wrap the star character in a Text component
-    ));
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-    return (
-      <>
-        <Text>{starIcons}</Text>
-        <Text>
-          Rating: {rating} / {maxStars}
-        </Text>
-      </>
-    );
+  const handleButtonClick2 = (category: string) => {
+    if (selectedCategory === category) {
+      setSelectedCategory("");
+    } else {
+      setSelectedCategory(category);
+    }
   };
 
   return (
@@ -96,52 +100,47 @@ export default function MainPage() {
           value={searchQuery}
         ></MainSearch>
       </MainTitleContainer>
+      <TitleCategoryContainer>
+        <TitleCategory>Categories</TitleCategory>
+      </TitleCategoryContainer>
       <ParentCategoryContainer>
-        <CategoryContainer>
-          <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-            {category.map((item) => (
-              <CategoryButtons key={item.id}>
-                <CategoryButtons />
-                <CategoryIamges source={item.images} />
-                <Text style={{ color: "wheat" }}>{item.text}</Text>
-              </CategoryButtons>
-            ))}
-          </ScrollView>
-        </CategoryContainer>
-      </ParentCategoryContainer>
-      <SaleContainer>
-        <TextSale>50% off Items</TextSale>
-        <FlatList
-          data={products1}
-          scrollEnabled
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-          keyExtractor={(item: any, index) => {
-            return item.id.toString() || index.toString();
-          }}
-          renderItem={({ item: { attributes } }) => (
-            <SaleButton key={attributes.id}>
-              <ProductImage
-                source={{
-                  uri: `${baseUrl}${attributes?.image?.data.attributes?.url}`,
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {category.map((item) => (
+            <CategoryContainer1 key={item.id}>
+              <CategoryButtons
+                onPress={() => handleButtonClick2(item.text)}
+                style={{
+                  backgroundColor:
+                    selectedCategory === item.text ? "#D70F64" : "white",
                 }}
-              />
-              <AllTextColors style={{ textTransform: "uppercase" }}>
-                {attributes.name}
-              </AllTextColors>
-              <PriceTextContainer>
-                <AllTextColors style={{ textDecorationLine: "line-through" }}>
-                  ₱{attributes.price}
-                </AllTextColors>
-                <AllTextColors> / ₱{attributes.price * 0.5}</AllTextColors>
-              </PriceTextContainer>
-            </SaleButton>
-          )}
-        />
-      </SaleContainer>
+              >
+                <CategoryIamges source={item.images} />
+              </CategoryButtons>
+              <TextCategory>{item.text}</TextCategory>
+            </CategoryContainer1>
+          ))}
+        </ScrollView>
+      </ParentCategoryContainer>
+      <TitleCategoryContainer>
+        <TitleCategory>Popular</TitleCategory>
+      </TitleCategoryContainer>
       <ProductContainer>
         <FlatList
-          data={filteredProducts.length > 0 ? filteredProducts : products}
+          data={
+            selectedCategory
+              ? filteredProducts.length > 0
+                ? filteredProducts.filter(
+                    (product) =>
+                      product.attributes.category === selectedCategory
+                  )
+                : products.filter(
+                    (product) =>
+                      product.attributes.category === selectedCategory
+                  )
+              : filteredProducts.length > 0
+              ? filteredProducts
+              : products
+          }
           scrollEnabled
           showsVerticalScrollIndicator={false}
           keyExtractor={(item: any, index) => {
@@ -154,27 +153,41 @@ export default function MainPage() {
             return (
               <>
                 <ParentProductContainer>
-                  <ProductButton
-                    key={attributes.id}
-                    onPress={() =>
-                      handleButtonClick({
-                        id: attributes.id,
-                        attributes: attributes,
-                      })
-                    }
-                  >
-                    <ProductImageContainer>
-                      <ProductImage
-                        source={{
-                          uri: `${baseUrl}${attributes.image.data.attributes.url}`,
+                  <ProductButtonContainer>
+                    <PriceTextContainer>
+                      <AllTextColors
+                        style={{
+                          textTransform: "uppercase",
+                          fontWeight: "bold",
                         }}
+                      >
+                        {attributes.name}
+                      </AllTextColors>
+                      <AllTextColors>₱{attributes.price}</AllTextColors>
+                      <FiveStarRating1 />
+                    </PriceTextContainer>
+                    <ProductImage
+                      source={{
+                        uri: `${baseUrl}${attributes.image.data.attributes.url}`,
+                      }}
+                    />
+                    <ProductButton
+                      key={attributes.id}
+                      onPress={() =>
+                        handleButtonClick({
+                          id: attributes.id,
+                          attributes: attributes,
+                        })
+                      }
+                    >
+                      <FontAwesome5Icon
+                        name="shopping-cart"
+                        size={15}
+                        color="#fff"
                       />
-                    </ProductImageContainer>
-                    <AllTextColors style={{ textTransform: "uppercase" }}>
-                      {attributes.name}
-                    </AllTextColors>
-                    <AllTextColors>₱{attributes.price}</AllTextColors>
-                  </ProductButton>
+                      <ProductButtonText> Add to Cart</ProductButtonText>
+                    </ProductButton>
+                  </ProductButtonContainer>
                 </ParentProductContainer>
               </>
             );
@@ -222,6 +235,7 @@ export default function MainPage() {
                   </FruitDescription>
                 </PriceDescriptionTextContainer>
                 <LineContainer></LineContainer>
+
                 <QuantityTextContainer>
                   <QuantityText> Quantity </QuantityText>
                 </QuantityTextContainer>
