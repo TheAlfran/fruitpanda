@@ -1,6 +1,8 @@
 import React from "react";
 import { FlatList } from "react-native";
 import {
+  AddQuantity,
+  AddQuantityText,
   CartChildContainter,
   CartFooterButton,
   CartFooterButtonText,
@@ -14,13 +16,17 @@ import {
   CartSecondChildContainter,
   CartText,
   CartTextContainer,
+  CombineContainer,
+  QuantityAddContainer,
+  ReduceQuantity,
+  ReduceQuantityText,
+  TextQuantity,
 } from "./addtocartstyle";
 import { useCart } from "../../hooks/Cart/useCart";
 import { BASE_URL } from "../../hooks/Global/baseURL";
 const baseUrl = `${BASE_URL}`;
 
 export default function AddToCartPage() {
- 
   const { selectedProducts, totalPrice, checkoutClicked } = useCart();
 
   return (
@@ -43,11 +49,23 @@ export default function AddToCartPage() {
                       }}
                     />
                   </CartImageAddContainer>
+
                   <CartTextContainer>
                     <CartText>{item.attributes.name}</CartText>
                     <CartText>QTY: {item.attributes.customValue}</CartText>
                     <CartText>₱{item.attributes.price}</CartText>
                   </CartTextContainer>
+                  <CombineContainer>
+                    <QuantityAddContainer>
+                      <ReduceQuantity>
+                        <ReduceQuantityText> - </ReduceQuantityText>
+                      </ReduceQuantity>
+                      <TextQuantity placeholder="0"></TextQuantity>
+                      <AddQuantity>
+                        <AddQuantityText> + </AddQuantityText>
+                      </AddQuantity>
+                    </QuantityAddContainer>
+                  </CombineContainer>
                 </>
               )}
             </CartSecondChildContainter>
@@ -57,10 +75,10 @@ export default function AddToCartPage() {
       <CartFooterContainer>
         <CartFooterText>₱{totalPrice}</CartFooterText>
         <CartFooterButton onPress={checkoutClicked}>
-          <CartFooterImage source={require('../../../../assets/categories/checkout.png')}/>
-          <CartFooterButtonText>
-            Checkout
-          </CartFooterButtonText>
+          <CartFooterImage
+            source={require("../../../../assets/categories/checkout.png")}
+          />
+          <CartFooterButtonText>Checkout</CartFooterButtonText>
         </CartFooterButton>
       </CartFooterContainer>
     </CartParentContainer>
