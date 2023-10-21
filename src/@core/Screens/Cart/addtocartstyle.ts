@@ -56,7 +56,6 @@ export const CartTextContainer = styled.View`
   width: 20%;
   justify-content: center;
   text-align: center;
-  border-color: black;
 `;
 
 export const CartText = styled.Text`
@@ -82,14 +81,15 @@ export const CartImageAdd = styled.Image`
 
 
 export const CombineContainer = styled.View`
-margin-left: 25px;
 justify-content: flex-end;
+
 `;
 
 
 export const QuantityAddContainer = styled.View`
 flex-direction:row;
 margin-bottom: 10px;
+
 `;
 
 export const AddQuantity = styled.TouchableOpacity`

@@ -6,7 +6,7 @@ export type Product = {
       price: number;
       category: string;
       description: string;
-      customValue?: number;
+      customValue: number;
       image: {
         data: {
           attributes: {

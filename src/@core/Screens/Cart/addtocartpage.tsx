@@ -24,10 +24,13 @@ import {
 } from "./addtocartstyle";
 import { useCart } from "../../hooks/Cart/useCart";
 import { BASE_URL } from "../../hooks/Global/baseURL";
+import { useProductContext } from "./ProductContext";
 const baseUrl = `${BASE_URL}`;
 
 export default function AddToCartPage() {
   const { selectedProducts, totalPrice, checkoutClicked } = useCart();
+  const { decrementProductCustomValue, incrementProductCustomValue } =
+    useProductContext();
 
   return (
     <CartParentContainer>
@@ -57,11 +60,17 @@ export default function AddToCartPage() {
                   </CartTextContainer>
                   <CombineContainer>
                     <QuantityAddContainer>
-                      <ReduceQuantity>
+                      <ReduceQuantity
+                        onPress={() => decrementProductCustomValue(item.id)}
+                      >
                         <ReduceQuantityText> - </ReduceQuantityText>
                       </ReduceQuantity>
-                      <TextQuantity placeholder="0"></TextQuantity>
-                      <AddQuantity>
+                      <TextQuantity
+                        placeholder={item.attributes.customValue.toString()}
+                      />
+                      <AddQuantity
+                        onPress={() => incrementProductCustomValue(item.id)}
+                      >
                         <AddQuantityText> + </AddQuantityText>
                       </AddQuantity>
                     </QuantityAddContainer>
