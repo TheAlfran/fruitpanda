@@ -60,6 +60,8 @@ import { ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import { background } from "../../theme/theme";
+import { BASE_URL } from "../../hooks/Global/baseURL";
+const baseUrl = `${BASE_URL}`;
 
 export default function Profilepage() {
 
@@ -100,7 +102,7 @@ export default function Profilepage() {
               <ImageContainer>
                 <ImageProfile5
                   source={{
-                    uri: `http://192.168.1.77:1337${user.image.formats.thumbnail.url}`,
+                    uri: `${baseUrl}${user.image.formats.thumbnail.url}`,
                   }}
                 />
               </ImageContainer>
