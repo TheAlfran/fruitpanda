@@ -62,7 +62,7 @@ const baseUrl = `${BASE_URL}`;
 const apiUrl = `${API_URL}`;
 
 export default function MainPage() {
-  const { products, products1 } = useProductData();
+  const { products} = useProductData();
   const { searchQuery, setSearchQuery, filteredProducts } =
     useProductFilter(products);
   const {
@@ -144,11 +144,11 @@ export default function MainPage() {
           scrollEnabled
           showsVerticalScrollIndicator={false}
           keyExtractor={(item: any, index) => {
-            return item.id.toString() || index.toString();
+            return item && item.uid ? item.uid : index.toString();
           }}
           numColumns={2}
           key={"_"}
-          renderItem={({ item: { attributes } }) => {
+          renderItem={({ item: { id, attributes } }) => {
             console.log("HERE", attributes.image.data.attributes.url);
             return (
               <>
@@ -172,10 +172,10 @@ export default function MainPage() {
                       }}
                     />
                     <ProductButton
-                      key={attributes.id}
+                      key={id}
                       onPress={() =>
                         handleButtonClick({
-                          id: attributes.id,
+                          id: id,
                           attributes: attributes,
                         })
                       }

@@ -12,7 +12,7 @@ export const usePayment = () => {
       total + product.attributes.price * (product.attributes.customValue || 0),
     0
   );
-  const navigation = useNavigation<any>();
+  const navigation = useNavigation();
   const totalPriceWithVAT = totalPrice * 0.12;
   const deliveryFee = 20;
 

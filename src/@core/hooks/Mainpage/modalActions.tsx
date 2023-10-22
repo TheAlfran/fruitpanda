@@ -10,6 +10,7 @@ export const useProductActions = () => {
   const [inputValue, setInputValue] = useState("0");
 
   const handleButtonClick = (productmodal: Product) => {
+    console.log("PISTI",productmodal);
     setSelectedProduct(productmodal);
     setModalVisible(true);
   };
@@ -34,8 +35,9 @@ export const useProductActions = () => {
   };
 
   const handleButtonClick1 = (productmodal: Product) => {
+    console.log("PISTI123",productmodal); 
     const customValue = parseInt(inputValue, 10);
-
+  
     if (customValue > productmodal.attributes.quantity) {
       Alert.alert("Error", "The amount exceeded the quantity available");
       return;
@@ -43,7 +45,7 @@ export const useProductActions = () => {
       Alert.alert("Error", "The amount is not valid");
       return;
     }
-
+  
     addProductToCart &&
       addProductToCart({
         ...productmodal,
@@ -52,7 +54,7 @@ export const useProductActions = () => {
           customValue,
         },
       });
-
+  
     Alert.alert("Success", "Item added to cart!");
     setModalVisible(true);
   };

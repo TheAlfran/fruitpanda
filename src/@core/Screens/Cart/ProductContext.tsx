@@ -1,16 +1,14 @@
 import React, { createContext, useContext, useState } from "react";
 import { Product } from "../../hooks/Global/productList";
 
-
 type ProductContextType = {
   selectedProducts: Product[];
   addProductToCart: (product: Product) => void;
-  removeProductFromCart: (productId: number) => void;
-  incrementProductCustomValue: (productId: number) => void;
-  decrementProductCustomValue: (productId: number) => void;
+  removeProductFromCart: (productUid: string) => void;
+  incrementProductCustomValue: (productUid: string) => void;
+  decrementProductCustomValue: (productUid: string) => void;
   clearCart: () => void;
 };
-
 
 const ProductContext = createContext<ProductContextType | null>(null);
 
@@ -22,14 +20,29 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
   const [selectedProducts, setSelectedProducts] = useState<Product[]>([]);
 
   const addProductToCart = (product: Product) => {
-    setSelectedProducts([...selectedProducts, product]);
+    if (!product.id) {
+      console.error('Cannot add product without id to cart');
+      return;
+    }
+    
+    // Generate a UID for the product
+    const uid = `${product.id}-${Date.now()}`;
+  
+    setSelectedProducts(prevProducts => [
+      ...prevProducts,
+      {
+        ...product,
+        uid, // Add the UID to the product
+      },
+    ]);
   };
 
-  const removeProductFromCart = (productId: number) => {
+  const removeProductFromCart = (productUid: string) => {
+    console.log("Removed", productUid)
     let found = false;
     setSelectedProducts((selectedProducts) =>
       selectedProducts.filter((product) => {
-        if (!found && product.id === productId) {
+        if (!found && product.uid === productUid) {
           found = true;
           return false;
         }
@@ -38,12 +51,10 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
     );
   };
 
-  const incrementProductCustomValue = (productId: number) => {
-    console.log(`Incrementing/Decrementing product ${productId}`);
-
+  const incrementProductCustomValue = (productUid: string) => {
     setSelectedProducts((selectedProducts) =>
       selectedProducts.map((product) => {
-        if (product.id === productId) {
+        if (product.uid === productUid) {
           return {
             ...product,
             attributes: {
@@ -56,15 +67,14 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
       })
     );
   };
-
-  const decrementProductCustomValue = (productId: number) => {
-    console.log(`Incrementing/Decrementing product ${productId}`);
+  
+  const decrementProductCustomValue = (productUid: string) => {
+    console.log("Decremented", productUid)
     setSelectedProducts((selectedProducts) =>
       selectedProducts.map((product) => {
-        if (product.id === productId) {
+        if (product.uid === productUid) {
           const customValue = (product.attributes.customValue || 0) - 1;
           if (customValue >= 0) {
-            console.log(`Decrementing product ${productId}`);
             return {
               ...product,
               attributes: {
@@ -78,23 +88,14 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
       })
     );
   };
-  
 
   const clearCart = () => {
     setSelectedProducts([]);
   };
 
   return (
-    <ProductContext.Provider
-    value={{
-      selectedProducts,
-      addProductToCart,
-      removeProductFromCart,
-      incrementProductCustomValue,
-      decrementProductCustomValue,
-      clearCart,
-    }}
-  >
+    <ProductContext.Provider value={{ selectedProducts, addProductToCart, removeProductFromCart, clearCart, incrementProductCustomValue,
+      decrementProductCustomValue}}>
       {children}
     </ProductContext.Provider>
   );
