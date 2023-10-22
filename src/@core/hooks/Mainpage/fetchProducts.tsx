@@ -1,4 +1,3 @@
-// useProductData.js
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { Product } from "../Global/productList";
@@ -16,13 +15,13 @@ export function useProductData() {
       const response = await axios.get(
         `${apiUrl}?populate=image`
       );
+      console.log("NARA DAERII", response.data.data);
       return response.data.data;
     } catch (error) {
       console.error("Error fetching products:", error);
       return [];
     }
   };
-
 
   useEffect(() => {
     fetchProducts()
@@ -34,29 +33,6 @@ export function useProductData() {
       });
   }, []);
 
-  const fetchProducts1 = async () => {
-    try {
-      const response = await axios.get(
-        `${apiUrl}?filters[id][$in][1]=1&populate=image`
-      );
-      return response.data.data;
-    } catch (error) {
-      console.error("Error fetching products:", error);
-      return [];
-    }
-  };
 
-  useEffect(() => {
-    fetchProducts1()
-      .then((response) => {
-        setProducts1(response);
-      })
-      .catch((error) => {
-        // Handle any errors here
-      });
-  }, []);
-
- 
-
-  return { products, products1 };
+  return { products };
 }

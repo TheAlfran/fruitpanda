@@ -5,7 +5,7 @@ import { useProductContext } from "../../Screens/Cart/ProductContext";
 
 export const useCheckout = () => {
     const { selectedProducts, removeProductFromCart } = useProductContext();
-    const navigation = useNavigation<any>();
+    const navigation = useNavigation();
     const [isCheckboxChecked, setCheckboxChecked] = useState(false);
 
     const handleCheckboxClick = () => {

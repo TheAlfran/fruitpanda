@@ -37,9 +37,9 @@ export default function AddToCartPage() {
       <CartChildContainter>
         <FlatList
           data={selectedProducts}
-          keyExtractor={(item, index) =>
-            item && item.id ? item.id.toString() : index.toString()
-          }
+          keyExtractor={(item: any, index) => {
+            return item && item.uid ? item.uid : index.toString();
+          }}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <CartSecondChildContainter>
@@ -61,7 +61,7 @@ export default function AddToCartPage() {
                   <CombineContainer>
                     <QuantityAddContainer>
                       <ReduceQuantity
-                        onPress={() => decrementProductCustomValue(item.id)}
+                        onPress={() => decrementProductCustomValue(item.uid)}
                       >
                         <ReduceQuantityText> - </ReduceQuantityText>
                       </ReduceQuantity>
@@ -69,7 +69,7 @@ export default function AddToCartPage() {
                         placeholder={item.attributes.customValue.toString()}
                       />
                       <AddQuantity
-                        onPress={() => incrementProductCustomValue(item.id)}
+                        onPress={() => incrementProductCustomValue(item.uid)}
                       >
                         <AddQuantityText> + </AddQuantityText>
                       </AddQuantity>

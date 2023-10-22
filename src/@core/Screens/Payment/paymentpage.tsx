@@ -51,9 +51,9 @@ export default function PaymentPage() {
         <PaymentLine></PaymentLine>
         <FlatList
           data={selectedProducts}
-          keyExtractor={(item, index) =>
-            item && item.id ? item.id.toString() : index.toString()
-          }
+          keyExtractor={(item: any, index) => {
+            return item && item.uid ? item.uid : index.toString();
+          }}
           showsVerticalScrollIndicator={false}
           renderItem={({ item }) => (
             <PaymentSencondChildContainer>
@@ -70,7 +70,7 @@ export default function PaymentPage() {
                   <PaymentTextContainer1>
                     <PaymentText1>{item.attributes.customValue}x </PaymentText1>
                     <PaymentDeleteButton
-                      onPress={() => removeProductFromCart(item.id)}
+                      onPress={() => removeProductFromCart(item.uid)}
                     >
                       <PaymentImageContainer>
                         <PaymentImage
