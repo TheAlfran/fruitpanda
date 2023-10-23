@@ -1,5 +1,11 @@
-import { FlatList, Text, ScrollView, Modal } from "react-native";
-import React, { useState, useEffect } from "react";
+import {
+  FlatList,
+  Text,
+  ScrollView,
+  Modal,
+  ActivityIndicator,
+} from "react-native";
+import React, { useState } from "react";
 import {
   CategoryButtons,
   MainContainer,
@@ -49,20 +55,19 @@ import {
   ProductButtonContainer,
   ProductButtonText,
 } from "./mainstyle";
-import { Product, useProductFilter } from "../../hooks/Mainpage/searchProduct";
+import {  useProductFilter } from "../../hooks/Mainpage/searchProduct";
 import category from "../../hooks/Mainpage/categoryData";
 import { useProductActions } from "../../hooks/Mainpage/modalActions";
 import { useProductData } from "../../hooks/Mainpage/fetchProducts";
 import { API_URL, BASE_URL } from "../../hooks/Global/baseURL";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import ratingHook from "../../hooks/Mainpage/ratingHook";
-import { useQuery } from "react-query";
-import axios from "axios";
 const baseUrl = `${BASE_URL}`;
 const apiUrl = `${API_URL}`;
+import SkeletonContent from 'react-native-skeleton-content';
 
 export default function MainPage() {
-  const { products} = useProductData();
+  const { products, isLoading } = useProductData();
   const { searchQuery, setSearchQuery, filteredProducts } =
     useProductFilter(products);
   const {
@@ -124,75 +129,80 @@ export default function MainPage() {
       <TitleCategoryContainer>
         <TitleCategory>Popular</TitleCategory>
       </TitleCategoryContainer>
+
       <ProductContainer>
-        <FlatList
-          data={
-            selectedCategory
-              ? filteredProducts.length > 0
-                ? filteredProducts.filter(
-                    (product) =>
-                      product.attributes.category === selectedCategory
-                  )
-                : products.filter(
-                    (product) =>
-                      product.attributes.category === selectedCategory
-                  )
-              : filteredProducts.length > 0
-              ? filteredProducts
-              : products
-          }
-          scrollEnabled
-          showsVerticalScrollIndicator={false}
-          keyExtractor={(item: any, index) => {
-            return item && item.uid ? item.uid : index.toString();
-          }}
-          numColumns={2}
-          key={"_"}
-          renderItem={({ item: { id, attributes } }) => {
-            console.log("HERE", attributes.image.data.attributes.url);
-            return (
-              <>
-                <ParentProductContainer>
-                  <ProductButtonContainer>
-                    <PriceTextContainer>
-                      <AllTextColors
-                        style={{
-                          textTransform: "uppercase",
-                          fontWeight: "bold",
+        {isLoading ? (
+          <ActivityIndicator size="large" color="#0000ff" />
+        ) : (
+          <FlatList
+            data={
+              selectedCategory
+                ? filteredProducts.length > 0
+                  ? filteredProducts.filter(
+                      (product) =>
+                        product.attributes.category === selectedCategory
+                    )
+                  : products.filter(
+                      (product) =>
+                        product.attributes.category === selectedCategory
+                    )
+                : filteredProducts.length > 0
+                ? filteredProducts
+                : products
+            }
+            scrollEnabled
+            showsVerticalScrollIndicator={false}
+            keyExtractor={(item: any, index) => {
+              return item && item.uid ? item.uid : index.toString();
+            }}
+            numColumns={2}
+            key={"_"}
+            renderItem={({ item: { id, attributes } }) => {
+              console.log("HERE", attributes.image.data.attributes.url);
+              return (
+                <>
+                  <ParentProductContainer>
+                    <ProductButtonContainer>
+                      <PriceTextContainer>
+                        <AllTextColors
+                          style={{
+                            textTransform: "uppercase",
+                            fontWeight: "bold",
+                          }}
+                        >
+                          {attributes.name}
+                        </AllTextColors>
+                        <AllTextColors>₱{attributes.price}</AllTextColors>
+                        <FiveStarRating1 />
+                      </PriceTextContainer>
+                      <ProductImage
+                        source={{
+                          uri: `${baseUrl}${attributes.image.data.attributes.url}`,
                         }}
-                      >
-                        {attributes.name}
-                      </AllTextColors>
-                      <AllTextColors>₱{attributes.price}</AllTextColors>
-                      <FiveStarRating1 />
-                    </PriceTextContainer>
-                    <ProductImage
-                      source={{
-                        uri: `${baseUrl}${attributes.image.data.attributes.url}`,
-                      }}
-                    />
-                    <ProductButton
-                      key={id}
-                      onPress={() =>
-                        handleButtonClick({
-                          id: id,
-                          attributes: attributes,
-                        })
-                      }
-                    >
-                      <FontAwesome5Icon
-                        name="shopping-cart"
-                        size={15}
-                        color="#fff"
                       />
-                      <ProductButtonText> Add to Cart</ProductButtonText>
-                    </ProductButton>
-                  </ProductButtonContainer>
-                </ParentProductContainer>
-              </>
-            );
-          }}
-        />
+                      <ProductButton
+                        key={id}
+                        onPress={() =>
+                          handleButtonClick({
+                            id: id,
+                            attributes: attributes,
+                          })
+                        }
+                      >
+                        <FontAwesome5Icon
+                          name="shopping-cart"
+                          size={15}
+                          color="#fff"
+                        />
+                        <ProductButtonText> Add to Cart</ProductButtonText>
+                      </ProductButton>
+                    </ProductButtonContainer>
+                  </ParentProductContainer>
+                </>
+              );
+            }}
+          />
+        )}
       </ProductContainer>
       <Modal
         animationType="slide"
@@ -235,7 +245,6 @@ export default function MainPage() {
                   </FruitDescription>
                 </PriceDescriptionTextContainer>
                 <LineContainer></LineContainer>
-
                 <QuantityTextContainer>
                   <QuantityText> Quantity </QuantityText>
                 </QuantityTextContainer>
