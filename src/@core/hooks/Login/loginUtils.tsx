@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { useMutation, useQueryClient } from "react-query";
 import axios from "axios";
@@ -25,26 +25,28 @@ export const useAuth = () => {
     password: string;
   }) => {
     try {
-      
       const response = await axios.post(`${baseUrl}/api/auth/local`, {
         identifier: username,
         password: password,
       });
 
-     
       const authToken = response.data.jwt;
       const userId = response.data.user.id;
-      console.log("eewqeqw", userId)
+      console.log("eewqeqw", userId);
 
       await AsyncStorage.setItem("userId", userId.toString());
       await AsyncStorage.setItem("authToken", authToken);
-      
-      console.log("Stored authToken:", authToken); 
+
+      console.log("Stored authToken:", authToken);
       console.log("Stored userId:", userId);
 
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Navigate", params: { userId: Number(userId) } }],
+      });
+
       return { authToken, userId };
-    
-    }catch (error) {
+    } catch (error) {
       if (error instanceof Error) {
         if (error.cause && error.cause === 400) {
           Alert.alert(
@@ -65,7 +67,7 @@ export const useAuth = () => {
 
   const { mutate, isLoading, reset } = useMutation(login, {
     onSuccess: (data) => {
-      navigation.navigate("Navigate", {userId: 1});
+      navigation.navigate("Navigate", { userId: 1 });
     },
     onError: (error) => {
       reset();
@@ -84,8 +86,38 @@ export const useAuth = () => {
     try {
       const keys = await AsyncStorage.getAllKeys();
       const result = await AsyncStorage.multiGet(keys);
-  
-      console.log('Stored data:', result);
+
+      console.log("Stored data:", result);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    const checkUserLoggedIn = async () => {
+      const authToken = await AsyncStorage.getItem("authToken");
+      const userId = await AsyncStorage.getItem("userId");
+
+      if (authToken && userId) {
+        navigation.navigate("Navigate", { userId: Number(userId) });
+      } else {
+        navigation.navigate("Login");
+      }
+    };
+
+    checkUserLoggedIn();
+  }, []);
+
+  const logout = async () => {
+    try {
+      await AsyncStorage.removeItem("authToken");
+      await AsyncStorage.removeItem("userId");
+      navigation.reset({
+        index: 0,
+        routes: [{ name: "Login" }],
+      });
+
+      navigation.navigate("Login");
     } catch (error) {
       console.error(error);
     }
@@ -100,5 +132,6 @@ export const useAuth = () => {
     togglePasswordVisibility,
     handleLogin,
     isLoading,
+    logout,
   };
 };
