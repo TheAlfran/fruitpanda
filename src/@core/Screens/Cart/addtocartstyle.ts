@@ -35,6 +35,8 @@ export const CartSecondChildContainter = styled.View`
   margin-left: 5px;
   margin-right: 5px;
   margin-bottom: 5px;
+  border-right-width: 2px;
+  border-color: ${secondary};
   position: relative;
   ${Platform.select({
     ios: `
