@@ -74,7 +74,7 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
       selectedProducts.map((product) => {
         if (product.uid === productUid) {
           const customValue = (product.attributes.customValue || 0) - 1;
-          if (customValue >= 0) {
+          if (customValue >= 1) {
             return {
               ...product,
               attributes: {
