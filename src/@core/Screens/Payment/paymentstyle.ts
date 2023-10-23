@@ -1,8 +1,8 @@
 import styled from "styled-components/native";
-import { background, quinary, senary } from "../../theme/theme";
+import { background, quinary, secondary, senary } from "../../theme/theme";
+import { Platform } from "react-native";
 
 export const PaymentParentContainer = styled.View`
-  margin-top: 10px;
   width: 100%;
   height: 100%;
   background-color: ${background};
@@ -10,9 +10,8 @@ export const PaymentParentContainer = styled.View`
 `;
 
 export const PaymentTitle = styled.Text`
-  font-size: 24px;
+  font-size: 18px;
   font-weight: bold;
-  padding: 20px;
 `;
 
 export const PaymentTitle1 = styled.Text`
@@ -54,6 +53,60 @@ export const PaymentChildContainer = styled.View`
   align-items: center;
   padding-bottom: 20px;
   margin-top: 20px;
+`;
+
+
+export const PaySecondChildContainter = styled.View`
+  flex-direction: row;
+  border-radius: 10px;
+  background-color: ${background};
+  margin-top: 15px;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-bottom: 5px;
+  border-right-width: 2px;
+  border-color: ${secondary};
+  position: relative;
+  ${Platform.select({
+    ios: `
+      shadow-color: #000;
+      shadow-offset: {
+        width: 0,
+        height: 2,
+      }
+      shadow-opacity: 0.25;
+      shadow-radius: 3.84;
+    `,
+    android: `
+      elevation: 3;
+    `,
+  })}
+`;
+
+export const PayImageAdd = styled.Image`
+  width: 50px;
+  height: 50px;
+`;
+
+
+export const PayImageAddContainer = styled.View`
+  height: 75px;
+  background-color: ${quinary};
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 2px;
+`;
+
+export const PayTextContainer = styled.View`
+  text-align: center;
+  margin-left: 10px;
+`;
+
+
+export const PayText = styled.Text`
+  font-size: 12px;
+  font-weight: bold;
 `;
 
 export const PaymentSencondChildContainer = styled.View`
@@ -141,7 +194,7 @@ export const AgreementContainer = styled.View`
 `;
 
 export const AgreementText = styled.Text`
-  font-size: 16px;
+  font-size: 13px;
   margin-left: 10px;
   color: grey;
 `;
