@@ -1,22 +1,42 @@
-import React from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import React, { useEffect } from "react";
+import { NavigationContainer, NavigationContainerRef, ParamListBase } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import HomeScreen from "../Screens/Home/HomeScreen";
 import LoginPage from "../Screens/Login/LoginPage";
 import Navigator1 from "./Navigator";
-import { ProductProvider } from "../Screens/Cart/ProductContext";
 import PaymentPage from "../Screens/Payment/paymentpage";
 import PayPage from "../Screens/Payment/paypage";
-import MainPage from "../Screens/Main/MainPage";
-import mapLocation from "../Screens/Profile/mapLocation";
 import MapLocation from "../Screens/Profile/mapLocation";
-import Profilepage from "../Screens/Profile/profilepage";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const Stack = createStackNavigator();
 
+
+
+
 const MainNav: React.FC = () => {
+
+  const navigationRef = React.useRef<NavigationContainerRef<ParamListBase>>(null);
+
+  useEffect(() => {
+    const checkUserLoggedIn = async () => {
+      const authToken = await AsyncStorage.getItem("authToken");
+      const userId = await AsyncStorage.getItem("userId");
+
+      if (authToken && userId) {
+        navigationRef.current?.reset({
+          index: 0,
+          routes: [{ name: 'Navigate', params: {userId: Number(userId)} }],
+        });
+      }
+    };
+
+    checkUserLoggedIn();
+  }, []);
+
+
   return (
-    <NavigationContainer>
+    <NavigationContainer ref={navigationRef}>
       <Stack.Navigator initialRouteName="HomeScreen">
         <Stack.Screen
           name="Home"
@@ -37,20 +57,20 @@ const MainNav: React.FC = () => {
           name="Checkout"
           component={PaymentPage}
           options={{
-            title: "Checkout Page", // Set the title of the screen
-            headerStyle: { backgroundColor: "#D70F64" }, // Set the background color of the header
-            headerTintColor: "#fff", // Set the color of the header text
-            headerTitleStyle: { fontWeight: "bold" }, // Set the style for the header title
+            title: "Checkout Page", 
+            headerStyle: { backgroundColor: "#D70F64" }, 
+            headerTintColor: "#fff", 
+            headerTitleStyle: { fontWeight: "bold" },
           }}
         />
         <Stack.Screen
           name="Payment"
           component={PayPage}
           options={{
-            title: "Payment", // Set the title of the screen
-            headerStyle: { backgroundColor: "#D70F64" }, // Set the background color of the header
-            headerTintColor: "#fff", // Set the color of the header text
-            headerTitleStyle: { fontWeight: "bold" }, // Set the style for the header title
+            title: "Payment", 
+            headerStyle: { backgroundColor: "#D70F64" },
+            headerTintColor: "#fff", 
+            headerTitleStyle: { fontWeight: "bold" },
           }}
         ></Stack.Screen>
          <Stack.Screen
