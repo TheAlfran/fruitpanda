@@ -51,7 +51,6 @@ export default function Navigator1() {
           ),
         })}
       />
-
       <Tab.Screen
         name="Profile"
         component={Profilepage}
