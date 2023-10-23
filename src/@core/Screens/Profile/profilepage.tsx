@@ -18,6 +18,8 @@ import {
   HistoryButton,
   ImageContainer,
   ImageProfile5,
+  LogoutButton,
+  LogoutButtonText,
   MapButton,
   MapContainer,
   MapContainer1,
@@ -61,12 +63,16 @@ import { useNavigation } from "@react-navigation/native";
 import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 import { background } from "../../theme/theme";
 import { BASE_URL } from "../../hooks/Global/baseURL";
+import { useAuth } from "../../hooks/Login/loginUtils";
 const baseUrl = `${BASE_URL}`;
 
 export default function Profilepage() {
 
+  const {logout} = useAuth();
+
+  
+
   const fetchUserId = useUserData();
-   
   console.log("Received userId:", fetchUserId);
   const { userData, error } = useUserData();
 
@@ -86,8 +92,8 @@ export default function Profilepage() {
   };
 
   if (!userData) {
-   
-    return console.log("ERROR");
+    console.log("ERROR")
+    return null;
   }
   const user = userData;
 
@@ -218,6 +224,11 @@ export default function Profilepage() {
             )}
           </MapDropdownContainer>
         </MapContainer>
+        <LogoutButton onPress={logout}>
+          <LogoutButtonText>
+            Logout
+          </LogoutButtonText>
+        </LogoutButton>
       </ProfileContainer>
     </ScrollView>
   );
