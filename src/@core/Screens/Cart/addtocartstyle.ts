@@ -11,8 +11,8 @@ import {
 import { Platform } from "react-native";
 
 export const CartParentContainer = styled.View`
-
   width: 100%;
+  height: 100%;
   background-color: ${background};
   align-items: center;
 `;
@@ -160,20 +160,31 @@ ${Platform.select({
 
 export const CartFooterContainer = styled.View`
   width: 95%;
-  height: 13%;
   background-color: #f8f8f8;
   border-radius: 10px;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   margin-top: 13px;
+  padding: 20px;
+`;
+
+export const SubtotalContainer = styled.View`
+flex-direction:column;
+width: 70px;
+
+`;
+
+export const CartFooterText1 = styled.Text`
+  font-size: 16px;
 `;
 
 export const CartFooterText = styled.Text`
+  text-align: left;
+  font-size: 13px;
   font-weight: bold;
-  font-size: 24px;
-  padding: 20px;
   margin-right: 25px;
+  width: 100%;
 `;
 
 export const CartFooterButtonText = styled.Text`
@@ -189,8 +200,8 @@ border-color: ${secondary};
 border-radius: 5px;
 background-color: ${secondary};
 width: 50%;
-height: 40px;
-margin-left: 30px;
+padding: 3px;
+margin-left: 60px;
 flex-direction: row;
 align-items: center;
 justify-content: center;

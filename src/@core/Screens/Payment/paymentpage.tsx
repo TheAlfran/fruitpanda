@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ScrollView,
 } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   AgreementContainer,
   AgreementText,
@@ -17,7 +17,6 @@ import {
   PaymentButtonText,
   PaymentChildContainer,
   PaymentDeleteButton,
-  PaymentDeleteButtonText,
   PaymentFooter,
   PaymentImage,
   PaymentImageContainer,
@@ -35,9 +34,11 @@ import {
 import { useCheckout } from "../../hooks/Payment/useCheckout";
 
 
+
 export default function PaymentPage() {
-  
+
   const { selectedProducts, isCheckboxChecked, handleCheckboxClick, handleNavigation, removeProductFromCart} = useCheckout();
+
 
   return (
     <PaymentParentContainer>
@@ -107,7 +108,9 @@ export default function PaymentPage() {
                 ? "#D70F64"
                 : "#f279ac",
             }}
-            onPress={handleNavigation}
+            onPress={() => {
+              handleNavigation();
+            }}
           >
             <PaymentButtonText>Proceed to Payment</PaymentButtonText>
           </PaymentButton>

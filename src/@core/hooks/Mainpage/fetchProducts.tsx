@@ -6,33 +6,35 @@ const apiUrl = `${API_URL}`;
 
 export function useProductData() {
   const [products, setProducts] = useState<Product[]>([]);
-  const [products1, setProducts1] = useState<Product[]>([]);
- 
-
+  const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const fetchProducts = async () => {
     try {
+      setIsLoading(true);
       const response = await axios.get(
         `${apiUrl}?populate=image`
       );
       console.log("NARA DAERII", response.data.data);
+      setIsLoading(false);
       return response.data.data;
     } catch (error) {
       console.error("Error fetching products:", error);
+      setIsLoading(false);
       return [];
     }
   };
 
   useEffect(() => {
-    fetchProducts()
-      .then((response) => {
-        setProducts(response);
-      })
-      .catch((error) => {
-        // Handle any errors here
-      });
+    if (!isLoading) {
+      fetchProducts()
+        .then((response) => {
+          setProducts(response);
+        })
+        .catch((error) => {
+        });
+    }
   }, []);
 
-
-  return { products };
+  return { products, isLoading };
 }
+

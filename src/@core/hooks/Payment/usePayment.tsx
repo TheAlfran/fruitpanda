@@ -47,7 +47,6 @@ export const usePayment = () => {
 
   const handlePayment = () => {
     if (userInput > overallTotal) {
-      // Prepare the data to be sent
       const receiptData = selectedProducts.map((product) => ({
         name: product.attributes.name,
         price: product.attributes.price,
@@ -58,17 +57,17 @@ export const usePayment = () => {
         payment: userInput,
       }));
 
-      // Make a POST request to the Strapi API
+      
       axios
         .post(`${baseUrl}/api/receipt2s`, {
           data: {
-            Receipt: receiptData, // Add all the receipt data to the Receipt component
+            Receipt: receiptData,
           },
         })
         .then((response) => {
           console.log("Success:", response.data.data);
           alert("Payment done");
-          clearCart(); // Clear the cart
+          clearCart();
           setUserInput(0);
         })
         .catch((error) => {

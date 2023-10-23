@@ -9,6 +9,7 @@ import {
   CartFooterContainer,
   CartFooterImage,
   CartFooterText,
+  CartFooterText1,
   CartImageAdd,
   CartImageAddContainer,
   CartModalFooter,
@@ -20,11 +21,13 @@ import {
   QuantityAddContainer,
   ReduceQuantity,
   ReduceQuantityText,
+  SubtotalContainer,
   TextQuantity,
 } from "./addtocartstyle";
 import { useCart } from "../../hooks/Cart/useCart";
 import { BASE_URL } from "../../hooks/Global/baseURL";
 import { useProductContext } from "./ProductContext";
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
 const baseUrl = `${BASE_URL}`;
 
 export default function AddToCartPage() {
@@ -66,6 +69,7 @@ export default function AddToCartPage() {
                         <ReduceQuantityText> - </ReduceQuantityText>
                       </ReduceQuantity>
                       <TextQuantity
+                      editable={false}
                         placeholder={item.attributes.customValue.toString()}
                       />
                       <AddQuantity
@@ -82,12 +86,13 @@ export default function AddToCartPage() {
         />
       </CartChildContainter>
       <CartFooterContainer>
-        <CartFooterText>₱{totalPrice}</CartFooterText>
+        <SubtotalContainer>
+          <CartFooterText1>SubTotal:</CartFooterText1>
+          <CartFooterText>₱{totalPrice}</CartFooterText>
+        </SubtotalContainer>
         <CartFooterButton onPress={checkoutClicked}>
-          <CartFooterImage
-            source={require("../../../../assets/categories/checkout.png")}
-          />
-          <CartFooterButtonText>Checkout</CartFooterButtonText>
+          <FontAwesome5Icon name="shopping-cart" size={15} color="#fff" />
+          <CartFooterButtonText>  Checkout</CartFooterButtonText>
         </CartFooterButton>
       </CartFooterContainer>
     </CartParentContainer>

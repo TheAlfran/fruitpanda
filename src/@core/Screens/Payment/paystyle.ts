@@ -1,4 +1,5 @@
 import styled from "styled-components/native";
+import { background, primary, quinary, secondary } from "../../theme/theme";
 
 export const PayContainer = styled.View`
   align-items: center;
@@ -18,6 +19,8 @@ export const PaySecondChildContainer = styled.View`
   height: 15%;
   margin-top: 10px;
   flex-direction: row;
+  border-width: 1px;
+  flex: 1;
 `;
 
 export const PaySummaryImage = styled.Image`
@@ -136,6 +139,116 @@ export const PayFooterTitle = styled.Text`
   font-weight: bold;
 `;
 
+
+export const PaymentInfoContainer = styled.View`
+width: 100%;
+align-items: center;
+padding: 20px;
+margin-top: 3px;
+background-color: ${background};
+`;
+
+export const PaymentAddressContainer = styled.View`
+width: 100%;
+flex-direction: row;
+align-items: center;
+
+`;
+
+export const PaymentAddressContainer1 = styled.View`
+flex-direction: column;
+margin-left: 10px;
+`;
+
+export const PayLocationImage = styled.Image`
+width: 40px;
+height: 40px;
+`;
+
+export const ProfileAddress = styled.Text`
+font-size: 14px;
+font-weight: bold;
+`;
+
+export const PayAddressLogoContainer = styled.View`
+flex-direction: row;
+
+`;
+
+export const PayAddressLogo = styled.Text`
+padding: 1px;
+font-size: 11px;
+border-radius: 10px;
+background-color: ${quinary};
+margin-right: 3px;
+color: #fff;
+text-align: center;
+`;
+
+export const PayAddressText = styled.Text`
+font-size: 14px;
+`;
+
+export const PaymentAddressContainer2 = styled.View`
+padding: 10px;
+border-width: 1px;
+background-color: ${background};
+margin-top: 5px;
+width: 100%;
+`;
+
+export const StoreLogoContainer = styled.View`
+width: 100%;
+flex-direction: row;
+margin-top: 10px;
+`;
+
+export const StoreName = styled.Text`
+font-size: 13px;
+font-weight: bold;
+`;
+
+export const RatingContainer = styled.View`
+width: 100%;
+margin-top: 20px;
+border-radius: 3px;
+background-color: ${quinary};
+align-items: center;
+padding: 5px;
+`;
+
+export const RatingText = styled.Text`
+font-size: 12px;
+color: ${primary};
+`;
+
+export const PayItemsContainer = styled.View`
+width: 100%;
+border-width: 1px;
+flex-direction: row;
+height: 110px;
+`;
+
+export const PayImageAddContainer = styled.View`
+  width: 30%;
+  height: 75px;
+  background-color: ${quinary};
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 5px;
+  margin: 10px;
+`;
+
+export const PayItemContainer1 = styled.View`
+border-width: 1px;
+`;
+
+export const PayItemContainer2 = styled.View`
+
+`;
+
+
 export const PaySeventhContainer = styled.View`
   flex-direction: row;
 `;
@@ -171,6 +284,9 @@ export const AmountInput = styled.TextInput`
 
 export const PayModalContainer = styled.View`
   align-items: center;
+  background-color: rgba(128, 128, 128, 0.5);
+  
+
 `;
 
 export const PayModalChildContainer = styled.View`
@@ -181,6 +297,7 @@ export const PayModalChildContainer = styled.View`
 export const PayModalTitle = styled.Text`
   font-size: 32px;
   font-weight: bold;
+  margin: 10px;
 `;
 
 export const PayAmount = styled.TextInput`
