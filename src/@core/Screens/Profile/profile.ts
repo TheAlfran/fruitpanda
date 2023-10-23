@@ -372,5 +372,15 @@ text-align: center;
 margin-left: 2px;
 `;
 
+export const LogoutButton = styled.TouchableOpacity`
+border-width: 1px;
+padding: 20px;
+
+`;
+
+export const LogoutButtonText = styled.Text`
+font-size: 16px;
+`;
+
 
 
