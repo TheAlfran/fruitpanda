@@ -25,14 +25,14 @@ export const ProductProvider: React.FC<{ children: React.ReactNode }> = ({
       return;
     }
     
-    // Generate a UID for the product
+  
     const uid = `${product.id}-${Date.now()}`;
   
     setSelectedProducts(prevProducts => [
       ...prevProducts,
       {
         ...product,
-        uid, // Add the UID to the product
+        uid, 
       },
     ]);
   };
