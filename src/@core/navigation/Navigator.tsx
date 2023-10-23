@@ -35,11 +35,11 @@ export default function Navigator1() {
           ),
           tabBarActiveTintColor: "#D70F64",
           tabBarInactiveTintColor: "gray",
-          headerTitle: "My Cart", // Set the header title here
-          headerTitleAlign: "center", // Center align the header title
-          headerStyle: { backgroundColor: "#D70F64" }, // Set the background color of the header
-          headerTintColor: "#fff", // Set the color of the header text
-          headerTitleStyle: { fontWeight: "bold" }, // Set the style for the header title
+          headerTitle: "My Cart", 
+          headerTitleAlign: "center",
+          headerStyle: { backgroundColor: "#D70F64" },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "bold" },
           headerLeft: () => (
             <Ionicons
               name="arrow-back"
