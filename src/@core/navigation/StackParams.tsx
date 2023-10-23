@@ -8,7 +8,7 @@ declare global {
   }
 }
 export type RootStackParamList = {
-  Entry: NavigatorScreenParams<EntryStackParamList> | undefined;
+  Entry: NavigatorScreenParams<EntryStackParamList> | {userId: string};
   Main: NavigatorScreenParams<MainBottomParamList> | undefined;
   
 };
