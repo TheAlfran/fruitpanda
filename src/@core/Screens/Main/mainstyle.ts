@@ -116,7 +116,7 @@ border-width: 1px;
 `;
 
 export const AllTextColors = styled.Text`
-  color: ${primary};
+  color: ${secondary};
   font-size: 12px;
 `;
 
@@ -182,7 +182,7 @@ export const ProductButton = styled.TouchableOpacity`
   padding: 5px;
   justify-content: center;
   align-items: center;
-  background-color: ${primary};
+  background-color: ${secondary};
   flex-direction: row;
 `;
 
@@ -382,7 +382,7 @@ export const AddContainer = styled.View`
 `;
 
 export const CartAdd = styled.TouchableOpacity`
-  background-color: ${primary};
+  background-color: ${secondary};
   padding-top: 2px;
   padding-bottom:2px;
   padding-left: 20px;
@@ -394,7 +394,7 @@ export const CartAdd = styled.TouchableOpacity`
 `;
 
 export const CartMinus = styled.TouchableOpacity`
-  background-color: ${primary};
+  background-color: ${secondary};
   padding-top: 2px;
   padding-bottom:2px;
   padding-left: 20px;
@@ -420,7 +420,7 @@ export const CartInfo = styled.TextInput`
 export const CartButton = styled.TouchableOpacity`
 
   border-radius: 25px;
-  background-color: ${primary};
+  background-color: ${secondary};
   padding-top: 10px;
   padding-bottom: 10px;
   padding-left: 25px;
