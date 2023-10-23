@@ -1,10 +1,18 @@
 import { Text, Modal, TouchableOpacity } from "react-native";
 import {
+ 
   FooterButton,
   FooterContainer,
   FooterContainer2,
   FooterText,
   FooterTextButton,
+ 
+  PayAddressLogo,
+ 
+  PayAddressLogoContainer,
+ 
+  PayAddressText,
+ 
   PayAmount,
   PayButton,
   PayButton2,
@@ -20,7 +28,10 @@ import {
   PayFooterTitle,
   PayFourthContainer,
   PayImage,
+  PayItemContainer1,
+  PayItemsContainer,
   PayLineContainer,
+  PayLocationImage,
   PayModalChildContainer,
   PayModalContainer,
   PayModalTitle,
@@ -36,13 +47,29 @@ import {
   PayText5,
   PayText6,
   PayThirdContainer,
+  PaymentAddressContainer,
+  PaymentAddressContainer1,
+  PaymentAddressContainer2,
+  PaymentInfoContainer,
+  ProfileAddress,
+  RatingContainer,
+  RatingText,
+  StoreLogoContainer,
+  StoreName,
+
 } from "./paystyle";
 import { usePayment } from "../../hooks/Payment/usePayment";
+import * as Progress from 'react-native-progress';
+import FontAwesome5Icon from "react-native-vector-icons/FontAwesome5";
+import { useCart } from "../../hooks/Cart/useCart";
+import { FlatList } from "react-native-gesture-handler";
+import { PayImageAdd, PayImageAddContainer, PayText, PayTextContainer } from "./paymentstyle";
+import { BASE_URL } from "../../hooks/Global/baseURL";
+const baseUrl = `${BASE_URL}`;
 
 export default function PayPage() {
   const { totalPrice, deliveryFee, totalPriceWithVAT, isModalVisible, openModal, closeModal, userInput, setUserInput, handlePayment, overallTotal } = usePayment();
-  
-
+  const { selectedProducts } = useCart();
   return (
     <PayContainer>
       <PayChildContainer>
@@ -104,6 +131,63 @@ export default function PayPage() {
         <Modal visible={isModalVisible}>
           <PayModalContainer>
             <PayModalChildContainer>
+            <PaymentInfoContainer>
+                <PaymentAddressContainer>
+                <PayLocationImage source={require('../../../../assets/profileimages/map.png')} />
+                  <PaymentAddressContainer1>
+                    <ProfileAddress>
+                      Alfranciss W. Dionsay  09670670612
+                    </ProfileAddress>
+                    <PayAddressLogoContainer>
+                      <PayAddressLogo> HOME </PayAddressLogo>
+                      <PayAddressText>
+                        Nha Kauswagan CDOC
+                      </PayAddressText>
+                    </PayAddressLogoContainer>
+                  </PaymentAddressContainer1>
+                </PaymentAddressContainer> 
+            </PaymentInfoContainer>
+            <PaymentAddressContainer2>
+                <StoreLogoContainer>
+                  <FontAwesome5Icon name="store-alt" size={15} color="#000" />
+                  <StoreName>   Fruit Panda</StoreName>
+                  </StoreLogoContainer>
+                  <RatingContainer>
+                    <RatingText>Nice Choice! This products is highly rated at 5.0/5</RatingText>
+                  </RatingContainer>
+                  <PayItemsContainer>
+                    <FlatList 
+                    data={selectedProducts}
+                    keyExtractor={(item: any, index) => {
+                      return item && item.uid ? item.uid : index.toString();
+                    }}
+                    showsVerticalScrollIndicator={false}
+                    renderItem={({ item }) => (
+                      <PaySecondChildContainer>
+                         {item && ( 
+                          <>
+                            <PayImageAddContainer>
+                              <PayImageAdd
+                              source={{
+                                uri: `${baseUrl}${item.attributes.image.data.attributes?.url}`,
+                              }}
+                              />
+                              
+                            </PayImageAddContainer>
+                            <PayTextContainer>
+                                <PayText>{item.attributes.name}</PayText>
+                                <PayText>QTY: {item.attributes.customValue}</PayText>
+                                <PayText> ₱{item.attributes.price} </PayText>
+                            </PayTextContainer>
+                          
+                          
+                          </>
+                         )}
+                      </PaySecondChildContainer>
+                    )}        
+                    />
+                  </PayItemsContainer>
+                </PaymentAddressContainer2>
               <PayModalTitle>Payments</PayModalTitle>
               <PayAmount
                 value={userInput.toString()}
