@@ -24,7 +24,7 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <ProductProvider>
-        <MainNav/>
+          <MainNav/>
       </ProductProvider>
    </QueryClientProvider>
   );
