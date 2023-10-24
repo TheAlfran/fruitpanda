@@ -1,32 +1,122 @@
 import styled from "styled-components/native";
 import { background, primary, quinary, secondary } from "../../theme/theme";
 
-export const PayContainer = styled.View`
-  align-items: center;
-`;
 
-export const PayChildContainer = styled.View`
-  height: 220px;
-  width: 95%;
-  background-color: rgba(128, 128, 128, 0.5);
-  border-radius: 5px;
-  margin: 8%;
-  align-items: center;
-`;
 
-export const PaySecondChildContainer = styled.View`
+export const PaySecondChildContainer1 = styled.View`
   width: 100%;
   height: 15%;
   margin-top: 10px;
   flex-direction: row;
-  border-width: 1px;
   flex: 1;
 `;
 
-export const deliveryTitleContainer = styled.View`
+export const PayDeliveryTitleContainer = styled.View`
+margin-top: 20px;
+width: 98%;
+`;
 
+
+export const PayTitle = styled.Text`
+font-size: 13px;
+`;
+
+export const PayDeliveryContainer = styled.View`
+border-width: 0.5px;
+border-radius: 7px;
+margin-top: 8px;
+align-items: center;
+`;
+
+export const PayDeliveryContainer1 = styled.View`
+padding: 7px;
+width: 100%;
+justify-content: space-between;
+flex-direction: row;
+`;
+
+export const PayDeliveryContainer2 = styled.View`
+flex-direction: row;
+align-items: start;
+width: 95%;
+margin-bottom: 7px;
+`;
+
+export const PayDeliveryText = styled.Text`
+font-size: 12px;
+font-weight: bold;
 
 `;
+
+export const PayDeliveryText2 = styled.Text`
+font-size: 12px;
+margin-left: 5px;
+`;
+
+export const PaySelectionContainer = styled.View`
+margin-top: 10px;
+background-color: ${background};
+width: 100%;
+padding-top: 7px;
+padding-left: 7px;
+align-items: center;
+`;
+
+export const PaySelectionTitle = styled.Text`
+font-size: 14px;
+font-weight: bold;
+width: 95%;
+`;
+
+export const PaySelectionContainer1 = styled.View`
+flex-direction: row;
+
+justify-content: center;
+width: 100%;
+`;
+
+export const PaySelectionButton = styled.TouchableOpacity`
+border-width: 0.5px;
+border-radius: 7px;
+justify-content: space-between;
+height: 80px;
+padding: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
+width: 180px;
+background-color: ${background};
+
+`;
+
+export const PaySelectionButtonContainer = styled.View`
+flex-direction: row;
+`;
+
+export const PaySelectionButtonTitle = styled.Text`
+font-size: 14px;
+font-weight: 600;
+`;
+
+export const PaySelectionButtonTitle2 = styled.Text`
+font-size: 11px;
+
+`;
+
+
+export const PaySelectionButton1 = styled.TouchableOpacity`
+border-width: 0.5px;
+border-radius: 7px;
+justify-content: space-between;
+height: 80px;
+padding: 10px;
+margin-top: 10px;
+margin-bottom: 10px;
+width: 180px;
+margin-left: 5px;
+margin-right: 5px;
+`
+
+
 
 export const PaySummaryImage = styled.Image`
   width: 29px;
@@ -196,10 +286,10 @@ font-size: 14px;
 
 export const PaymentAddressContainer2 = styled.View`
 padding: 10px;
-border-width: 1px;
 background-color: ${background};
 margin-top: 5px;
 width: 100%;
+align-items: center;
 `;
 
 export const StoreLogoContainer = styled.View`
@@ -214,17 +304,19 @@ font-weight: bold;
 `;
 
 export const RatingContainer = styled.View`
-width: 100%;
+width: 92%;
 margin-top: 20px;
-border-radius: 3px;
-background-color: ${quinary};
-align-items: center;
+border-radius: 5px;
+background-color: #fff7c7;
+justify-content: center;
 padding: 5px;
+flex-direction: row;
 `;
 
 export const RatingText = styled.Text`
 font-size: 12px;
-color: ${primary};
+color: #f58e62;
+margin-left: 5px;
 `;
 
 export const PayItemsContainer = styled.View`
@@ -233,6 +325,7 @@ flex-direction: row;
 height: 110px;
 margin-top: 5px;
 `;
+
 
 export const PayImageAddContainer = styled.View`
   width: 30%;
@@ -252,6 +345,8 @@ border-width: 1px;
 export const PayItemContainer2 = styled.View`
 
 `;
+
+
 
 
 export const PaySeventhContainer = styled.View`
@@ -299,11 +394,94 @@ export const PayModalChildContainer = styled.View`
   align-items: center;
 `;
 
+
+export const PayMethodContainer = styled.View`
+width: 100%;
+align-items: center;
+background-color: ${background};
+margin-top: 7px;
+
+`;
+
+export const PayMethodContainer1 = styled.View`
+width: 100%;
+align-items: center;
+padding: 5px;
+`;
+
+export const PayMethodChildContainer = styled.View`
+flex-direction: row;
+width: 100%;
+justify-content: space-between;
+padding-top: 5px;
+`;
+
+export const PayMethodChildContainer1 = styled.View`
+`;
+
+export const PayMethodChildContainer2 = styled.View`
+flex-direction: row;
+width: 100%;
+justify-content: flex-end;
+
+`;
+
+export const PayAllItemsButton = styled.TouchableOpacity`
+align-items: center;
+justify-content: center;
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 30px;
+padding-right: 30px;
+border-radius: 20px;
+background-color: ${quinary};
+margin-top: 10px;
+
+`;
+
+export const PayAllText = styled.Text`
+color: ${background};
+`;
+
+export const PayAllText1 = styled.Text`
+align-items: center;
+justify-content: center;
+padding-top: 10px;
+padding-bottom: 10px;
+padding-left: 30px;
+padding-right: 10px;
+border-radius: 20px;
+margin-top: 10px;
+font-size: 13px;
+`;
+
+
+
+
+export const PayMethodContainer2 = styled.View`
+
+
+`;
+
+
 export const PayModalTitle = styled.Text`
   font-size: 32px;
   font-weight: bold;
   margin: 10px;
 `;
+
+
+export const AllTotalText = styled.Text`
+font-size: 13px;
+padding: 10px;
+`;
+
+export const Liner = styled.View`
+border-width: 0.5px;
+width: 95%;
+`;
+
+
 
 export const PayAmount = styled.TextInput`
   width: 80%;

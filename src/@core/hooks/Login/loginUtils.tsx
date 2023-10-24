@@ -116,8 +116,8 @@ export const useAuth = () => {
         index: 0,
         routes: [{ name: "Login" }],
       });
+   
 
-      navigation.navigate("Login");
     } catch (error) {
       console.error(error);
     }
