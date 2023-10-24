@@ -15,12 +15,17 @@ export const PayChildContainer = styled.View`
 `;
 
 export const PaySecondChildContainer = styled.View`
-  width: 95%;
+  width: 100%;
   height: 15%;
   margin-top: 10px;
   flex-direction: row;
   border-width: 1px;
   flex: 1;
+`;
+
+export const deliveryTitleContainer = styled.View`
+
+
 `;
 
 export const PaySummaryImage = styled.Image`
@@ -224,9 +229,9 @@ color: ${primary};
 
 export const PayItemsContainer = styled.View`
 width: 100%;
-border-width: 1px;
 flex-direction: row;
 height: 110px;
+margin-top: 5px;
 `;
 
 export const PayImageAddContainer = styled.View`

@@ -90,6 +90,7 @@ export const PayImageAdd = styled.Image`
 
 
 export const PayImageAddContainer = styled.View`
+  
   height: 75px;
   background-color: ${quinary};
   justify-content: center;

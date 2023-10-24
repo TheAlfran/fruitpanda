@@ -175,9 +175,10 @@ export default function PayPage() {
                               
                             </PayImageAddContainer>
                             <PayTextContainer>
-                                <PayText>{item.attributes.name}</PayText>
+                                <PayText>Name: {item.attributes.name}</PayText>
                                 <PayText>QTY: {item.attributes.customValue}</PayText>
-                                <PayText> ₱{item.attributes.price} </PayText>
+                                <PayText>  </PayText>
+                                <PayText>₱{item.attributes.price} </PayText>
                             </PayTextContainer>
                           
                           
@@ -187,6 +188,7 @@ export default function PayPage() {
                     )}        
                     />
                   </PayItemsContainer>
+                  
                 </PaymentAddressContainer2>
               <PayModalTitle>Payments</PayModalTitle>
               <PayAmount
