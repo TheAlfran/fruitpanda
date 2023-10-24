@@ -97,6 +97,7 @@ export const PayImageAddContainer = styled.View`
   align-items: center;
   padding: 15px;
   border-radius: 2px;
+  margin-left: 5px;
 `;
 
 export const PayTextContainer = styled.View`
